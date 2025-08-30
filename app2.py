@@ -8,6 +8,7 @@ from openai import OpenAI
 
 from chromadb.utils import embedding_functions
 
+from utils.settings import global_config
 
 COLLECTION_NAME = "code_embeddings"
 EMB_MODEL_NAME = 'all-MiniLM-L6-v2'  # A good general-purpose model, consider code-specific models for better results
@@ -58,7 +59,7 @@ async def req():
 
 
 async def li_models():
-    client = OpenAI()
+    client = OpenAI(api_key=global_config.openai_api_key)
     print("OpenAI client initialized successfully!")
 
     models = client.models.list()

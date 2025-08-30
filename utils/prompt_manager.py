@@ -1,5 +1,8 @@
-import os
+from pathlib import Path
+
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
+
+from utils.settings import TEMPLATES_DIR
 
 
 class PromptManager:
@@ -8,7 +11,7 @@ class PromptManager:
     from a specified local folder.
     """
 
-    def __init__(self, template_folder: str = 'templates'):
+    def __init__(self, template_folder: Path = TEMPLATES_DIR):
         """
         Initializes the PromptManager.
 
@@ -17,8 +20,8 @@ class PromptManager:
                                     Defaults to 'templates'.
         """
         # Ensure the template folder exists
-        if not os.path.isdir(template_folder):
-            raise FileNotFoundError(f"Template folder not found: {os.path.abspath(template_folder)}")
+        if not template_folder.is_dir():
+            raise FileNotFoundError(f"Template folder not found: {template_folder}")
 
         self.template_folder = template_folder
         # Set up the Jinja environment to load templates from the specified folder
@@ -28,7 +31,7 @@ class PromptManager:
             lstrip_blocks=True,  # Strips leading whitespace from lines with block tags
             autoescape=False  # We are generating text prompts, not HTML
         )
-        print(f"PromptManager initialized. Loading templates from: {os.path.abspath(template_folder)}")
+        print(f"PromptManager initialized. Loading templates from: {template_folder}")
 
     def list_templates(self) -> list[str]:
         return self.env.list_templates()

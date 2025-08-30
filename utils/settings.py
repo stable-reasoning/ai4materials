@@ -79,6 +79,7 @@ def load_env_vars_to_dataclass(cls: type):
 @dataclass
 class Configuration:
     docucache_path: str
+    vector_db_path: str
     openai_api_key: str = dataclasses.field(metadata={'secret': True})
 
     def __str__(self):
