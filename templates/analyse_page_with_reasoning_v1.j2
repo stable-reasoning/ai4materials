@@ -1,0 +1,10 @@
+Page size: width={{ page_w }}, height={{ page_h }} (pixels).
+Be careful to use integers and keep boxes within [0,width,0,height].
+Return JSON list of blocks. Strictly follow the schema for each block:
+{
+  "page": int,
+  "bbox": [int, int, int, int],
+  "type": string(section_header|paragraph|equation_block|caption|figure|table|reference_header|reference_entry|unknown),
+  "text": string,
+  "confidence": float
+}

@@ -1,0 +1,14 @@
+google-generativeai==0.8.4
+chromadb==1.0.4
+python-dotenv==1.1.0
+asyncio==3.4.3
+retry==0.9.2
+jinja2==3.1.6
+gitignore_parser==0.1.12
+pytest==8.3.5
+httpx==0.28.1
+pandas==2.2.3
+datasets~=4.0.0
+openai==1.99.9
+pillow==11.3.0
+pix2tex
