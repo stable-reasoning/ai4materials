@@ -31,7 +31,7 @@ perf.svg
 fuzz_*.pkg.spec
 *.dict
 .cached
-.embeddings
+#.embeddings
 .env
 dev-iot-application-vertexai-key.json
 set_env.sh
