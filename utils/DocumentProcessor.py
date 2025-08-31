@@ -76,6 +76,12 @@ class DocumentBundle:
     def get_refs_path(self) -> Path:
         return self.out_dir / f"reference_{self.doc_id}.json"
 
+    def get_figures_path(self) -> Path:
+        return self.out_dir / f"figures_{self.doc_id}.json"
+
+    def get_tables_path(self) -> Path:
+        return self.out_dir / f"tables_{self.doc_id}.json"
+
 
 class DocumentProcessor:
     """
@@ -145,6 +151,10 @@ class DocumentProcessor:
             f_out.write(json.dumps(self.all_blocks, ensure_ascii=False))
         with open(self.doc_bundle.get_refs_path(), "w", encoding="utf-8") as f_out:
             f_out.write(json.dumps(self.references, ensure_ascii=False))
+        with open(self.doc_bundle.get_figures_path(), "w", encoding="utf-8") as f_out:
+            f_out.write(json.dumps(self.figures, ensure_ascii=False))
+        with open(self.doc_bundle.get_tables_path(), "w", encoding="utf-8") as f_out:
+            f_out.write(json.dumps(self.tables, ensure_ascii=False))
 
     def _merge_split_blocks(self):
         """
@@ -160,7 +170,7 @@ class DocumentProcessor:
             current_block = self.all_blocks[i]
 
             # Check for a potential merge condition
-            is_splittable = get_type(current_block, "type") in ("paragraph", "equation", "reference_entry")
+            is_splittable = get_type(current_block, "type") in ("paragraph", "caption", "equation", "reference_entry")
             has_split_flag = get_boolean_flag(current_block, "split")
             has_next_block = i + 1 < len(self.all_blocks)
 
@@ -198,7 +208,7 @@ class DocumentProcessor:
             src_path = self.file_map[src_idx]
             if src_path.is_file():
                 try:
-                    shutil.copy2(src_path, self.doc_bundle.assets_dir)
+                    shutil.copy2(src_path, self.doc_bundle.assets_dir / f"{src_idx}.png")
                 except Exception as e:
                     print(f"Error copying {src_path}: {e}")
             else:
