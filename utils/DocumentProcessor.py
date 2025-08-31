@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import asyncio
 import base64
-import copy
 import json
 import shutil
 import sys
@@ -12,14 +11,10 @@ from typing import List, Dict, Any
 import numpy as np
 from PIL import Image
 from openai import OpenAI
-from pix2tex.cli import LatexOCR  # type: ignore
 
-from utils.ioutils import get_document_bundle
+from utils.common import DocumentBundle
 from utils.llm_backend import call_openai_parse
 from utils.prompt_manager import PromptManager
-
-
-# from latex_ocr import LatexOCR  # type: ignore
 
 
 def load_image(path: Path) -> Image.Image:
@@ -55,33 +50,6 @@ def ensure_dir(d: Path) -> None:
 # TODO: add auto-injection of reference_header entry if not present - useful for multi-chapter books or conference vols
 # TODO: accurate extraction of figures and tables using ViLM models
 # TODO: link captions and figures
-class DocumentBundle:
-
-    def __init__(self, doc_id):
-        self.doc_id = doc_id
-        self.bundle_path = get_document_bundle(doc_id)
-        self.pages_dir = self.bundle_path / "pages"
-        self.assets_dir = self.bundle_path / "assets"
-        self.out_dir = self.bundle_path
-
-    def get_pages(self) -> List[Path]:
-        page_files = sorted([p for p in self.pages_dir.iterdir() if p.suffix.lower() == ".png"])
-        if not page_files:
-            print(f"No .png files found in {self.pages_dir}", file=sys.stderr)
-        return page_files or []
-
-    def get_records_path(self) -> Path:
-        return self.out_dir / f"rec_{self.doc_id}.json"
-
-    def get_refs_path(self) -> Path:
-        return self.out_dir / f"reference_{self.doc_id}.json"
-
-    def get_figures_path(self) -> Path:
-        return self.out_dir / f"figures_{self.doc_id}.json"
-
-    def get_tables_path(self) -> Path:
-        return self.out_dir / f"tables_{self.doc_id}.json"
-
 
 class DocumentProcessor:
     """
