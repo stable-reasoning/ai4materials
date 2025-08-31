@@ -5,6 +5,13 @@ from pathlib import Path
 from utils.settings import SCRIPTS_DIR, global_config
 
 
+def get_document_bundle(doc_id: str) -> Path:
+    bundle_path = Path(global_config.docucache_path) / doc_id
+    if not bundle_path.is_dir():
+        raise FileNotFoundError(f"docu bundle not found: {doc_id}")
+    return bundle_path
+
+
 def extract_pdf_pages(pdf_path: str, out_dir: str, dpi: int = 150):
     """
     Calls the bash script to extract all pages of pdf_path at the given dpi.

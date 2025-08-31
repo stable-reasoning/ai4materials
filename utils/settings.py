@@ -63,13 +63,14 @@ def load_env_vars_to_dataclass(cls: type):
                         else:
                             env_value = f.type(env_value)  # e.g., for Date
                     except ValueError as e:
-                        raise ValueError(
-                            f"Error converting environment variable {env_var_name} value '{os.environ.get(env_var_name)}' to type {f.type}: {e} "
+                        raise ConfigurationError(
+                            f"Error converting environment variable {env_var_name} "
+                            f"value '{os.environ.get(env_var_name)}' to type {f.type}: {e} "
                         ) from e
 
                 setattr(self, f.name, env_value)
-            elif f.default is dataclasses.MISSING and f.default_factory is dataclasses.MISSING:  # Required and no default
-                raise ValueError(f"Missing environment variable: {env_var_name}")
+            elif f.default is dataclasses.MISSING and f.default_factory is dataclasses.MISSING: # Required & no default
+                raise ConfigurationError(f"Missing environment variable: {env_var_name}")
 
     cls.__init__ = new_init
     return cls
@@ -106,4 +107,3 @@ global_config = Configuration()
 print(global_config)
 
 Path(global_config.docucache_path).resolve().mkdir(parents=True, exist_ok=True)
-
