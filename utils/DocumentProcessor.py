@@ -2,24 +2,19 @@ from __future__ import annotations
 
 import asyncio
 import base64
-import copy
 import json
 import shutil
 import sys
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Sequence
 
 import numpy as np
 from PIL import Image
 from openai import OpenAI
-from pix2tex.cli import LatexOCR  # type: ignore
 
-from utils.ioutils import get_document_bundle
+from utils.common import DocumentBundle
 from utils.llm_backend import call_openai_parse
 from utils.prompt_manager import PromptManager
-
-
-# from latex_ocr import LatexOCR  # type: ignore
 
 
 def load_image(path: Path) -> Image.Image:
@@ -55,33 +50,6 @@ def ensure_dir(d: Path) -> None:
 # TODO: add auto-injection of reference_header entry if not present - useful for multi-chapter books or conference vols
 # TODO: accurate extraction of figures and tables using ViLM models
 # TODO: link captions and figures
-class DocumentBundle:
-
-    def __init__(self, doc_id):
-        self.doc_id = doc_id
-        self.bundle_path = get_document_bundle(doc_id)
-        self.pages_dir = self.bundle_path / "pages"
-        self.assets_dir = self.bundle_path / "assets"
-        self.out_dir = self.bundle_path
-
-    def get_pages(self) -> List[Path]:
-        page_files = sorted([p for p in self.pages_dir.iterdir() if p.suffix.lower() == ".png"])
-        if not page_files:
-            print(f"No .png files found in {self.pages_dir}", file=sys.stderr)
-        return page_files or []
-
-    def get_records_path(self) -> Path:
-        return self.out_dir / f"rec_{self.doc_id}.json"
-
-    def get_refs_path(self) -> Path:
-        return self.out_dir / f"reference_{self.doc_id}.json"
-
-    def get_figures_path(self) -> Path:
-        return self.out_dir / f"figures_{self.doc_id}.json"
-
-    def get_tables_path(self) -> Path:
-        return self.out_dir / f"tables_{self.doc_id}.json"
-
 
 class DocumentProcessor:
     """
@@ -144,6 +112,7 @@ class DocumentProcessor:
 
         print("\nINFO: Finalizing document...")
         self._merge_split_blocks()
+        self._enrich_with_idx()
         self._collect_references()
         self._collect_figures()
         self._collect_tables()
@@ -155,6 +124,13 @@ class DocumentProcessor:
             f_out.write(json.dumps(self.figures, ensure_ascii=False))
         with open(self.doc_bundle.get_tables_path(), "w", encoding="utf-8") as f_out:
             f_out.write(json.dumps(self.tables, ensure_ascii=False))
+
+    def _enrich_with_idx(self):
+        if not self.all_blocks:
+            return
+
+        for i, rec in enumerate(self.all_blocks):
+            rec["idx"] = i
 
     def _merge_split_blocks(self):
         """
@@ -203,22 +179,22 @@ class DocumentProcessor:
                 if entry_key:
                     self.references[entry_key] = block.get("text", "")
 
-    def _copy_files(self, index: set):
-        for src_idx in index:
+    def _copy_files(self, indexed: Dict[str,int]):
+        for label, src_idx in indexed.items():
             src_path = self.file_map[src_idx]
             if src_path.is_file():
                 try:
-                    shutil.copy2(src_path, self.doc_bundle.assets_dir / f"{src_idx}.png")
+                    shutil.copy2(src_path, self.doc_bundle.assets_dir / f"{label}.png")
                 except Exception as e:
                     print(f"Error copying {src_path}: {e}")
             else:
                 print(f"Warning: Source '{src_path}' is not a file or does not exist. Skipping.")
 
     def _collect_figures(self):
-        self._copy_files(set(self.figures.values()))
+        self._copy_files(self.figures)
 
     def _collect_tables(self):
-        self._copy_files(set(self.tables.values()))
+        self._copy_files(self.tables)
 
 
 async def main():

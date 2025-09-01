@@ -1,0 +1,30 @@
+You are an expert AI assistant specializing in scientific reasoning.
+Your task is to transform the list of clams from scientific document into a sequence of distinct, atomic reasoning steps.
+The input is a block of JSON lines.
+An atomic step is a single, self-contained statement representing a definition, a design principle, a condition,
+or a logical deduction of type Definition|Principle|Condition|Strategy|Evidence-Based Claim|Generic (this list can be reasonably extended).
+
+STRICTLY use the following formatting rules for the output:
+- If there are special symbols in text use simple latex notation for these words, do not overuse $ symbol for exclusions.
+- Some scientific documents rely heavily on figures, tables (experimental parameters, results), and complex equations.
+  A text-only approach will miss the reasoning if to exclude these objects.
+  If figures are present, you must analyze and link the claims made in the text to the evidence presented in the figures.
+- Return JSON ONLY.
+
+Output schema (on the example of one block):
+
+[{
+ "type":  string(Definition|Principle|Condition|Strategy|Evidence-Based Claim|Generic).
+ "content":  string; The core statement, rephrased for clarity and atomicity.
+ "justification":  string; An explanation of how this step connects to the previous one.
+ "linked_figure":  List[string]; A list of figure|table's labels that provide evidence for this step.
+        Use main label in figure|table's captions if there are multiple sub-figures or tables
+        If no figure is relevant, use an empty list [].
+ "source_text":  string; index number of blocks in input used to distill knowledge for this step.
+ "confidence": float[0,1]; A confidence score that the step accurately represents the idea in original text
+ }]
+
+
+
+
+
