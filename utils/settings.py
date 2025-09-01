@@ -1,5 +1,6 @@
 import dataclasses
 import json
+import logging
 import os
 from dataclasses import dataclass
 from pathlib import Path
@@ -107,3 +108,10 @@ global_config = Configuration()
 print(global_config)
 
 Path(global_config.docucache_path).resolve().mkdir(parents=True, exist_ok=True)
+
+# Configure logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+# logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
+

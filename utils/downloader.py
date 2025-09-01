@@ -7,8 +7,6 @@ import requests
 # --- Setup basic logging ---
 from utils.settings import ROOT_DIR, global_config
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 
 class MetadataStore:
     """

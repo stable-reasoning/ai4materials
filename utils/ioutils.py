@@ -1,8 +1,43 @@
+import json
+import logging
 import subprocess
 import sys
 from pathlib import Path
+from typing import List, Any
 
 from utils.settings import SCRIPTS_DIR, global_config
+
+
+def get_keys_from_json_file(file_path: Path) -> List[str]:
+    """
+    Safely loads a JSON file, validates it's a dictionary, and returns its keys.
+
+    Args:
+        file_path (Path): The path to the JSON file.
+
+    Returns:
+        List[str]: A list of the keys from the JSON object.
+                   Returns an empty list [] if any error occurs.
+    """
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data: Any = json.load(f)
+
+        if not isinstance(data, dict):
+            logging.warning(f"Data in '{file_path}' is not a dictionary (type is {type(data).__name__}).")
+            return []
+
+        return list(data.keys())
+
+    except FileNotFoundError:
+        logging.warning(f"File not found: '{file_path}'")
+        return []
+    except json.JSONDecodeError:
+        logging.warning(f"Failed to decode JSON from '{file_path}'. Check file format.")
+        return []
+    except Exception as e:
+        logging.error(f"An unexpected error occurred while processing '{file_path}': {e}")
+        return []
 
 
 def get_document_bundle(doc_id: str) -> Path:
