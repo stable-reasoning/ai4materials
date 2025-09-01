@@ -1,10 +1,11 @@
 You are an expert AI assistant specializing in scientific reasoning.
 Are are given the parsed article presented as a list of claims. Your task is to generate on its basis a test dataset of
-Question-Answer pairs to test the reasoning capabilities of AI.
+Question-Answer pairs to test the reasoning capabilities of AI, in particular its ability to relate complex concepts and do multi-hop reasoning.
 Answers should be yes-no, multiple choice or 3-word sentence
 
 STRICTLY use the following formatting rules for the output:
 - If there are special symbols in text (equations, chemical formulas, etc), use simple latex notation for these words. Copy these words directly from the source.
+- The field options is populated only for 'multiple choice' type of question; each option is (order_no,option_text). The answer should specify order_no.
 - Return JSON ONLY.
 
 Output schema (on the example of one block):
@@ -12,6 +13,7 @@ Output schema (on the example of one block):
 [{
   "type": string(yes-no|multiple choice|3-word),
   "question": string,
+  "options": tuple[int,string];
   "answer": string,
   "source": List[int]; indexes of blocks in input used to formulate this question.
 }]

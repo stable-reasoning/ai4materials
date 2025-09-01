@@ -13,6 +13,7 @@ load_dotenv()
 ROOT_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = ROOT_DIR / "templates"
 SCRIPTS_DIR = ROOT_DIR / "scripts"
+RUNS_DIR = ROOT_DIR / "runs"
 
 LOG_LEVEL = "INFO"
 APP_VERSION = "1.0.0"
@@ -81,6 +82,7 @@ def load_env_vars_to_dataclass(cls: type):
 @dataclass
 class Configuration:
     docucache_path: str
+    runs_path: str
     vector_db_path: str
     openai_api_key: str = dataclasses.field(metadata={'secret': True})
 
@@ -108,10 +110,11 @@ global_config = Configuration()
 print(global_config)
 
 Path(global_config.docucache_path).resolve().mkdir(parents=True, exist_ok=True)
+Path(global_config.runs_path).resolve().mkdir(parents=True, exist_ok=True)
 
 # Configure logging
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 # logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
 

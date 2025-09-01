@@ -3,17 +3,22 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import time
+import uuid
+from dataclasses import asdict
+from pathlib import Path
 from typing import Any, Dict, Iterable, List, Sequence
 
 from openai import OpenAI
 
 from utils.common import DocumentBundle, SourceTxtBlock, prune_and_validate, to_jsonl
 from utils.ioutils import get_keys_from_json_file
-from utils.llm_backend import call_openai_parse
+from utils.llm_backend import call_openai_parse, test_call_openai_parse
 from utils.prompt_manager import PromptManager
+from utils.settings import global_config
 
 
-class QADatasetGenerator:
+class QABaseTest:
 
     def __init__(self, prompts: PromptManager, doc_id: str, llm_hook: Any,
                  excluded_types: Iterable[str] = ("unknown", "reference_entry")):
@@ -22,6 +27,7 @@ class QADatasetGenerator:
         self._blocks: List[SourceTxtBlock] = []
         self.prompts = prompts
         self.doc_bundle: DocumentBundle = DocumentBundle(doc_id)
+        self.out_dir = Path(global_config.runs_path)
         self.llm_hook = llm_hook
 
     def load_file(self) -> List[Dict[str, Any]]:
@@ -59,24 +65,25 @@ class QADatasetGenerator:
         validated = prune_and_validate(filtered)
         return to_jsonl(validated)
 
-    async def process_document(self):
+    async def run_batch(self):
         json_lines = self.build_jsonl_from_file()
-        figure_labels = get_keys_from_json_file(self.doc_bundle.get_figures_path())
-        table_labels = get_keys_from_json_file(self.doc_bundle.get_tables_path())
-        system_prompt = self.prompts.compose_prompt("qa_dataset_generator_sys_v1.j2")
+
+        run_id = str(uuid.uuid4())
+        ts = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+        results = []
+
+        question = ""
         user_prompt = self.prompts.compose_prompt(
-            "qa_dataset_generator_user_v1.j2",
-            figures=figure_labels,
-            tables=table_labels,
-            claims=json_lines
+            "qa_dataset_answer_llm.j2",
+            question=question,
+            context=json_lines
         )
         # print(user_prompt)
         messages = [
-            {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ]
 
-        page_blocks = await call_openai_parse(self.llm_hook, messages, temperature=1.0)
+        page_blocks = await test_call_openai_parse(self.llm_hook, messages, temperature=1.0)
 
         if not page_blocks:
             print(f"WARNING: No LLM response for {self.doc_bundle.doc_id}. Skipping.")
@@ -91,8 +98,8 @@ class QADatasetGenerator:
 async def main():
     client = OpenAI()
     prompt_man = PromptManager()
-    doc_processor = QADatasetGenerator(prompts=prompt_man, doc_id="0001", llm_hook=client)
-    await doc_processor.process_document()
+    doc_processor = QABaseTest(prompts=prompt_man, doc_id="0001", llm_hook=client)
+    await doc_processor.run_batch()
 
 
 if __name__ == "__main__":

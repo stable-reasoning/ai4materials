@@ -1,7 +1,8 @@
+import json
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from pathlib import Path
-from typing import List
+from typing import List, Sequence, Dict, Any
 
 from utils.ioutils import get_document_bundle
 
@@ -15,6 +16,27 @@ class SourceTxtBlock:
     idx: int
     type: str
     text: str
+
+
+def prune_and_validate(records: Sequence[Dict[str, Any]]) -> List[SourceTxtBlock]:
+    blocks: List[SourceTxtBlock] = []
+    for rec in records:
+        if "idx" not in rec or "type" not in rec or "text" not in rec:
+            continue
+
+        block = SourceTxtBlock(
+            idx=int(rec["idx"]),
+            type=str(rec["type"]),
+            text=str(rec["text"])
+        )
+        blocks.append(block)
+    return blocks
+
+
+def to_jsonl(blocks: Sequence[SourceTxtBlock]) -> str:
+    lines = [json.dumps(asdict(b), ensure_ascii=False) for b in blocks]
+    print(f"Compiled JSONL with {len(lines)} lines")
+    return "\n".join(lines)
 
 
 class DocumentBundle:
