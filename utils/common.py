@@ -56,7 +56,7 @@ def to_jsonl(blocks: Sequence[SourceTxtBlock]) -> str:
     return "\n".join(lines)
 
 
-def pick(d: Mapping[str, Any], keys: Iterable[str]) -> Dict[str, Any]:
+def pick_keys(d: Mapping[str, Any], keys: Iterable[str]) -> Dict[str, Any]:
     return {k: d[k] for k in keys if k in d}
 
 
@@ -92,3 +92,6 @@ class DocumentBundle:
 
     def get_qa_path(self) -> Path:
         return self.out_dir / f"qa_{self.doc_id}.json"
+
+    def get_contracts_path(self) -> Path:
+        return self.out_dir / f"contracts_{self.doc_id}.json"

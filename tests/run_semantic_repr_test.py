@@ -17,7 +17,7 @@ from utils.prompt_manager import PromptManager
 from utils.settings import global_config
 
 
-class QABaseTest:
+class QASemanticReprTest:
 
     def __init__(self, prompts: PromptManager, doc_id: str, llm_hook: Any,
                  excluded_types: Iterable[str] = ("unknown", "reference_entry")):
@@ -29,10 +29,9 @@ class QABaseTest:
         self.out_dir = Path(global_config.runs_path)
         self.llm_hook = llm_hook
 
-    def load_file(self) -> List[Dict[str, Any]]:
+    def load_records(self, from_path: Path) -> List[Dict[str, Any]]:
 
-        path = self.doc_bundle.get_records_path()
-        text = path.read_text(encoding="utf-8").strip()
+        text = from_path.read_text(encoding="utf-8").strip()
         records: List[Dict[str, Any]]
 
         try:
@@ -44,8 +43,7 @@ class QABaseTest:
         except json.JSONDecodeError as e:
             raise ValueError(f"Invalid JSON: {e}")
 
-        self._raw_records = records
-        print(f"Loaded {len(records)} records from {path}")
+        print(f"Loaded {len(records)} records from {from_path}")
         return records
 
     def filter_records(self, records: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -58,15 +56,16 @@ class QABaseTest:
             filtered.append(rec)
         return filtered
 
-    def build_jsonl_from_file(self) -> str:
-        self.load_file()
+    def build_jsonl_from_file(self, path: Path) -> str:
+        self._raw_records = self.load_records(path)
         filtered = self.filter_records(self._raw_records)
         validated = prune_and_validate(filtered)
         return to_jsonl(validated)
 
     async def run_batch(self, questions: List[Dict[str, Any]], config: ModelConfig):
-        json_lines = self.build_jsonl_from_file()
-
+        source_text_jsonl = self.build_jsonl_from_file(self.doc_bundle.get_records_path())
+        semantic_repr_jsonl = self.load_records(self.doc_bundle.get_semantic_layer_path())
+        print(f"{len(semantic_repr_jsonl)}")
         run_id = str(uuid.uuid4())
         ts = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
         results = []
@@ -74,9 +73,10 @@ class QABaseTest:
             q = pick_keys(question, ['id', 'type', 'options'])
 
             user_prompt = self.prompts.compose_prompt(
-                "qa_dataset_answer_llm.j2",
+                "qa_dataset_answer_semantic_repr.j2",
                 question=str(q),
-                context=json_lines
+                source_text_blocks=source_text_jsonl,
+                semantic_repr=semantic_repr_jsonl
             )
             messages = [
                 {"role": "user", "content": user_prompt}
@@ -113,7 +113,7 @@ async def main():
         model='o4-mini',
         temperature=1.0
     )
-    doc_processor = QABaseTest(prompts=prompt_man, doc_id="0001", llm_hook=client)
+    doc_processor = QASemanticReprTest(prompts=prompt_man, doc_id="0001", llm_hook=client)
     await doc_processor.run_batch(questions=data, config=config)
 
 

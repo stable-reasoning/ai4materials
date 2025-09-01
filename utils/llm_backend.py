@@ -17,7 +17,7 @@ async def call_openai_parse(
         client: OpenAI,
         messages: List[Any],
         model: str = "o4-mini",
-        temperature: float = 0.0,
+        temperature: float = 1.0,
         max_retries: int = 1) -> List[Dict[str, Any]]:
     last_err = None
 

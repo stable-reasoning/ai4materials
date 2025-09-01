@@ -17,4 +17,5 @@ opencv-python==4.12.0.88
 torch==2.8.0
 torchvision==0.23.0
 torchaudio==2.8.0
+litellm==1.76.1
 pix2tex
