@@ -6,7 +6,7 @@ import json
 import shutil
 import sys
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Sequence
 
 import numpy as np
 from PIL import Image
@@ -112,6 +112,7 @@ class DocumentProcessor:
 
         print("\nINFO: Finalizing document...")
         self._merge_split_blocks()
+        self._enrich_with_idx()
         self._collect_references()
         self._collect_figures()
         self._collect_tables()
@@ -123,6 +124,13 @@ class DocumentProcessor:
             f_out.write(json.dumps(self.figures, ensure_ascii=False))
         with open(self.doc_bundle.get_tables_path(), "w", encoding="utf-8") as f_out:
             f_out.write(json.dumps(self.tables, ensure_ascii=False))
+
+    def _enrich_with_idx(self):
+        if not self.all_blocks:
+            return
+
+        for i, rec in enumerate(self.all_blocks):
+            rec["idx"] = i
 
     def _merge_split_blocks(self):
         """
@@ -171,22 +179,22 @@ class DocumentProcessor:
                 if entry_key:
                     self.references[entry_key] = block.get("text", "")
 
-    def _copy_files(self, index: set):
-        for src_idx in index:
+    def _copy_files(self, indexed: Dict[str,int]):
+        for label, src_idx in indexed.items():
             src_path = self.file_map[src_idx]
             if src_path.is_file():
                 try:
-                    shutil.copy2(src_path, self.doc_bundle.assets_dir / f"{src_idx}.png")
+                    shutil.copy2(src_path, self.doc_bundle.assets_dir / f"{label}.png")
                 except Exception as e:
                     print(f"Error copying {src_path}: {e}")
             else:
                 print(f"Warning: Source '{src_path}' is not a file or does not exist. Skipping.")
 
     def _collect_figures(self):
-        self._copy_files(set(self.figures.values()))
+        self._copy_files(self.figures)
 
     def _collect_tables(self):
-        self._copy_files(set(self.tables.values()))
+        self._copy_files(self.tables)
 
 
 async def main():

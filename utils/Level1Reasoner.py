@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 from dataclasses import dataclass, asdict
-from pathlib import Path
 from typing import Any, Dict, Iterable, List, Sequence
+
+from openai import OpenAI
 
 from utils.common import DocumentBundle
 from utils.llm_backend import call_openai_parse
@@ -24,7 +26,7 @@ class Block:
     type: str
     text: str
 
-
+# TODO calc the coverage = % of original blocks covered by
 class Level1Reasoner:
     """
     Pipeline:
@@ -61,7 +63,7 @@ class Level1Reasoner:
             raise ValueError(f"Invalid JSON: {e}")
 
         self._raw_records = records
-        print("Loaded {len(records)} records from {path}")
+        print(f"Loaded {len(records)} records from {path}")
         return records
 
     def filter_records(self, records: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -74,14 +76,6 @@ class Level1Reasoner:
             filtered.append(rec)
         return filtered
 
-    def enrich_with_idx(self, records: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
-
-        enriched = []
-        for i, rec in enumerate(records):
-            obj = dict(rec)  # shallow copy
-            obj["idx"] = i
-            enriched.append(obj)
-        return enriched
 
     def prune_and_validate(self, records: Sequence[Dict[str, Any]]) -> List[Block]:
         blocks: List[Block] = []
@@ -92,7 +86,7 @@ class Level1Reasoner:
             block = Block(
                 idx=int(rec["idx"]),
                 type=str(rec["type"]),
-                text=str(rec["text"]),
+                text=str(rec["text"])
             )
             blocks.append(block)
         return blocks
@@ -105,16 +99,15 @@ class Level1Reasoner:
     def build_jsonl_from_file(self) -> str:
         self.load_file()
         filtered = self.filter_records(self._raw_records)
-        indexed = self.enrich_with_idx(filtered)
-        validated = self.prune_and_validate(indexed)
+        validated = self.prune_and_validate(filtered)
         return self.to_jsonl(validated)
 
     async def process_document(self):
         json_lines = self.build_jsonl_from_file()
-        system_prompt = self.prompts.compose_prompt("analyse_page_sys_v1.j2")
+        system_prompt = self.prompts.compose_prompt("level_1_reasoning_v1.j2")
         messages = [
             {"role": "system", "content": system_prompt},
-            {"role": "user", "content": json_lines},
+            {"role": "user", "content": json_lines}
         ]
 
         page_blocks = await call_openai_parse(self.llm_hook, messages, temperature=1.0)
@@ -127,4 +120,12 @@ class Level1Reasoner:
             f_out.write(json.dumps(page_blocks, ensure_ascii=False))
 
 
+async def main():
+    client = OpenAI()
+    prompt_man = PromptManager()
+    doc_processor = Level1Reasoner(prompts=prompt_man, doc_id="0001", llm_hook=client)
+    await doc_processor.process_document()
 
+
+if __name__ == "__main__":
+    asyncio.run(main())
