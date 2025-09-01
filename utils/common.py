@@ -2,9 +2,16 @@ import json
 import sys
 from dataclasses import dataclass, asdict
 from pathlib import Path
-from typing import List, Sequence, Dict, Any
+from typing import List, Sequence, Dict, Any, Optional, Mapping, Iterable
 
 from utils.ioutils import get_document_bundle
+
+
+@dataclass(frozen=True)
+class ModelConfig:
+    name: str
+    model: str
+    temperature: float
 
 
 @dataclass(frozen=True)
@@ -16,6 +23,16 @@ class SourceTxtBlock:
     idx: int
     type: str
     text: str
+
+
+@dataclass(frozen=True)
+class Answer:
+    question_id: str
+    run_id: str
+    config_name: str
+    question_type: str
+    gold_answer: str
+    pred_answer: str
 
 
 def prune_and_validate(records: Sequence[Dict[str, Any]]) -> List[SourceTxtBlock]:
@@ -37,6 +54,10 @@ def to_jsonl(blocks: Sequence[SourceTxtBlock]) -> str:
     lines = [json.dumps(asdict(b), ensure_ascii=False) for b in blocks]
     print(f"Compiled JSONL with {len(lines)} lines")
     return "\n".join(lines)
+
+
+def pick(d: Mapping[str, Any], keys: Iterable[str]) -> Dict[str, Any]:
+    return {k: d[k] for k in keys if k in d}
 
 
 class DocumentBundle:

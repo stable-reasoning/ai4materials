@@ -4,6 +4,8 @@ from typing import List, Dict, Any
 
 from openai import OpenAI
 
+from utils.common import ModelConfig
+
 
 def coerce_blocks(raw: Any) -> List[Dict[str, Any]]:
     if isinstance(raw, list):
@@ -48,8 +50,7 @@ async def call_openai_parse(
 async def test_call_openai_parse(
         client: OpenAI,
         messages: List[Any],
-        model: str = "o4-mini",
-        temperature: float = 0.0,
+        config: ModelConfig,
         max_retries: int = 1) -> str:
     last_err = None
 
@@ -57,8 +58,8 @@ async def test_call_openai_parse(
         try:
             # Responses API (multi-modal)
             resp = client.chat.completions.create(
-                model=model,
-                temperature=temperature,
+                model=config.model,
+                temperature=config.temperature,
                 messages=messages,
             )
             # Extracting and printing the response content
@@ -68,7 +69,7 @@ async def test_call_openai_parse(
             print(f"input bytes: {length}")
 
             content = resp.choices[0].message.content.strip()
-            # print(content)
+            print(content)
             return str(content).strip()
         except Exception as e:
             last_err = e

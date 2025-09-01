@@ -1,19 +1,19 @@
 from __future__ import annotations
 
 import asyncio
+import dataclasses
 import json
 import logging
 import time
 import uuid
-from dataclasses import asdict
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Sequence
 
 from openai import OpenAI
 
-from utils.common import DocumentBundle, SourceTxtBlock, prune_and_validate, to_jsonl
-from utils.ioutils import get_keys_from_json_file
-from utils.llm_backend import call_openai_parse, test_call_openai_parse
+from utils.common import DocumentBundle, SourceTxtBlock, prune_and_validate, to_jsonl, Question, pick, Answer, \
+    ModelConfig
+from utils.llm_backend import test_call_openai_parse
 from utils.prompt_manager import PromptManager
 from utils.settings import global_config
 
@@ -65,41 +65,55 @@ class QABaseTest:
         validated = prune_and_validate(filtered)
         return to_jsonl(validated)
 
-    async def run_batch(self):
+    async def run_batch(self, questions: List[Dict[str, Any]], config: ModelConfig):
         json_lines = self.build_jsonl_from_file()
 
         run_id = str(uuid.uuid4())
         ts = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
         results = []
+        for question in questions:
+            q = pick(question, ['id', 'type', 'options'])
 
-        question = ""
-        user_prompt = self.prompts.compose_prompt(
-            "qa_dataset_answer_llm.j2",
-            question=question,
-            context=json_lines
-        )
-        # print(user_prompt)
-        messages = [
-            {"role": "user", "content": user_prompt}
-        ]
+            user_prompt = self.prompts.compose_prompt(
+                "qa_dataset_answer_llm.j2",
+                question=str(q),
+                context=json_lines
+            )
+            messages = [
+                {"role": "user", "content": user_prompt}
+            ]
+            pred_answer = await test_call_openai_parse(self.llm_hook, messages, config=config)
+            answer = Answer(
+                    question_id=question['id'],
+                    run_id=run_id,
+                    config_name=config.name,
+                    question_type=question['type'],
+                    gold_answer=question['answer'],
+                    pred_answer=pred_answer
+                )
 
-        page_blocks = await test_call_openai_parse(self.llm_hook, messages, temperature=1.0)
+            results.append(dataclasses.asdict(answer))
 
-        if not page_blocks:
-            print(f"WARNING: No LLM response for {self.doc_bundle.doc_id}. Skipping.")
-            return
+        logging.info(f"generated {len(results)} answers")
 
-        logging.info(f"generated {len(page_blocks)} questions")
-
-        with open(self.doc_bundle.get_qa_path(), "w", encoding="utf-8") as f_out:
-            f_out.write(json.dumps(page_blocks, ensure_ascii=False))
+        results_file_name = self.out_dir / f"{self.doc_bundle.doc_id}-{ts}"
+        with open(results_file_name, "w", encoding="utf-8") as f_out:
+            f_out.write(json.dumps(results, ensure_ascii=False))
 
 
 async def main():
     client = OpenAI()
     prompt_man = PromptManager()
+    doc_bundle = DocumentBundle("0001")
+    with open(doc_bundle.get_qa_path(), 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    config = ModelConfig(
+        name = 'test1',
+        model='o4-mini',
+        temperature=1.0
+    )
     doc_processor = QABaseTest(prompts=prompt_man, doc_id="0001", llm_hook=client)
-    await doc_processor.run_batch()
+    await doc_processor.run_batch(questions=data, config=config)
 
 
 if __name__ == "__main__":
