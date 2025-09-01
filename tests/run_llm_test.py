@@ -11,8 +11,7 @@ from typing import Any, Dict, Iterable, List, Sequence
 
 from openai import OpenAI
 
-from utils.common import DocumentBundle, SourceTxtBlock, prune_and_validate, to_jsonl, Question, pick, Answer, \
-    ModelConfig
+from utils.common import DocumentBundle, SourceTxtBlock, prune_and_validate, to_jsonl, pick, Answer, ModelConfig
 from utils.llm_backend import test_call_openai_parse
 from utils.prompt_manager import PromptManager
 from utils.settings import global_config
@@ -91,7 +90,7 @@ class QABaseTest:
                     gold_answer=question['answer'],
                     pred_answer=pred_answer
                 )
-
+            print(answer)
             results.append(dataclasses.asdict(answer))
 
         logging.info(f"generated {len(results)} answers")
@@ -107,6 +106,8 @@ async def main():
     doc_bundle = DocumentBundle("0001")
     with open(doc_bundle.get_qa_path(), 'r', encoding='utf-8') as f:
         data = json.load(f)
+    for idx, r in enumerate(data):
+        r['id'] = f"{doc_bundle.doc_id}-{idx}"
     config = ModelConfig(
         name = 'test1',
         model='o4-mini',

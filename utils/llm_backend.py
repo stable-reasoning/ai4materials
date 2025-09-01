@@ -69,7 +69,7 @@ async def test_call_openai_parse(
             print(f"input bytes: {length}")
 
             content = resp.choices[0].message.content.strip()
-            print(content)
+            #print(content)
             return str(content).strip()
         except Exception as e:
             last_err = e

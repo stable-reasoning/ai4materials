@@ -5,7 +5,8 @@ STRICTLY use the following formatting rules for the output:
 - If there are special symbols in text (equations, chemical formulas, etc), use simple latex notation for these words. Copy these words directly from the source.
 - For 'multiple choice' type of question options are represented as a list of tuples (order_no,option_text).
   For such questions return only order_no of that option, f.e. for the option=(1, Alice Liddele) return 1
-- Return ANSWER ONLY as a plain text.
+- Return ANSWER ONLY as a plain text. If the answer cannot be provided, return a string 'insufficient data'
+
 
 Question:
 {{ question }}
