@@ -75,13 +75,12 @@ class MetadataStore:
             logging.info("Database connection closed.")
 
 
-# TODO check the MIME of downlowded file that's indeed a pdf
 class FileDownloader:
     """
     Manages the process of downloading papers from a list of URLs.
     """
     # The first few bytes of a PDF file.
-    PDF_SIGNATURE = b'%PDF-'
+    PDF_SIGNATURE = b'%PDF'
 
     def __init__(self):
         """

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 from dataclasses import asdict
 from typing import Any, Dict, Iterable, List, Sequence
 
@@ -13,8 +14,7 @@ from utils.llm_backend import call_openai_parse
 from utils.prompt_manager import PromptManager
 
 
-# TODO calc the coverage = % of original blocks covered by
-class Level1Reasoner:
+class QADatasetGenerator:
 
     def __init__(self, prompts: PromptManager, doc_id: str, llm_hook: Any,
                  excluded_types: Iterable[str] = ("unknown", "reference_entry")):
@@ -86,11 +86,11 @@ class Level1Reasoner:
         system_prompt = self.prompts.compose_prompt("level_1_reasoning_sys_v1.j2")
         user_prompt = self.prompts.compose_prompt(
             "level_1_reasoning_user_v1.j2",
-            figures = figure_labels,
-            tables = table_labels,
-            claims = json_lines
+            figures=figure_labels,
+            tables=table_labels,
+            claims=json_lines
         )
-        #print(user_prompt)
+        # print(user_prompt)
         messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
@@ -102,14 +102,16 @@ class Level1Reasoner:
             print(f"WARNING: No LLM response for {self.doc_bundle.doc_id}. Skipping.")
             return
 
-        with open(self.doc_bundle.get_semantic_layer_path(), "w", encoding="utf-8") as f_out:
+        logging.info(f"generated {len(page_blocks)} questions")
+
+        with open(self.doc_bundle.get_qa_path(), "w", encoding="utf-8") as f_out:
             f_out.write(json.dumps(page_blocks, ensure_ascii=False))
 
 
 async def main():
     client = OpenAI()
     prompt_man = PromptManager()
-    doc_processor = Level1Reasoner(prompts=prompt_man, doc_id="0001", llm_hook=client)
+    doc_processor = QADatasetGenerator(prompts=prompt_man, doc_id="0001", llm_hook=client)
     await doc_processor.process_document()
 
 

@@ -1,8 +1,20 @@
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
 from utils.ioutils import get_document_bundle
+
+
+@dataclass(frozen=True)
+class SourceTxtBlock:
+    """
+    Minimal payload we keep after pruning.
+    Note: `idx` is assigned AFTER filtering, so it does not reflect original position.
+    """
+    idx: int
+    type: str
+    text: str
 
 
 class DocumentBundle:
@@ -34,3 +46,6 @@ class DocumentBundle:
 
     def get_tables_path(self) -> Path:
         return self.out_dir / f"tables_{self.doc_id}.json"
+
+    def get_qa_path(self) -> Path:
+        return self.out_dir / f"qa_{self.doc_id}.json"
