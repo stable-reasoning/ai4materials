@@ -5,10 +5,11 @@ An atomic step is a single, self-contained statement representing a definition, 
 or a logical deduction of type Definition|Principle|Condition|Strategy|Evidence-Based Claim|Generic (this list can be reasonably extended).
 
 STRICTLY use the following formatting rules for the output:
-- If there are special symbols in text use simple latex notation for these words, do not overuse $ symbol for exclusions.
-- Some scientific documents rely heavily on figures, tables (experimental parameters, results), and complex equations.
-  A text-only approach will miss the reasoning if to exclude these objects.
+- If there are special symbols in text (equations, chemical formulas, etc), use simple latex notation for these words. Copy these words directly from the source.
+- For equation type parse equations and output them in latex notation, do not wrap them in $ symbols.
+- Some scientific documents rely heavily on figures, tables (experimental parameters, results), and complex equations.  A text-only approach will miss the reasoning if to exclude these objects.
   If figures are present, you must analyze and link the claims made in the text to the evidence presented in the figures.
+- Use main labels only to reference figure|table's captions, even if there are sub-figures or sub-tables. If no figure is relevant, use an empty list [].
 - Return JSON ONLY.
 
 Output schema (on the example of one block):
@@ -18,9 +19,7 @@ Output schema (on the example of one block):
  "content":  string; The core statement, rephrased for clarity and atomicity.
  "justification":  string; An explanation of how this step connects to the previous one.
  "linked_figure":  List[string]; A list of figure|table's labels that provide evidence for this step.
-        Use main label in figure|table's captions if there are multiple sub-figures or tables
-        If no figure is relevant, use an empty list [].
- "source_text":  string; index number of blocks in input used to distill knowledge for this step.
+ "source_text":  List[int]; indexes of blocks in input used to distill knowledge for this step.
  "confidence": float[0,1]; A confidence score that the step accurately represents the idea in original text
  }]
 

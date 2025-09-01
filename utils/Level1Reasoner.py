@@ -9,11 +9,9 @@ from typing import Any, Dict, Iterable, List, Sequence
 from openai import OpenAI
 
 from utils.common import DocumentBundle
+from utils.ioutils import get_keys_from_json_file
 from utils.llm_backend import call_openai_parse
 from utils.prompt_manager import PromptManager
-
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 
 @dataclass(frozen=True)
@@ -25,6 +23,7 @@ class Block:
     idx: int
     type: str
     text: str
+
 
 # TODO calc the coverage = % of original blocks covered by
 class Level1Reasoner:
@@ -76,7 +75,6 @@ class Level1Reasoner:
             filtered.append(rec)
         return filtered
 
-
     def prune_and_validate(self, records: Sequence[Dict[str, Any]]) -> List[Block]:
         blocks: List[Block] = []
         for rec in records:
@@ -104,10 +102,19 @@ class Level1Reasoner:
 
     async def process_document(self):
         json_lines = self.build_jsonl_from_file()
-        system_prompt = self.prompts.compose_prompt("level_1_reasoning_v1.j2")
+        figure_labels = get_keys_from_json_file(self.doc_bundle.get_figures_path())
+        table_labels = get_keys_from_json_file(self.doc_bundle.get_tables_path())
+        system_prompt = self.prompts.compose_prompt("level_1_reasoning_sys_v1.j2")
+        user_prompt = self.prompts.compose_prompt(
+            "level_1_reasoning_user_v1.j2",
+            figures = figure_labels,
+            tables = table_labels,
+            claims = json_lines
+        )
+        #print(user_prompt)
         messages = [
             {"role": "system", "content": system_prompt},
-            {"role": "user", "content": json_lines}
+            {"role": "user", "content": user_prompt}
         ]
 
         page_blocks = await call_openai_parse(self.llm_hook, messages, temperature=1.0)
