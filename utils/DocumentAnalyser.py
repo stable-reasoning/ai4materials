@@ -36,7 +36,7 @@ class DocumentProcessor:
     def __init__(self, doc_bundle: DocumentBundle,
                  pm: PromptManager,
                  llm_hook: GenericLLMCallable,
-                 config: ModelConfig,
+                 model_config: ModelConfig,
                  im_store: ImageStorage):
         self.all_blocks: List[Dict[str, Any]] = []
         self.references: Dict[str, Any] = {}
@@ -47,7 +47,7 @@ class DocumentProcessor:
         self.doc_bundle = doc_bundle
         self.llm_hook = llm_hook
         self.im_store = im_store
-        self.config = config
+        self.config = model_config
 
     async def process_page(self, page_number: int, image_path: Path):
 
@@ -59,26 +59,22 @@ class DocumentProcessor:
             ]},
         ]
 
-        page_blocks = await self.llm_hook(messages, self.config, coerce_to_json_list)
+        page_blocks = await self.llm_hook(messages, self.config, coerce_to_json_list, metadata={})
 
         if not page_blocks:
             print(f"WARNING: No LLM response for page {page_number} ('{image_path}'). Skipping.")
             return
 
-        try:
-            # Enrich each block with the page number
-            for block in page_blocks:
-                block['page'] = page_number
-                if get_type(block, 'type') == 'figure':
-                    self.figures[block['text']] = page_number
-                if get_type(block, 'type') == 'table':
-                    self.tables[block['text']] = page_number
+        # Enrich each block with the page number
+        for block in page_blocks:
+            block['page'] = page_number
+            if get_type(block, 'type') == 'figure':
+                self.figures[block['text']] = page_number
+            if get_type(block, 'type') == 'table':
+                self.tables[block['text']] = page_number
 
-            self.all_blocks.extend(page_blocks)
-            print(f"INFO: Successfully processed and added {len(page_blocks)} blocks from page {page_number}.")
-
-        except (json.JSONDecodeError, TypeError) as e:
-            print(f"ERROR: Failed to parse blocks for page {page_number}. Reason: {e}")
+        self.all_blocks.extend(page_blocks)
+        print(f"INFO: Successfully processed and added {len(page_blocks)} blocks from page {page_number}.")
 
     async def process_document(self):
         for idx, page_path in enumerate(self.doc_bundle.get_pages(), start=1):
@@ -186,7 +182,7 @@ async def main():
         temperature=1.0
     )
     doc_bundle = DocumentBundle("1")
-    doc_processor = DocumentProcessor(doc_bundle=doc_bundle, pm=pm, config=config, im_store=image_store,
+    doc_processor = DocumentProcessor(doc_bundle=doc_bundle, pm=pm, model_config=config, im_store=image_store,
                                       llm_hook=call_llm)
     await doc_processor.process_document()
 

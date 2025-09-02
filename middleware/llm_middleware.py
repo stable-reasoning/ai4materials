@@ -36,13 +36,15 @@ class GenericLLMCallable(Protocol):
             messages: List[Any],
             config: ModelConfig,
             transformer: Callable[[Any], T_Coerced],
+            metadata: Dict[str, Any],
     ) -> Coroutine[Any, Any, T_Coerced]:
         ...
 
 
 async def call_llm(messages: List[Any],
                    config: ModelConfig,
-                   transformer: Callable[[Any], T_Coerced]) -> T_Coerced:
+                   transformer: Callable[[Any], T_Coerced],
+                   metadata: Dict[str, Any]) -> T_Coerced:
     last_err = None
     client = get_client(config=config)
     for _ in range(config.retries):
@@ -60,6 +62,7 @@ async def call_llm(messages: List[Any],
             print(f"input bytes: {length}")
 
             content = resp.choices[0].message.content.strip()
+            #print(content)
             return transformer(content)
         except Exception as e:
             last_err = e

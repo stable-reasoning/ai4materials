@@ -37,6 +37,22 @@ class Answer:
     pred_answer: str
 
 
+def load_file(path: Path) -> List[Dict[str, Any]]:
+    text = path.read_text(encoding="utf-8").strip()
+    records: List[Dict[str, Any]]
+
+    try:
+        parsed = json.loads(text)
+        if isinstance(parsed, list):
+            records = parsed
+        else:
+            raise ValueError("Top-level JSON must be an array for non-JSONL mode.")
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid JSON: {e}")
+    return records
+
+
+# used to generate a lightweight version of records, dropping non-essential fields
 def prune_and_validate(records: Sequence[Dict[str, Any]]) -> List[SourceTxtBlock]:
     blocks: List[SourceTxtBlock] = []
     for rec in records:
@@ -54,7 +70,6 @@ def prune_and_validate(records: Sequence[Dict[str, Any]]) -> List[SourceTxtBlock
 
 def to_jsonl(blocks: Sequence[SourceTxtBlock]) -> str:
     lines = [json.dumps(asdict(b), ensure_ascii=False) for b in blocks]
-    print(f"Compiled JSONL with {len(lines)} lines")
     return "\n".join(lines)
 
 
@@ -87,9 +102,6 @@ class DocumentBundle:
     def get_records_path(self) -> Path:
         return self.out_dir / f"rec_{self.doc_id}.json"
 
-    def get_semantic_layer_path(self) -> Path:
-        return self.out_dir / f"semantic_{self.doc_id}.json"
-
     def get_refs_path(self) -> Path:
         return self.out_dir / f"reference_{self.doc_id}.json"
 
@@ -98,9 +110,3 @@ class DocumentBundle:
 
     def get_tables_path(self) -> Path:
         return self.out_dir / f"tables_{self.doc_id}.json"
-
-    def get_qa_path(self) -> Path:
-        return self.out_dir / f"qa_{self.doc_id}.json"
-
-    def get_contracts_path(self) -> Path:
-        return self.out_dir / f"contracts_{self.doc_id}.json"

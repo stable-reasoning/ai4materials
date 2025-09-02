@@ -32,7 +32,7 @@ def load_layout_model(conf_thresh: float = 0.6):
     print(f"is_detectron2_available:{lp.is_detectron2_available()}")
 
     model = lp.Detectron2LayoutModel(
-        config_path="lp://PubLayNet/faster_rcnn_R_50_FPN_3x/config",
+        config_path="lp://PubLayNet/faster_rcnn_R_50_FPN_3x/model_config",
         #model_path="lp://PubLayNet/faster_rcnn_R_50_FPN_3x/model",  # <- important
         extra_config=[
             "MODEL.ROI_HEADS.SCORE_THRESH_TEST", conf_thresh,

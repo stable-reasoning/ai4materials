@@ -162,7 +162,7 @@ class FileDownloader:
                 if not self._is_pdf(destination):
                     status = 'validation_failed'
                 self.db.update_status(paper_id, status)
-                added_files.append({"paper_id": paper_id, "file": destination})
+                added_files.append({"paper_id": paper_id, "file": str(destination)})
             except ValueError as e:
                 logging.error(e)
                 self.db.update_status(paper_id, 'invalid_url')
