@@ -1,6 +1,7 @@
 import asyncio
 from pathlib import Path
 
+from agents.ContractWriterAgent import ContractWriterAgent
 from agents.DocumentAnalyzerAgent import DocumentAnalyzerAgent
 from agents.DownloadAgent import DownloadAgent
 from agents.ExtractionAgent import ExtractionAgent
@@ -57,11 +58,21 @@ def get_document_pipeline_dag(paper_li: Path) -> DAG:
         model_config=model_config
     )
 
-    download_papers >> extract_pages >> analyze_document >> semantic_analysis
+    contract_generation = ContractWriterAgent(
+        name="contract_generation",
+        input_spec={
+            "semantic_documents": "agent:semantic_analysis/semantic_documents.json"
+        },
+        pm=prompt_manager,
+        image_store=image_store,
+        model_config=model_config
+    )
+
+    download_papers >> extract_pages >> analyze_document >> semantic_analysis >> contract_generation
 
     document_pipeline_dag = DAG(
         name="document_pipeline",
-        tasks=[download_papers, extract_pages, analyze_document, semantic_analysis]
+        tasks=[download_papers, extract_pages, analyze_document, semantic_analysis, contract_generation]
     )
 
     return document_pipeline_dag

@@ -54,10 +54,15 @@ class SemanticAnalyzerAgent(Agent):
 
                 page_blocks = await call_llm(messages, self.config.model_config, coerce_to_json_list, metadata={})
                 res_path = self.save_locally(f"semantic_{doc_id}.json", page_blocks)
-                processed_docs.append({"document_id": doc_id, "path": str(res_path)})
+                processed_docs.append(
+                    {
+                        "document_id": doc_id,
+                        "path": str(res_path)
+                    }
+                )
             except Exception as e:
                 logger.error(e)
 
         return {
-            "processed_document_ids.json": processed_docs
+            "semantic_documents.json": processed_docs
         }
