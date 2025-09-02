@@ -5,7 +5,8 @@ import sys
 from pathlib import Path
 from typing import List, Any
 
-from utils.settings import SCRIPTS_DIR, global_config
+from utils.common import DocumentBundle
+from utils.settings import SCRIPTS_DIR, global_config, logger
 
 
 def get_keys_from_json_file(file_path: Path) -> List[str]:
@@ -40,14 +41,7 @@ def get_keys_from_json_file(file_path: Path) -> List[str]:
         return []
 
 
-def get_document_bundle(doc_id: str) -> Path:
-    bundle_path = Path(global_config.docucache_path) / doc_id
-    if not bundle_path.is_dir():
-        raise FileNotFoundError(f"docu bundle not found: {doc_id}")
-    return bundle_path
-
-
-def extract_pdf_pages(pdf_path: str, out_dir: str, dpi: int = 150):
+def extract_pdf_pages(pdf_path: Path, out_dir: Path, dpi: int = 150):
     """
     Calls the bash script to extract all pages of pdf_path at the given dpi.
     Raises:
@@ -55,13 +49,14 @@ def extract_pdf_pages(pdf_path: str, out_dir: str, dpi: int = 150):
       CalledProcessError   – if pdftoppm or checks fail
       ValueError           – if dpi is not a positive integer
     """
-    if not Path(pdf_path).is_file():
+    if not pdf_path.is_file():
         raise FileNotFoundError(f"PDF not found: {pdf_path}")
     if not isinstance(dpi, int) or dpi <= 0:
         raise ValueError(f"dpi must be a positive integer, got {dpi!r}")
 
-    cmd = ["bash", f"{SCRIPTS_DIR}/extract_pages.sh", pdf_path, out_dir, str(dpi)]
-    print(f"extracting {pdf_path}")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    cmd = ["bash", f"{SCRIPTS_DIR}/extract_pages.sh", str(pdf_path), str(out_dir), str(dpi)]
+    logger.info(f"extracting {pdf_path}")
 
     try:
         result = subprocess.run(
@@ -83,8 +78,10 @@ def extract_pdf_pages(pdf_path: str, out_dir: str, dpi: int = 150):
 if __name__ == "__main__":
     try:
         # Example usage
-        file = f"{global_config.docucache_path}/0001/tmp/2507.13733v1.pdf"
-        out = f"{global_config.docucache_path}/0001/pages"
+        doc_id = "1"
+        bundle = DocumentBundle("1")
+        file = bundle.bundle_path / "tmp/1706.03762.pdf"
+        out = bundle.pages_dir
         extract_pdf_pages(pdf_path=file, out_dir=out)
     except Exception as e:
         print("Error:", e, file=sys.stderr)

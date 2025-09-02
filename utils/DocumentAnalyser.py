@@ -1,36 +1,16 @@
 from __future__ import annotations
 
 import asyncio
-import base64
 import json
 import shutil
 import sys
 from pathlib import Path
-from typing import List, Dict, Any, Sequence
+from typing import List, Dict, Any
 
-import numpy as np
-from PIL import Image
-from openai import OpenAI
-
-from utils.common import DocumentBundle
-from utils.llm_backend import call_openai_parse
+from middleware.ImageStorage import ImageStorage
+from middleware.llm_middleware import coerce_to_json_list, GenericLLMCallable, call_llm
+from utils.common import DocumentBundle, ModelConfig
 from utils.prompt_manager import PromptManager
-
-
-def load_image(path: Path) -> Image.Image:
-    return Image.open(path).convert("RGB")
-
-
-def pil_to_numpy_gray(pil: Image.Image) -> np.ndarray:
-    return np.array(pil.convert("L"))
-
-
-def encode_image_to_data_url(p: Path) -> str:
-    b = p.read_bytes()
-    b64 = base64.b64encode(b).decode("ascii")
-    suffix = p.suffix.lower().lstrip(".") or "png"
-    mime = "image/png" if suffix == "png" else f"image/{suffix}"
-    return f"data:{mime};base64,{b64}"
 
 
 def get_boolean_flag(data: Dict[str, Any], key: str) -> bool:
@@ -43,10 +23,6 @@ def get_type(data: Dict[str, Any], key: str) -> str:
     return str(value).lower().strip()
 
 
-def ensure_dir(d: Path) -> None:
-    d.mkdir(parents=True, exist_ok=True)
-
-
 # TODO: add auto-injection of reference_header entry if not present - useful for multi-chapter books or conference vols
 # TODO: accurate extraction of figures and tables using ViLM models
 # TODO: link captions and figures
@@ -57,29 +33,33 @@ class DocumentProcessor:
     blocks, and collects reference entries.
     """
 
-    def __init__(self, prompts: PromptManager, doc_id: str, llm_hook: Any):
-        """Initializes the processor with empty lists for blocks and references."""
+    def __init__(self, doc_bundle: DocumentBundle,
+                 pm: PromptManager,
+                 llm_hook: GenericLLMCallable,
+                 config: ModelConfig,
+                 im_store: ImageStorage):
         self.all_blocks: List[Dict[str, Any]] = []
         self.references: Dict[str, Any] = {}
         self.figures: Dict[str, int] = {}
         self.tables: Dict[str, int] = {}
         self.file_map: Dict[int, Path] = {}
-        self.prompts = prompts
-        self.doc_bundle: DocumentBundle = DocumentBundle(doc_id)
+        self.pm = pm
+        self.doc_bundle = doc_bundle
         self.llm_hook = llm_hook
+        self.im_store = im_store
+        self.config = config
 
     async def process_page(self, page_number: int, image_path: Path):
 
-        img64_url = encode_image_to_data_url(image_path)
-        system_prompt = self.prompts.compose_prompt("analyse_page_sys_v1.j2")
+        system_prompt = self.pm.compose_prompt("analyse_page_sys_v1.j2")
         messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": [
-                {"type": "image_url", "image_url": {"url": img64_url}}
+                self.im_store.get_image_entry(image_path)
             ]},
         ]
 
-        page_blocks = await call_openai_parse(self.llm_hook, messages, temperature=1.0)
+        page_blocks = await self.llm_hook(messages, self.config, coerce_to_json_list)
 
         if not page_blocks:
             print(f"WARNING: No LLM response for page {page_number} ('{image_path}'). Skipping.")
@@ -179,7 +159,7 @@ class DocumentProcessor:
                 if entry_key:
                     self.references[entry_key] = block.get("text", "")
 
-    def _copy_files(self, indexed: Dict[str,int]):
+    def _copy_files(self, indexed: Dict[str, int]):
         for label, src_idx in indexed.items():
             src_path = self.file_map[src_idx]
             if src_path.is_file():
@@ -198,9 +178,16 @@ class DocumentProcessor:
 
 
 async def main():
-    client = OpenAI()
-    prompts = PromptManager()
-    doc_processor = DocumentProcessor(prompts=prompts, doc_id="0001", llm_hook=client)
+    pm = PromptManager()
+    image_store = ImageStorage()
+    config = ModelConfig(
+        name='o4-mini',
+        model='o4-mini',
+        temperature=1.0
+    )
+    doc_bundle = DocumentBundle("1")
+    doc_processor = DocumentProcessor(doc_bundle=doc_bundle, pm=pm, config=config, im_store=image_store,
+                                      llm_hook=call_llm)
     await doc_processor.process_document()
 
 

@@ -7,7 +7,7 @@ from utils.settings import TEMPLATES_DIR
 
 class PromptManager:
     """
-    Manages loading and composing prompts using Jinja2 templates
+    Manages loading and composing pm using Jinja2 templates
     from a specified local folder.
     """
 
@@ -29,7 +29,7 @@ class PromptManager:
             loader=FileSystemLoader(self.template_folder),
             trim_blocks=True,  # Removes the first newline after a block tag
             lstrip_blocks=True,  # Strips leading whitespace from lines with block tags
-            autoescape=False  # We are generating text prompts, not HTML
+            autoescape=False  # We are generating text pm, not HTML
         )
         print(f"PromptManager initialized. Loading templates from: {template_folder}")
 

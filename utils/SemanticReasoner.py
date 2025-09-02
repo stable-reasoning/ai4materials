@@ -8,7 +8,7 @@ from typing import Any, Dict, Iterable, List, Sequence
 from openai import OpenAI
 
 from utils.common import DocumentBundle, SourceTxtBlock
-from utils.ioutils import get_keys_from_json_file
+from utils.extraction_utils import get_keys_from_json_file
 from utils.llm_backend import call_openai_parse
 from utils.prompt_manager import PromptManager
 

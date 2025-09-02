@@ -2,9 +2,9 @@ import json
 import sys
 from dataclasses import dataclass, asdict
 from pathlib import Path
-from typing import List, Sequence, Dict, Any, Optional, Mapping, Iterable
+from typing import List, Sequence, Dict, Any, Mapping, Iterable
 
-from utils.ioutils import get_document_bundle
+from utils.settings import global_config
 
 
 @dataclass(frozen=True)
@@ -12,6 +12,8 @@ class ModelConfig:
     name: str
     model: str
     temperature: float
+    retries: int = 1
+    max_tokens: int = 32768
 
 
 @dataclass(frozen=True)
@@ -58,6 +60,13 @@ def to_jsonl(blocks: Sequence[SourceTxtBlock]) -> str:
 
 def pick_keys(d: Mapping[str, Any], keys: Iterable[str]) -> Dict[str, Any]:
     return {k: d[k] for k in keys if k in d}
+
+
+def get_document_bundle(doc_id: str) -> Path:
+    bundle_path = Path(global_config.docucache_path) / doc_id
+    if not bundle_path.is_dir():
+        raise FileNotFoundError(f"docu bundle not found: {doc_id}")
+    return bundle_path
 
 
 class DocumentBundle:
