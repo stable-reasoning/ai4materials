@@ -5,6 +5,7 @@ from agents.ContractWriterAgent import ContractWriterAgent
 from agents.DocumentAnalyzerAgent import DocumentAnalyzerAgent
 from agents.DownloadAgent import DownloadAgent
 from agents.ExtractionAgent import ExtractionAgent
+from agents.QADatasetGeneratorAgent import QADatasetGeneratorAgent
 from agents.SemanticAnalyzerAgent import SemanticAnalyzerAgent
 from core import DAG, DAGRunner
 from middleware.ImageStorage import ImageStorage
@@ -68,11 +69,29 @@ def get_document_pipeline_dag(paper_li: Path) -> DAG:
         model_config=model_config
     )
 
+    question_generation = QADatasetGeneratorAgent(
+        name="question_generation",
+        input_spec={
+            "semantic_documents": "agent:semantic_analysis/semantic_documents.json"
+        },
+        pm=prompt_manager,
+        image_store=image_store,
+        model_config=model_config
+    )
+
     download_papers >> extract_pages >> analyze_document >> semantic_analysis >> contract_generation
+    semantic_analysis >> question_generation
 
     document_pipeline_dag = DAG(
         name="document_pipeline",
-        tasks=[download_papers, extract_pages, analyze_document, semantic_analysis, contract_generation]
+        tasks=[
+            download_papers,
+            extract_pages,
+            analyze_document,
+            semantic_analysis,
+            contract_generation,
+            question_generation
+        ]
     )
 
     return document_pipeline_dag
