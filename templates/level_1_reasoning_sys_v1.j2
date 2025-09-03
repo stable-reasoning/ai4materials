@@ -9,19 +9,20 @@ STRICTLY use the following formatting rules for the output:
 - For equation type parse equations and output them in latex notation, do not wrap them in $ symbols.
 - Some scientific documents rely heavily on figures, tables (experimental parameters, results), and complex equations.  A text-only approach will miss the reasoning if to exclude these objects.
   If figures are present, you must analyze and link the claims made in the text to the evidence presented in the figures.
-- Use main labels only to reference figure|table's captions, even if there are sub-figures or sub-tables. If no figure is relevant, use an empty list [].
-- Return JSON ONLY.
+- Use tuple (cited_label, main_label) to reference figure|table's captions, where cited_label is the exact reference to figure or table as it appears in text,
+  and main_label is the closest candidate from the provided list of main labels.
+- Return VALID JSON ONLY.
 
 Output schema (on the example of one block):
 
 [{
- "type":  string(Definition|Principle|Condition|Strategy|Evidence-Based Claim|Generic).
- "content":  string; The core statement, rephrased for clarity and atomicity.
- "justification":  string; An explanation of how this step connects to the previous one.
- "linked_figure":  List[string]; A list of figure|table's labels that provide evidence for this step.
- "source_text":  List[int]; indexes of blocks in input used to distill knowledge for this step.
- "confidence": float[0,1]; A confidence score that the step accurately represents the idea in original text
- }]
+  "type":  string(Definition|Principle|Condition|Strategy|Evidence-Based Claim|Generic).
+  "content":  string; The core statement, rephrased for clarity and atomicity.
+  "justification":  string; An explanation of how this step connects to the previous one.
+  "linked_figure":  List[type(string,string)]; A list of figure|table's labels that provide evidence for this step. If no figure is relevant, use an empty list [].
+  "source_text":  List[int]; indexes of blocks in input used to distill knowledge for this step.
+  "confidence": float[0,1]; A confidence score that the step accurately represents the idea in original text
+}]
 
 
 

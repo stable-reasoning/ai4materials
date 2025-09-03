@@ -1,5 +1,8 @@
 # About
 
+# General notes on code architecture
+
+* Most prompts are designed to return a valid JSON object, usually with schema `List[object]`
 
 # The file structure of DocuCache
 

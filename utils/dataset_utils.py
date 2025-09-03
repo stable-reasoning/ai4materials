@@ -3,45 +3,23 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
-from dataclasses import dataclass, asdict
 from typing import Any, Dict, Iterable, List, Sequence
 
 from openai import OpenAI
 
-from utils.common import DocumentBundle
-from utils.ioutils import get_keys_from_json_file
+from utils.common import DocumentBundle, SourceTxtBlock, prune_and_validate, to_jsonl
+from utils.extraction_utils import get_keys_from_json_file
 from utils.llm_backend import call_openai_parse
 from utils.prompt_manager import PromptManager
 
 
-@dataclass(frozen=True)
-class Block:
-    """
-    Minimal payload we keep after pruning.
-    Note: `idx` is assigned AFTER filtering, so it does not reflect original position.
-    """
-    idx: int
-    type: str
-    text: str
-
-
-# TODO calc the coverage = % of original blocks covered by
-class Level1Reasoner:
-    """
-    Pipeline:
-      1) Load a JSON file (array or JSONL) into a list of dicts
-      2) Filter out records with type in excluded_types
-      3) Enrich each record with 0-based 'idx'
-      4) Remove all fields except ['idx', 'type', 'text']
-      5) Compile JSON Lines (JSONL) of resulting records
-      6) Send to an LLM client
-    """
+class QADatasetGenerator:
 
     def __init__(self, prompts: PromptManager, doc_id: str, llm_hook: Any,
                  excluded_types: Iterable[str] = ("unknown", "reference_entry")):
         self._excluded_types = {t.lower() for t in excluded_types}
         self._raw_records: List[Dict[str, Any]] = []
-        self._blocks: List[Block] = []
+        self._blocks: List[SourceTxtBlock] = []
         self.prompts = prompts
         self.doc_bundle: DocumentBundle = DocumentBundle(doc_id)
         self.llm_hook = llm_hook
@@ -75,43 +53,24 @@ class Level1Reasoner:
             filtered.append(rec)
         return filtered
 
-    def prune_and_validate(self, records: Sequence[Dict[str, Any]]) -> List[Block]:
-        blocks: List[Block] = []
-        for rec in records:
-            if "idx" not in rec or "type" not in rec or "text" not in rec:
-                continue
-
-            block = Block(
-                idx=int(rec["idx"]),
-                type=str(rec["type"]),
-                text=str(rec["text"])
-            )
-            blocks.append(block)
-        return blocks
-
-    def to_jsonl(self, blocks: Sequence[Block]) -> str:
-        lines = [json.dumps(asdict(b), ensure_ascii=False) for b in blocks]
-        print(f"Compiled JSONL with {len(lines)} lines")
-        return "\n".join(lines)
-
     def build_jsonl_from_file(self) -> str:
         self.load_file()
         filtered = self.filter_records(self._raw_records)
-        validated = self.prune_and_validate(filtered)
-        return self.to_jsonl(validated)
+        validated = prune_and_validate(filtered)
+        return to_jsonl(validated)
 
     async def process_document(self):
         json_lines = self.build_jsonl_from_file()
         figure_labels = get_keys_from_json_file(self.doc_bundle.get_figures_path())
         table_labels = get_keys_from_json_file(self.doc_bundle.get_tables_path())
-        system_prompt = self.prompts.compose_prompt("level_1_reasoning_sys_v1.j2")
+        system_prompt = self.prompts.compose_prompt("qa_dataset_generator_sys_v1.j2")
         user_prompt = self.prompts.compose_prompt(
-            "level_1_reasoning_user_v1.j2",
-            figures = figure_labels,
-            tables = table_labels,
-            claims = json_lines
+            "qa_dataset_generator_user_v1.j2",
+            figures=figure_labels,
+            tables=table_labels,
+            claims=json_lines
         )
-        #print(user_prompt)
+        # print(user_prompt)
         messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
@@ -123,14 +82,16 @@ class Level1Reasoner:
             print(f"WARNING: No LLM response for {self.doc_bundle.doc_id}. Skipping.")
             return
 
-        with open(self.doc_bundle.get_semantic_layer_path(), "w", encoding="utf-8") as f_out:
+        logging.info(f"generated {len(page_blocks)} questions")
+
+        with open(self.doc_bundle.get_qa_path(), "w", encoding="utf-8") as f_out:
             f_out.write(json.dumps(page_blocks, ensure_ascii=False))
 
 
 async def main():
     client = OpenAI()
     prompt_man = PromptManager()
-    doc_processor = Level1Reasoner(prompts=prompt_man, doc_id="0001", llm_hook=client)
+    doc_processor = QADatasetGenerator(prompts=prompt_man, doc_id="0001", llm_hook=client)
     await doc_processor.process_document()
 
 

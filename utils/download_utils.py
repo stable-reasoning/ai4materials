@@ -1,6 +1,7 @@
 import logging
 import sqlite3
 from pathlib import Path
+from typing import List, Dict, Any
 
 import requests
 
@@ -75,13 +76,12 @@ class MetadataStore:
             logging.info("Database connection closed.")
 
 
-# TODO check the MIME of downlowded file that's indeed a pdf
 class FileDownloader:
     """
     Manages the process of downloading papers from a list of URLs.
     """
     # The first few bytes of a PDF file.
-    PDF_SIGNATURE = b'%PDF-'
+    PDF_SIGNATURE = b'%PDF'
 
     def __init__(self):
         """
@@ -107,7 +107,7 @@ class FileDownloader:
 
     def _download_file(self, url: str, destination: Path):
         try:
-            with requests.get(url, stream=True, timeout=60) as r:
+            with requests.get(url, stream=True, timeout=120) as r:
                 r.raise_for_status()
                 with open(destination, 'wb') as f:
                     for chunk in r.iter_content(chunk_size=8192):
@@ -132,14 +132,15 @@ class FileDownloader:
             logging.error(f"Could not read file {file_path} for validation. Error: {e}")
             return False
 
-    def process_url_list_file(self, file_path: str):
+    def process_url_list_file(self, file_path: str) -> List[Dict[str,Any]]:
         logging.info(f"Starting to process file: {file_path}")
         try:
             with open(file_path, 'r') as f:
                 urls = [line.strip() for line in f if line.strip()]
         except FileNotFoundError:
             logging.error(f"Input file not found: {file_path}")
-            return
+            return []
+        added_files = []
 
         for url in urls:
             if self.db.is_url_processed(url):
@@ -161,12 +162,14 @@ class FileDownloader:
                 if not self._is_pdf(destination):
                     status = 'validation_failed'
                 self.db.update_status(paper_id, status)
+                added_files.append({"paper_id": paper_id, "file": str(destination)})
             except ValueError as e:
                 logging.error(e)
                 self.db.update_status(paper_id, 'invalid_url')
 
         self.db.close()
         logging.info("Processing complete.")
+        return added_files
 
 
 def main():

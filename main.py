@@ -1,25 +1,60 @@
-from typing import NamedTuple
+import asyncio
 
-from datasets import load_dataset
+from agents.example_agents import DataFetcher, TextProcessor, PostChecker, Validator
+from core import DAG, DAGRunner
+from utils.settings import logger
 
-ds = load_dataset("openai/gsm8k", "main")
+fetcher = DataFetcher(
+    name="fetcher",
+    input_spec={
+        "api_url": "url:https://jsonplaceholder.typicode.com/posts"
+    }
+)
 
-print(ds.shape)
-print(ds['train'][0])
+processor = TextProcessor(
+    name="processor",
+    input_spec={
+        # This input refers to the 'posts.jsonl' file produced by the 'fetcher' agent
+        "posts_data": "agent:fetcher/posts.jsonl"
+    }
+)
+
+checker = PostChecker(
+    name="checker",
+    input_spec={
+        "posts_dir": "str:test"
+    }
+)
+
+validator = Validator(
+    name="validator",
+    input_spec={
+        "eval_str": "agent:checker/eval",
+        "processed_data": "agent:processor/processed_titles.json"
+    }
+)
+
+# 2. Define the dependencies (the DAG structure)
+fetcher >> processor >> checker >> validator
+processor >> validator
+# You can also define dependencies like this:
+# processor << fetcher
+
+# 3. Create the DAG object
+blog_processing_dag = DAG(
+    name="blog_workflow",
+    tasks=[fetcher, processor, checker, validator]
+)
 
 
+# 4. Create a runner and execute the DAG
+async def main():
+    runner = DAGRunner(dag=blog_processing_dag, working_dir="runs")
 
-PageDimensions = NamedTuple("PageDimensions", [('width', int), ('height', int)])
+    logger.info("--- FIRST RUN: EXECUTING ALL AGENTS ---")
+    run_id = f"{runner.dag.name}-second-run"
+    await runner.run(experiment_id=run_id)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    asyncio.run(main())

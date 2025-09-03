@@ -1,32 +1,58 @@
 import json
 import re
-from typing import List, Dict, Any
+from typing import List, Dict, Any, TypeVar, Callable, Protocol, Coroutine
 
 from openai import OpenAI
 
 from utils.common import ModelConfig
 
+T_Coerced = TypeVar("T_Coerced")
 
-def coerce_blocks(raw: Any) -> List[Dict[str, Any]]:
-    if isinstance(raw, list):
-        return raw
+
+def coerce_to_json_list(content: Any) -> List[Dict[str, Any]]:
+    # Extract first [...] to avoid stray characters
+    m = re.search(r"\[.*\]", content, flags=re.DOTALL)
+    raw_json = m.group(0) if m else content
+    data = json.loads(raw_json)
+    if isinstance(data, list):
+        return data
     raise ValueError("LLM did not return a JSON list.")
 
 
-async def call_openai_parse(
-        client: OpenAI,
-        messages: List[Any],
-        model: str = "o4-mini",
-        temperature: float = 1.0,
-        max_retries: int = 1) -> List[Dict[str, Any]]:
-    last_err = None
+def coerce_to_simple_string(content: Any) -> str:
+    """A simple transformer that just cleans up a string."""
+    return str(content).strip()
 
-    for _ in range(max_retries):
+
+def get_client(config: ModelConfig) -> OpenAI:
+    return OpenAI()
+
+
+class GenericLLMCallable(Protocol):
+    """A protocol for a generic, async LLM calling function."""
+
+    def __call__(
+            self,
+            messages: List[Any],
+            config: ModelConfig,
+            transformer: Callable[[Any], T_Coerced],
+            metadata: Dict[str, Any],
+    ) -> Coroutine[Any, Any, T_Coerced]:
+        ...
+
+
+async def call_llm(messages: List[Any],
+                   config: ModelConfig,
+                   transformer: Callable[[Any], T_Coerced],
+                   metadata: Dict[str, Any]) -> T_Coerced:
+    last_err = None
+    client = get_client(config=config)
+    for _ in range(config.retries):
         try:
             # Responses API (multi-modal)
             resp = client.chat.completions.create(
-                model=model,
-                temperature=temperature,
+                model=config.model,
+                temperature=config.temperature,
                 messages=messages,
             )
             # Extracting and printing the response content
@@ -36,18 +62,18 @@ async def call_openai_parse(
             print(f"input bytes: {length}")
 
             content = resp.choices[0].message.content.strip()
-            # print(content)
-            # Extract first [...] to avoid stray characters
-            m = re.search(r"\[.*\]", content, flags=re.DOTALL)
-            raw_json = m.group(0) if m else content
-            data = json.loads(raw_json)
-            return coerce_blocks(data)
+            #print(content)
+            return transformer(content)
         except Exception as e:
             last_err = e
     raise RuntimeError(f"OpenAI parse failed for {last_err}")
 
 
-async def test_call_openai_parse(
+class LLMClient:
+    pass
+
+
+async def call_openai_parse(
         client: OpenAI,
         messages: List[Any],
         config: ModelConfig,
@@ -69,7 +95,7 @@ async def test_call_openai_parse(
             print(f"input bytes: {length}")
 
             content = resp.choices[0].message.content.strip()
-            #print(content)
+            # print(content)
             return str(content).strip()
         except Exception as e:
             last_err = e
