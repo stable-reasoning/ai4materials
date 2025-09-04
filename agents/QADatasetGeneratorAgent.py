@@ -63,7 +63,8 @@ class QADatasetGeneratorAgent(Agent):
             try:
                 doc_id = doc['document_id']
                 doc_bundle = DocumentBundle(str(doc_id))
-                semantic_repr = load_file(Path(doc['path']))
+                #semantic_repr = load_file(Path(doc['path']))
+                semantic_repr = load_file(doc_bundle.get_records_path())
                 user_prompt = self.config.pm.compose_prompt(
                     "qa_dataset_generator_user_v2.j2",
                     claims=semantic_repr

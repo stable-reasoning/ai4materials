@@ -72,8 +72,9 @@ def get_document_pipeline_dag(paper_li: Path) -> DAG:
     question_generation = QADatasetGeneratorAgent(
         name="question_generation",
         input_spec={
-            "semantic_documents": "agent:semantic_analysis/semantic_documents.json"
-        },
+#            "semantic_documents": "agent:semantic_analysis/semantic_documents.json"
+            "semantic_documents": "agent:contract_generation/contracts.json"
+    },
         pm=prompt_manager,
         image_store=image_store,
         model_config=model_config
