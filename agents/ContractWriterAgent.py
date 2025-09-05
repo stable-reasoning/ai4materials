@@ -45,10 +45,8 @@ class ContractWriterAgent(Agent):
                 ]
 
                 page_blocks = await call_llm(messages, self.config.model_config, coerce_to_json_list, metadata={})
-                count = 0
-                for c in page_blocks:
-                    c['contract_id'] = count
-                    count += 1
+                for idx, c in enumerate(page_blocks):
+                    c['contract_id'] = idx
                 res_path = self.save_locally(f"contract_{doc_id}.json", page_blocks)
                 processed_docs.append({"document_id": doc_id, "path": str(res_path)})
             except Exception as e:
