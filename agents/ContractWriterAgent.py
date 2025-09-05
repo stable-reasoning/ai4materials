@@ -5,11 +5,12 @@ from typing import Dict, Any, List, Iterable, Sequence
 from core import Agent
 from middleware.ImageStorage import ImageStorage
 from middleware.llm_middleware import call_llm, coerce_to_json_list
-from utils.common import ModelConfig, DocumentBundle, load_file
+from utils.common import ModelConfig, load_file
 from utils.prompt_manager import PromptManager
 from utils.settings import logger
 
 
+# TODO add generic mechanism of checkpoints/continuation
 class ContractWriterAgent(Agent):
     """An agent to fetch posts from a public API."""
 
@@ -28,13 +29,12 @@ class ContractWriterAgent(Agent):
             if str(rec.get("type", "")).lower() not in self.config.excluded_types
         ]
 
-    async def run(self, semantic_documents: List[Dict[str,Any]]) -> Dict[str, Any]:
+    async def run(self, semantic_documents: List[Dict[str, Any]]) -> Dict[str, Any]:
 
         processed_docs = []
         for doc in semantic_documents:
             try:
                 doc_id = doc['document_id']
-                doc_bundle=DocumentBundle(str(doc_id))
                 semantic_repr = load_file(Path(doc['path']))
                 user_prompt = self.config.pm.compose_prompt(
                     "level_2_reasoning_v1.j2",

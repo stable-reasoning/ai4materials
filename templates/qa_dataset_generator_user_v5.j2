@@ -10,7 +10,7 @@ Question must explicitly mention some numerical range/value extracted from some 
 3) Question must be self-contained, don't rely on contract. Do not reference any causal factum from the contract.
 The model must be able in principle to answer this question using only provided source text of paper or using internalized knowledge only (closed book).
 
-Before offering questions, internally validate - i.e. ask them and make sure that answers based on raw text most likely mostly fail
+Before offering questions, internally validate - i.e. ask them and make sure that answers based on raw text most likely fail
 
 GOAL
 
@@ -41,7 +41,7 @@ Return strictly JSON objects with exactly these fields:
      "explanation": "string - short explanation why the provided answer is correct",
      "paths" : "list of CoT summaries in free text like { <cause> -> <effect>}",
      "triples": "list of triples {subject: str, relation: str, object: str}",
-     "numeric_ranges": "List of { name: str, min: num, max: num, units: str } - optional, to enforce the expected range and untis we want to see in answer",
+     "numeric_ranges": "List of { name: str, min: num, max: num, units: str } - optional, to enforce the expected range and units we want to see in answer",
      "notes": short string identifying why this is trivial via the contract but non-trivial via the raw text (no reasoning, just a one-line characterization ).
   }
 }

@@ -34,7 +34,9 @@ class Answer:
     config_name: str
     question_type: str
     gold_answer: str
+    gold_trace: str
     pred_answer: str
+    pred_trace: str
 
 
 def load_file(path: Path) -> List[Dict[str, Any]]:

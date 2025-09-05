@@ -9,7 +9,7 @@ from utils.common import ModelConfig, DocumentBundle, load_file
 from utils.prompt_manager import PromptManager
 from utils.settings import logger
 
-VALID_TYPES: Set[str] = {"yes-no", "multichoice", "3-word"}
+VALID_TYPES: Set[str] = {"counterfactual"}
 
 
 def is_record_valid(record: Any) -> bool:
@@ -20,23 +20,19 @@ def is_record_valid(record: Any) -> bool:
     if not isinstance(record, dict):
         return False
 
-    required_keys = {"type", "question", "options", "answer", "explanation", "source"}
+    required_keys = {"category", "question", "contract_id", "gold_answer"}
     if not required_keys.issubset(record.keys()):
         return False
 
     try:
-        if not (isinstance(record['type'], str) and record['type'].lower().strip() in VALID_TYPES):
+        if not (isinstance(record['category'], str) and record['category'].lower().strip() in VALID_TYPES):
             return False
         if not (isinstance(record['question'], str) and record['question']):
             return False  # Must be a non-empty string
-        if not (isinstance(record['options'], list) and all(isinstance(i, str) for i in record['options'])):
+        if not (isinstance(record['contract_id'], str)):
             return False
-        if not (isinstance(record['answer'], str) and record['answer']):
-            return False  # Must be a non-empty string
-        if not (isinstance(record['explanation'], str) and record['explanation']):
-            return False  # Must be a non-empty string
-        if not (isinstance(record['source'], list)):
-            return False
+        if not (isinstance(record['gold_answer'], dict) and record['gold_answer']):
+            return False  # Must be a non-empty object
     except (TypeError, KeyError):
         # Catch potential errors if data structure is unexpectedly malformed.
         return False
@@ -55,16 +51,16 @@ class QADatasetGeneratorAgent(Agent):
         image_store: ImageStorage
         model_config: ModelConfig
 
-    async def run(self, semantic_documents: List[Dict[str, Any]]) -> Dict[str, Any]:
-        logger.info(f"processing {len(semantic_documents)} documents")
+    async def run(self, contracts: List[Dict[str, Any]]) -> Dict[str, Any]:
+        logger.info(f"processing {len(contracts)} documents")
         processed_docs = []
 
-        for doc in semantic_documents:
+        for c in contracts:
             try:
-                doc_id = doc['document_id']
+                doc_id = c['document_id']
                 doc_bundle = DocumentBundle(str(doc_id))
-                contracts = load_file(Path(doc['path']))
-                raw_text = load_file(doc_bundle.get_records_path())
+                raw_text = load_file(doc_bundle.get_records_path())  # document is taken from cache by id
+                contracts = load_file(Path(c['path']))  # contract is loaded from path
                 user_prompt = self.config.pm.compose_prompt(
                     "qa_dataset_generator_user_v5.j2",
                     contracts=contracts,
@@ -75,7 +71,7 @@ class QADatasetGeneratorAgent(Agent):
                 ]
 
                 page_blocks = await call_llm(messages, self.config.model_config, coerce_to_json_list, metadata={})
-                #valid_questions = [record for record in page_blocks if is_record_valid(record)]
+                valid_questions = [record for record in page_blocks if is_record_valid(record)]
                 valid_questions = page_blocks
                 for idx, q in enumerate(valid_questions, start=1):
                     q['id'] = f"{doc_id}-{idx}"

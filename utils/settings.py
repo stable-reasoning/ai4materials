@@ -14,7 +14,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = ROOT_DIR / "templates"
 SCRIPTS_DIR = ROOT_DIR / "scripts"
 RUNS_DIR = ROOT_DIR / "runs"
-DATASET_DIR = ROOT_DIR / "datasets"
+DATA_DIR = ROOT_DIR / "data"
 
 LOG_LEVEL = "INFO"
 APP_VERSION = "1.0.0"
