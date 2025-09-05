@@ -99,11 +99,11 @@ def get_document_pipeline_dag(paper_li: Path) -> DAG:
 
 
 async def main():
-    papers_li = ROOT_DIR / "test_data/papers_material_science.lst"
+    papers_li = ROOT_DIR / "test_data/papers_3.lst"
     runner = DAGRunner(dag=get_document_pipeline_dag(paper_li=papers_li), working_dir="runs")
 
     logger.info("EXECUTING document pipeline")
-    run_id = f"{runner.dag.name}-09022025-001"
+    run_id = f"{runner.dag.name}-09022025-003"
     await runner.run(experiment_id=run_id)
 
 

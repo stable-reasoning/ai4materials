@@ -54,6 +54,7 @@ async def call_llm(messages: List[Any],
                 model=config.model,
                 temperature=config.temperature,
                 messages=messages,
+                reasoning_effort="high",
             )
             # Extracting and printing the response content
             length = len(str(messages))

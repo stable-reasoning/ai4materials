@@ -11,6 +11,7 @@ from middleware.ImageStorage import ImageStorage
 from middleware.llm_middleware import coerce_to_json_list, GenericLLMCallable, call_llm
 from utils.common import DocumentBundle, ModelConfig
 from utils.prompt_manager import PromptManager
+from utils.settings import logger
 
 
 def get_boolean_flag(data: Dict[str, Any], key: str) -> bool:
@@ -62,7 +63,7 @@ class DocumentProcessor:
         page_blocks = await self.llm_hook(messages, self.config, coerce_to_json_list, metadata={})
 
         if not page_blocks:
-            print(f"WARNING: No LLM response for page {page_number} ('{image_path}'). Skipping.")
+            logger.warn(f"WARNING: No LLM response for page {page_number} ('{image_path}'). Skipping.")
             return
 
         # Enrich each block with the page number
@@ -74,19 +75,19 @@ class DocumentProcessor:
                 self.tables[block['text']] = page_number
 
         self.all_blocks.extend(page_blocks)
-        print(f"INFO: Successfully processed and added {len(page_blocks)} blocks from page {page_number}.")
+        logger.info(f"INFO: Successfully processed and added {len(page_blocks)} blocks from page {page_number}.")
 
     async def process_document(self):
         for idx, page_path in enumerate(self.doc_bundle.get_pages(), start=1):
             try:
-                print(f"--> {page_path.name}")
+                logger.info(f"--> {page_path.name}")
                 self.file_map[idx] = page_path
                 await self.process_page(idx, page_path)
             except Exception as e:
                 msg = f"[error] {page_path.name}: {e}"
-                print(msg, file=sys.stderr)
+                logger.error(msg, file=sys.stderr)
 
-        print("\nINFO: Finalizing document...")
+        logger.info("INFO: Finalizing document...")
         self._merge_split_blocks()
         self._enrich_with_idx()
         self._collect_references()

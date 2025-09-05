@@ -13,7 +13,7 @@ class ModelConfig:
     model: str
     temperature: float
     retries: int = 1
-    max_tokens: int = 32768
+    max_tokens: int = 65535
 
 
 @dataclass(frozen=True)

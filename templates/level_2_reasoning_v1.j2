@@ -4,26 +4,27 @@ self-contained mechanism contracts for those topics in a highly structured form 
 allowing to validate ideas, each item with stable schema below.
 
 STRICTLY use the following formatting rules for the output:
-- If there are special symbols in text use simple latex notation for these words, do not overuse $ symbol for exclusions.
-- For equation type parse equations and output them in latex notation, do not wrap them in $ symbols.
+- Use simple LaTeX notation for these mathematical expressions, scientific notation (incl. chemical formulas, physics equations)
+  and complex equations, do not overuse $ symbol for exclusions. DO NOT use overuse LaTeX for simple arithmetic, numbers and text.
+- For equation type parse equations and output them in LaTeX notation, do not wrap them in $ symbols.
 - Return JSON ONLY.
 
 Output schema (on the example of one block):
 
 [{
-  "hypothesis": string, (the self-contained, clear formulation of topic/idea/hypothesis linking together effect with at least 3 causes/concepts)
+  "hypothesis": "string - the self-contained, clear formulation of topic/idea/hypothesis linking together effect with at least 3 causes/concepts",
   "cause_effect": [
-     "cause": string,
-     "action_verb": string (for example, leads_to|results|causes, etc),
-     "effect": string
+     "cause": "string",
+     "action_verb": "string - for example, leads_to|results|causes, etc",
+     "effect": "string"
   ],
-  "assumptions": List[string], (constraints and conditions for the hypothesis to work)
-  "predictions": List[string],
+  "assumptions": "List[string] - constraints and conditions for the hypothesis to work",
+  "predictions": "List[string]",
   "rubric": [
   {
-    "claim": string, (concrete formulation of the evidence for the hypothesis)
-    "justification": string, (why this claim must evaluate to true for the hypothesis to work)
-    "source_text": List[int], (indexes of blocks in input used to distill knowledge for this criterion)
+    "claim": "string - concrete formulation of the evidence for the hypothesis",
+    "justification": "string - why this claim must evaluate to true for the hypothesis to work",
+    "source_text": "List[int] - indexes of blocks in input used to distill knowledge for this criterion"
   }]
 }]
 

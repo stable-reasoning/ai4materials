@@ -63,18 +63,20 @@ class QADatasetGeneratorAgent(Agent):
             try:
                 doc_id = doc['document_id']
                 doc_bundle = DocumentBundle(str(doc_id))
-                #semantic_repr = load_file(Path(doc['path']))
-                semantic_repr = load_file(doc_bundle.get_records_path())
+                contracts = load_file(Path(doc['path']))
+                raw_text = load_file(doc_bundle.get_records_path())
                 user_prompt = self.config.pm.compose_prompt(
-                    "qa_dataset_generator_user_v2.j2",
-                    claims=semantic_repr
+                    "qa_dataset_generator_user_v5.j2",
+                    contracts=contracts,
+                    raw_text=raw_text
                 )
                 messages = [
                     {"role": "user", "content": user_prompt}
                 ]
 
                 page_blocks = await call_llm(messages, self.config.model_config, coerce_to_json_list, metadata={})
-                valid_questions = [record for record in page_blocks if is_record_valid(record)]
+                #valid_questions = [record for record in page_blocks if is_record_valid(record)]
+                valid_questions = page_blocks
                 for idx, q in enumerate(valid_questions, start=1):
                     q['id'] = f"{doc_id}-{idx}"
                 logger.info(f"generated {len(valid_questions)} questions")
