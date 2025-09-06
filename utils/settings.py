@@ -6,6 +6,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
+import colorlog
+from colorlog import ColoredFormatter
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -72,7 +75,7 @@ def load_env_vars_to_dataclass(cls: type):
                         ) from e
 
                 setattr(self, f.name, env_value)
-            elif f.default is dataclasses.MISSING and f.default_factory is dataclasses.MISSING: # Required & no default
+            elif f.default is dataclasses.MISSING and f.default_factory is dataclasses.MISSING:  # Required & no default
                 raise ConfigurationError(f"Missing environment variable: {env_var_name}")
 
     cls.__init__ = new_init
@@ -115,7 +118,28 @@ Path(global_config.runs_path).resolve().mkdir(parents=True, exist_ok=True)
 
 # Configure logging
 
+handler = logging.StreamHandler()
+handler.setFormatter(ColoredFormatter(
+    '%(asctime)s - %(levelname)s - %(message)s',
+    log_colors={
+        'INFO': 'black',
+        'DEBUG': 'cyan',
+        'WARNING': 'yellow',
+        'ERROR': 'red'
+    }
+))
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, handlers=[handler])
+
+
 # logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
 
+def mute_openai_logging(level=logging.WARNING):
+    # Silence third‑party libraries used by the OpenAI client
+    for name in ("openai", "httpx", "httpcore"):
+        lg = logging.getLogger(name)
+        lg.setLevel(level)  # Hide INFO; show only WARNING/ERROR/CRITICAL
+        lg.propagate = False  # Prevent bubbling to the root handlers
+
+
+mute_openai_logging()

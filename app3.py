@@ -152,18 +152,16 @@ async def main():
         dag=get_document_pipeline_dag(paper_li=papers_li),
         working_dir="runs")
 
-    logger.info("EXECUTING document pipeline")
-    run_id = f"{runner.dag.name}-09022025-003"
+    run_id = f"{runner.dag.name}-09022025-004"
 
-    contracts = DATA_DIR / "contracts.json"
-    dataset = DATA_DIR / "full_dataset.json"
-    options = {'context_flags': 'RAW_TEXT'}
+    contracts = DATA_DIR / "contracts2.json"
+    dataset = DATA_DIR / "full_dataset2.json"
+    options = {'context_flags': 'CC'}
     runner = DAGRunner(
         dag=get_answer_pipeline_dag(contracts=contracts, dataset=dataset, options=options),
         working_dir="runs")
 
-    logger.info("EXECUTING document pipeline")
-    run_id = f"{runner.dag.name}-test-1"
+    run_id = f"{runner.dag.name}-test-2"
 
     await runner.run(experiment_id=run_id)
 

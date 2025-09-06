@@ -67,7 +67,6 @@ class QAAnswerAgent(Agent):
                     pred_answer=ans.get('answer'),
                     pred_trace=ans.get('explanation')
                 )
-                #print(answer)
                 processed_qs.append(dataclasses.asdict(answer))
             else:
                 logger.error(f"answer is corrupted: {ans}")

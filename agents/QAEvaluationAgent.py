@@ -43,12 +43,11 @@ class QAEvaluationAgent(Agent):
             # ans = 1
             if ans > -1:
                 a.eval_score = ans
-                print(a)
                 processed_qs.append(dataclasses.asdict(a))
             else:
                 logger.error(f"answer is corrupted: {ans}")
 
-            logger.info(f"got {len(processed_qs)} answers")
+        logger.info(f"evaluated {len(processed_qs)} answers")
 
         return {
             "eval_answers.json": processed_qs
