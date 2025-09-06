@@ -9,6 +9,8 @@ from utils.common import ModelConfig, Answer
 from utils.prompt_manager import PromptManager
 from utils.settings import logger
 
+from more_itertools import chunked
+
 
 class QAEvaluationAgent(Agent):
     """An agent to fetch posts from a public API."""
@@ -38,6 +40,7 @@ class QAEvaluationAgent(Agent):
             ]
 
             ans = await call_llm(messages, self.config.model_config, coerce_to_float, metadata={})
+            # ans = 1
             if ans > -1:
                 a.eval_score = ans
                 print(a)

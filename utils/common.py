@@ -39,6 +39,7 @@ class Question:
 @dataclass(frozen=False)
 class Answer:
     question_id: str
+    question: str
     experiment_id: str
     config_name: str
     question_type: str

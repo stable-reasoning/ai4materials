@@ -32,6 +32,7 @@ class QAAnswerAgent(Agent):
         processed_qs = []
         qs = [Question(**item) for item in qa_dataset]
         contract_map = {c['document_id']: Path(c['path']) for c in contracts}
+        #print(contract_map)
         batch = int(self.config.metadata.get('batch', 1))
 
         for q in qs:
@@ -39,10 +40,11 @@ class QAAnswerAgent(Agent):
             raw_text = format_records(load_file(DocumentBundle(str(doc_id)).get_records_path()))
             contract = load_file(contract_map.get(doc_id))
             context = []
-            if self.config.metadata.get('exp_type') == 'CC':
-                context.append(f"\n[CONTRACT]]\n\n {contract}")
-            if self.config.metadata.get('exp_type') == 'RAW_TEXT':
-                context.append(f"\n[RAW_TEXT]]\n\n {raw_text}")
+            flags = self.config.metadata.get('context_flags', '')
+            if 'CC' in flags:
+                context.append(f"\n[CONTRACT]\n {contract}")
+            if 'RAW_TEXT' in flags:
+                context.append(f"\n[RAW_TEXT]\n {raw_text}")
             user_prompt = self.config.pm.compose_prompt(
                 "qa_answering_llm.j2",
                 question=q.question,
@@ -56,6 +58,7 @@ class QAAnswerAgent(Agent):
             if ans.get('answer') and ans.get('explanation'):
                 answer = Answer(
                     question_id=q.question_id,
+                    question = q.question,
                     experiment_id=self.env.get('experiment_id', ''),
                     config_name=self.config.model_config.name,
                     question_type=q.question_type,
@@ -64,12 +67,12 @@ class QAAnswerAgent(Agent):
                     pred_answer=ans.get('answer'),
                     pred_trace=ans.get('explanation')
                 )
-                print(answer)
+                #print(answer)
                 processed_qs.append(dataclasses.asdict(answer))
             else:
                 logger.error(f"answer is corrupted: {ans}")
 
-            logger.info(f"got {len(processed_qs)} answers")
+        logger.info(f"got {len(processed_qs)} answers")
 
         return {
             "answers.json": processed_qs

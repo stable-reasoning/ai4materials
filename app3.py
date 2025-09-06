@@ -14,7 +14,7 @@ from core import DAG, DAGRunner
 from middleware.ImageStorage import ImageStorage
 from utils.common import ModelConfig
 from utils.prompt_manager import PromptManager
-from utils.settings import logger, ROOT_DIR
+from utils.settings import logger, ROOT_DIR, DATA_DIR
 
 
 def get_document_pipeline_dag(paper_li: Path, dataset: Path = None) -> DAG:
@@ -148,10 +148,23 @@ def get_answer_pipeline_dag(dataset: Path = None, contracts: Path = None, option
 
 async def main():
     papers_li = ROOT_DIR / "test_data/papers_3.lst"
-    runner = DAGRunner(dag=get_document_pipeline_dag(paper_li=papers_li), working_dir="runs")
+    runner = DAGRunner(
+        dag=get_document_pipeline_dag(paper_li=papers_li),
+        working_dir="runs")
 
     logger.info("EXECUTING document pipeline")
     run_id = f"{runner.dag.name}-09022025-003"
+
+    contracts = DATA_DIR / "contracts.json"
+    dataset = DATA_DIR / "full_dataset.json"
+    options = {'context_flags': 'RAW_TEXT'}
+    runner = DAGRunner(
+        dag=get_answer_pipeline_dag(contracts=contracts, dataset=dataset, options=options),
+        working_dir="runs")
+
+    logger.info("EXECUTING document pipeline")
+    run_id = f"{runner.dag.name}-test-1"
+
     await runner.run(experiment_id=run_id)
 
 
