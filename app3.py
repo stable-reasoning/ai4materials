@@ -82,8 +82,7 @@ def get_document_pipeline_dag(paper_li: Path, dataset: Path = None) -> DAG:
         model_config=model_config
     )
 
-    download_papers >> extract_pages >> analyze_document >> semantic_analysis >> contract_generation
-    semantic_analysis >> question_generation
+    download_papers >> extract_pages >> analyze_document >> semantic_analysis >> contract_generation >> question_generation
 
     document_pipeline_dag = DAG(
         name="document_pipeline",
@@ -92,14 +91,15 @@ def get_document_pipeline_dag(paper_li: Path, dataset: Path = None) -> DAG:
             extract_pages,
             analyze_document,
             semantic_analysis,
-            contract_generation
+            contract_generation,
+            question_generation
         ]
     )
 
     return document_pipeline_dag
 
 
-def get_answer_pipeline_dag(dataset: Path = None, options: Dict[str, Any] = None) -> DAG:
+def get_answer_pipeline_dag(dataset: Path = None, contracts: Path = None, options: Dict[str, Any] = None) -> DAG:
     prompt_manager = PromptManager()
     image_store = ImageStorage()
 
@@ -113,7 +113,8 @@ def get_answer_pipeline_dag(dataset: Path = None, options: Dict[str, Any] = None
     question_answering = QAAnswerAgent(
         name="question_answering",
         input_spec={
-            "qa_dataset": f"file:{str(dataset)}"
+            "qa_dataset": f"file:{str(dataset)}",
+            "contracts": f"file:{str(contracts)}"
         },
         pm=prompt_manager,
         image_store=image_store,

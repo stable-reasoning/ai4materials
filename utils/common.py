@@ -28,15 +28,25 @@ class SourceTxtBlock:
 
 
 @dataclass(frozen=True)
+class Question:
+    question_id: str
+    question_type: str
+    question: str
+    gold_answer: str
+    gold_trace: str
+
+
+@dataclass(frozen=False)
 class Answer:
     question_id: str
-    run_id: str
+    experiment_id: str
     config_name: str
     question_type: str
     gold_answer: str
     gold_trace: str
     pred_answer: str
     pred_trace: str
+    eval_score: float = -1.0
 
 
 def load_file(path: Path) -> List[Dict[str, Any]]:

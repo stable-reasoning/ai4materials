@@ -1,11 +1,12 @@
+import dataclasses
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Any, List, Set
+from typing import Dict, Any, List, Set, Optional
 
 from core import Agent
 from middleware.ImageStorage import ImageStorage
 from middleware.llm_middleware import call_llm, coerce_to_json_list
-from utils.common import ModelConfig, DocumentBundle, load_file
+from utils.common import ModelConfig, DocumentBundle, load_file, Question
 from utils.prompt_manager import PromptManager
 from utils.settings import logger
 
@@ -40,6 +41,22 @@ def is_record_valid(record: Any) -> bool:
     return True
 
 
+def form_question_sketch(q: Dict[str, Any]) -> Optional[Question]:
+    gold_answer = q.get('gold_answer')
+    answer = gold_answer.get('answer')
+    explanation = gold_answer.get('explanation')
+    if gold_answer and answer and explanation:
+        trace = '\n'.join([explanation] + gold_answer.get('paths', []))
+        return Question(
+            question_id=q['id'],
+            question_type=q['category'],
+            question=q['question'],
+            gold_answer=answer,
+            gold_trace=trace,
+        )
+    return None
+
+
 class QADatasetGeneratorAgent(Agent):
     """An agent to fetch posts from a public API."""
 
@@ -54,7 +71,8 @@ class QADatasetGeneratorAgent(Agent):
     async def run(self, contracts: List[Dict[str, Any]]) -> Dict[str, Any]:
         logger.info(f"processing {len(contracts)} documents")
         processed_docs = []
-
+        error_count = 0
+        dataset = []
         for c in contracts:
             try:
                 doc_id = c['document_id']
@@ -72,15 +90,21 @@ class QADatasetGeneratorAgent(Agent):
 
                 page_blocks = await call_llm(messages, self.config.model_config, coerce_to_json_list, metadata={})
                 valid_questions = [record for record in page_blocks if is_record_valid(record)]
-                valid_questions = page_blocks
                 for idx, q in enumerate(valid_questions, start=1):
                     q['id'] = f"{doc_id}-{idx}"
+                    question = form_question_sketch(q)
+                    if question:
+                        dataset.append(dataclasses.asdict(question))
                 logger.info(f"generated {len(valid_questions)} questions")
                 res_path = self.save_locally(f"questions_{doc_id}.json", valid_questions)
                 processed_docs.append({"document_id": doc_id, "path": str(res_path)})
             except Exception as e:
                 logger.error(e)
+                error_count += 1
+
+        logger.info(f"created {len(dataset)} questions, errors: {error_count}")
 
         return {
-            "qa_dataset.json": processed_docs
+            "qa_dataset.json": processed_docs,
+            "full_dataset.json": dataset
         }

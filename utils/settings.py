@@ -17,7 +17,7 @@ RUNS_DIR = ROOT_DIR / "runs"
 DATA_DIR = ROOT_DIR / "data"
 
 LOG_LEVEL = "INFO"
-APP_VERSION = "1.0.0"
+APP_VERSION = "0.1.0"
 
 print(f"Project Root Directory: {ROOT_DIR}")
 print(f"TEMPLATES Directory: {TEMPLATES_DIR}")

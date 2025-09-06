@@ -92,6 +92,7 @@ class DAGRunner:
             agent_dir.mkdir(exist_ok=True)
             lock_file = agent_dir / "complete.lock"
             agent.workspace = agent_dir
+            agent.env['experiment_id'] = experiment_id
             # Check for completion or forced rerun
             if agent.name in force_rerun and lock_file.exists():
                 logger.warning(f"Forcing rerun for '{agent.name}'. Deleting lock file.")

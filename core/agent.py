@@ -10,6 +10,7 @@ class Agent(ABC):
 
     config: Any
     workspace: Path
+    env: Dict[str, Any] = {}
 
     def __init__(self, name: str, input_spec: Optional[Dict[str, str]] = None, **kwargs):
         """

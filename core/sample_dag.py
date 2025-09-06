@@ -1,6 +1,6 @@
 import asyncio
 
-from agents.example_agents import DataFetcher, TextProcessor, PostChecker, Validator
+from core.sample_agents import DataFetcher, TextProcessor, PostChecker, Validator
 from core import DAG, DAGRunner
 from utils.settings import logger
 
@@ -22,6 +22,7 @@ processor = TextProcessor(
 checker = PostChecker(
     name="checker",
     input_spec={
+        # a string 'test' will be injected into arg=posts_dir in run method of PostChecker
         "posts_dir": "str:test"
     }
 )
@@ -49,7 +50,7 @@ blog_processing_dag = DAG(
 
 # 4. Create a runner and execute the DAG
 async def main():
-    runner = DAGRunner(dag=blog_processing_dag, working_dir="runs")
+    runner = DAGRunner(dag=blog_processing_dag, working_dir="../runs")
 
     logger.info("--- FIRST RUN: EXECUTING ALL AGENTS ---")
     run_id = f"{runner.dag.name}-second-run"
