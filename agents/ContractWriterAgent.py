@@ -37,7 +37,7 @@ class ContractWriterAgent(Agent):
                 doc_id = doc['document_id']
                 semantic_repr = load_file(Path(doc['path']))
                 user_prompt = self.config.pm.compose_prompt(
-                    "level_2_reasoning_v1.j2",
+                    "create_contract_v1.j2",
                     semantic_repr=semantic_repr
                 )
                 messages = [

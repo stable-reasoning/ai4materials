@@ -17,7 +17,8 @@ Output schema (on the example of one block):
      "action_verb": "string - for example, leads_to|results|causes, etc",
      "effect": "string"
   ],
-  "assumptions": "List[string] - constraints and conditions for the hypothesis to work",
+  "assumptions": "Dict[string,string] - key(constraints and conditions for the hypothesis to work) => value(explain is it a hard
+           constraint or just random assumption without explanation)",
   "predictions": "List[string]",
   "rubric": [
   {

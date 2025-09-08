@@ -2,169 +2,169 @@
   {
     "question_id": "6-1",
     "question_type": "counterfactual",
-    "question": "If the spin–orbit coupling strength E_SOC in LaIrSi were only 30 meV (below the documented 37–207 meV range), would one still expect spin-polarized helicoid Fermi arcs on the surface? yes|no|uncertain.",
+    "question": "If inversion symmetry were restored but the spin–orbit coupling in LaRhSi remained at ≈37 meV, would multifold Weyl fermions still occur at the Γ and R points?",
     "gold_answer": "no",
-    "gold_trace": "An E_SOC below 37 meV falls outside the strong‐SOC range needed to lift band degeneracies, so the helicoid arcs cannot form.\nE_SOC≈37–207 meV → lifts band degeneracies → enables multifold Weyl fermions and spin-polarized helicoid Fermi arcs\nE_SOC<37 meV → fails to lift degeneracies → no helicoid Fermi arcs"
+    "gold_trace": "Broken inversion symmetry is required to permit multifold band degeneracies that give rise to Weyl fermions; restoring inversion blocks that pathway.\ninversion symmetry restored -> broken inversion symmetry absent\nbroken inversion symmetry absent -> multifold band degeneracies not permitted\nno band degeneracies -> no multifold Weyl fermions at Γ and R"
   },
   {
     "question_id": "6-2",
     "question_type": "counterfactual",
-    "question": "If only one electronic band were to cross the Fermi level in LaRhSi (instead of multiple bands), would multifold Weyl fermions and spin-polarized helicoid Fermi arcs still emerge? yes|no|uncertain.",
+    "question": "If spin–orbit coupling in LaRhSi were only 10 meV instead of ≈37 meV, would spin-polarized helicoid Fermi arcs still span the surface Brillouin zone?",
     "gold_answer": "no",
-    "gold_trace": "The contract requires multiple bands crossing E_f to enable multifold Weyl fermions and helicoid arcs; a single band is insufficient.\nmultiple bands crossing E_f → enables multifold Weyl fermions and spin-polarized helicoid Fermi arcs\none band crossing E_f → multiple‐bands condition not met → no Weyl fermions or arcs"
+    "gold_trace": "Strong SOC splitting into charge ±2 Weyl nodes is needed for helicoid Fermi arcs; 10 meV is insufficient.\nSOC too weak -> no splitting of topological band degeneracies into charge ±2 Weyl nodes\nno multifold Weyl nodes with spin splitting -> no spin-polarized helicoid Fermi arcs"
   },
   {
     "question_id": "6-3",
     "question_type": "counterfactual",
-    "question": "If instead of two chiral sublattices forming a double-helix, there were only one chiral chain in La(Rh,Ir)Si, would multifold Weyl fermions at Γ and R still be produced? yes|no|uncertain.",
+    "question": "If the La sublattice did not form a double-helix but a linear chain while the SOC stayed at ≈207 meV, would multifold Weyl fermions still appear in the band structure?",
     "gold_answer": "no",
-    "gold_trace": "The double-helix (two sublattices) is required to permit the topological band nodes; a single chain fails that prerequisite.\ndouble‐helix chiral structure → permits emergence of topological band nodes\nonly one chain → fails double‐helix condition → no multifold Weyl fermions"
+    "gold_trace": "Double-helix chirality is required to break inversion and enable multifold band degeneracies; without it, no Weyl nodes form.\nno double-helix structure -> no structural chirality or broken inversion\nbroken inversion symmetry absent -> multifold band degeneracies not permitted\nno band degeneracies -> no multifold Weyl fermions"
   },
   {
     "question_id": "6-4",
     "question_type": "counterfactual",
-    "question": "If the crystal structure of LaRhSi no longer belonged to space group P2₁3 (No. 198), would spin–orbit coupling still lift most band degeneracies at R to produce E_SOC≈37 meV? yes|no|uncertain.",
+    "question": "If TF-μSR measurements of LaRhSi yielded a sub-quadratic T^1.3 dependence of the superfluid density at low temperature instead of being temperature-independent, would this be consistent with fully-gapped superconductivity in LaRhSi?",
     "gold_answer": "no",
-    "gold_trace": "Noncentrosymmetric P2₁3 symmetry is required to allow the SOC effects that lift degeneracies to ≈37 meV at R.\nP2₁3 symmetry → allows multifaceted SOC effects\nmultifaceted SOC effects → lifts band degeneracies → produces E_SOC≈37 meV\nno P2₁3 symmetry → SOC effects not enabled → no E_SOC≈37 meV"
+    "gold_trace": "A sub-quadratic T^n (n∼1.0–1.5) dependence indicates line nodes and nodal-line superconductivity, not a fully-gapped state.\nsub-quadratic T^n dependence -> presence of line nodes\nline nodes -> nodal-line superconductivity\nnodal-line SC -> not fully-gapped"
   },
   {
     "question_id": "6-5",
     "question_type": "counterfactual",
-    "question": "If in LaIrSi the spin-triplet gap Δ_t were zero, would nodal-line superconductivity still occur? yes|no|uncertain.",
+    "question": "If the SOC splitting in LaRhSi were measured as ≈207 meV (same as LaIrSi), would LaRhSi still exhibit a fully-gapped superconducting state?",
     "gold_answer": "no",
-    "gold_trace": "With Δ_t=0 there is no singlet–triplet mixing, so the mechanism for nodal lines cannot operate.\nbroken inversion symmetry → permits mixing of Δ_s and Δ_t\nΔ_t=0 → no spin-triplet component → no nodal-line superconductivity"
+    "gold_trace": "High SOC (≈207 meV) enhances triplet pairing enough to yield nodal-line SC, not a fully-gapped gap.\nSOC ≈207 meV -> enhances triplet pairing component\nenhanced triplet mixing -> nodal-line superconductivity\nnodal-line SC -> not fully-gapped"
   },
   {
     "question_id": "6-6",
     "question_type": "counterfactual",
-    "question": "If the C₃-wrapping term A₃ were reduced from 15 eV·Å² to 0 eV·Å² in LaIrSi, would nodal-line superconductivity still occur for Δ_s/Δ_t≈0.9? yes|no|uncertain.",
+    "question": "If inversion symmetry were artificially restored in LaIrSi but the SOC remained at ≈207 meV, would mixing of spin-singlet and spin-triplet pairing still be allowed?",
     "gold_answer": "no",
-    "gold_trace": "A₃≠0 is required to produce anisotropic Fermi surfaces and nodal lines; A₃=0 restores isotropy and removes nodes.\nanisotropic C₃-wrapped FS (A₃≠0) → gives nodal lines for Δ_s/Δ_t within bounds\nA₃=0 → FS isotropic → no nodal-line superconductivity"
+    "gold_trace": "Broken inversion symmetry is required to permit singlet-triplet mixing; restoring inversion forbids mixing.\ninversion symmetry restored -> mixing of spin-singlet and spin-triplet pairing not allowed\nno mixing -> pure pairing channels"
   },
   {
     "question_id": "6-7",
     "question_type": "counterfactual",
-    "question": "If Δ_s/Δ_t were 1.5 in LaIrSi (instead of the fitted 0.9), would nodal-line superconductivity still be observed? yes|no|uncertain.",
-    "gold_answer": "no",
-    "gold_trace": "A ratio Δ_s/Δ_t>1 leads to fully gapped superconductivity, so nodal lines disappear.\nΔ_s/Δ_t falls below 1 → nodal-line SC\nΔ_s/Δ_t=1.5>1 → fully gapped → no nodal-line SC"
+    "question": "If the C₃-wrapping parameter A₃ were halved from 15 to 7.5 eV·Å², would the width of the nodal region (xₘₐₓ⁻ − xₘᵢₙ⁻) for the E_{-,+} band decrease relative to its original size?",
+    "gold_answer": "yes",
+    "gold_trace": "The nodal region width increases with A₃, so reducing A₃ by half shrinks that width.\nA₃ decreased -> nodal region width decreases"
   },
   {
     "question_id": "6-8",
     "question_type": "counterfactual",
-    "question": "If Δ_s/Δ_t were 0.5 in LaRhSi (instead of ≈1.5), would you still expect fully gapped superconductivity? yes|no|uncertain.",
+    "question": "If the SOC strength λ₀ were doubled (e.g., from 0.4 to 0.8 eV), would the nodal region width (xₘₐₓ⁻ − xₘᵢₙ⁻) change significantly?",
     "gold_answer": "no",
-    "gold_trace": "A ratio below 1 leads to nodal-line superconductivity, not a full gap.\nΔ_s/Δ_t<1 → leads to nodal-line superconductivity\nΔ_s/Δ_t=0.5<1 → nodal-line SC → not fully gapped"
+    "gold_trace": "The nodal region width is nearly invariant under changes in λ₀, so doubling λ₀ has little effect.\nλ₀ doubled -> xₘᵢₙ⁻ and xₘₐₓ⁻ shift but difference remains nearly constant"
   },
   {
     "question_id": "6-9",
     "question_type": "counterfactual",
-    "question": "If in LaIrₓRh₁₋ₓSi the singlet-to-triplet ratio Δ_s/Δ_t were tuned to 0.95 by chemical substitution, would nodal-line superconductivity be expected? yes|no|uncertain.",
-    "gold_answer": "yes",
-    "gold_trace": "Δ_s/Δ_t<1 is the condition for nodal-line superconductivity according to the contract.\nchemical substitution → increases SOC → enhances triplet component → Δ_s/Δ_t falls below 1\nΔ_s/Δ_t<1 → nodal-line superconductivity"
+    "question": "If the ratio Δ_s/Δ_t were set to 2.0, which is above the upper nodal threshold xₘₐₓ⁻ for the E_{-,+} band, would nodal-line superconductivity still occur on that band?",
+    "gold_answer": "no",
+    "gold_trace": "Nodes only appear when Δ_s/Δ_t lies within [xₘᵢₙ⁻, xₘₐₓ⁻]; a value of 2.0 exceeds the upper bound.\nΔ_s/Δ_t > xₘₐₓ⁻ -> outside nodal interval\noutside nodal interval -> no nodal-line superconductivity"
   },
   {
     "question_id": "6-10",
     "question_type": "counterfactual",
-    "question": "If Δ_s/Δ_t were exactly equal to 1.00 in LaIrₓRh₁₋ₓSi, would one expect nodal-line superconductivity? yes|no|uncertain.",
-    "gold_answer": "uncertain",
-    "gold_trace": "Δ_s/Δ_t=1 is the boundary case; the contract defines nodal for <1 and fully gapped for >1, so the behavior is ambiguous.\nΔ_s/Δ_t<1 → nodal-line SC\nΔ_s/Δ_t>1 → fully gapped SC\nΔ_s/Δ_t=1 → boundary → uncertain"
+    "question": "If in LaIrₓRh₁₋ₓSi the Ir fraction x = 0.5 gives an SOC splitting λ₀ ≈ 122 meV, would the singlet-triplet ratio Δ_s/Δ_t be expected to cross the nodal/gapped boundary according to the phase diagram?",
+    "gold_answer": "yes",
+    "gold_trace": "The contract predicts that at intermediate x values the system crosses the nodal/gapped boundary in the Δ_s/Δ_t vs λ₀ phase diagram.\nx=0.5 -> intermediate λ₀ ≈122 meV\nintermediate λ₀ -> Δ_s/Δ_t crosses nodal/gapped boundary"
   },
   {
     "question_id": "6-11",
     "question_type": "counterfactual",
-    "question": "If Δ_s/Δ_t were increased to 1.20 in LaIrₓRh₁₋ₓSi, would fully gapped superconductivity be observed? yes|no|uncertain.",
+    "question": "If the Ir substitution fraction x increases from 0 to 1, will the SOC splitting λ₀ vary monotonically according to the contract assumptions?",
     "gold_answer": "yes",
-    "gold_trace": "A ratio Δ_s/Δ_t>1 leads to fully gapped superconductivity according to the contract.\nΔ_s/Δ_t>1 → fully gapped superconductivity"
+    "gold_trace": "The contract assumption states that SOC strength varies monotonically with Rh (and thus Ir) content.\nincreasing Ir substitution -> λ₀ increases\nassumption: λ₀ varies monotonically with Rh content"
   },
   {
     "question_id": "6-12",
     "question_type": "counterfactual",
-    "question": "If chemical substitution with x=0.7 in LaIrₓRh₁₋ₓSi caused phase separation and the P2₁3 crystal chirality was lost, could one still tune the SOC strength monotonically with x to control the singlet–triplet ratio Δ_s/Δ_t? yes|no|uncertain.",
-    "gold_answer": "no",
-    "gold_trace": "Preserved chirality and P2₁3 structure are assumed for monotonic SOC scaling; losing that invalidates the tuning mechanism.\ncontinuous solid solution and P2₁3 chirality → assumption for monotonic SOC scaling with x\nloss of chirality → breaks assumption → no controlled Δ_s/Δ_t tuning"
+    "question": "If in LaIr₀.₃Rh₀.₇Si (x=0.3) pairing interactions aside from SOC increased by 10%, would the Δ_s/Δ_t vs λ₀ phase diagram still strictly predict the superconducting topology?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The contract assumes pairing interactions are unchanged aside from SOC; changing them invalidates strict prediction.\npairing interactions change -> Δ_s/Δ_t influenced by other factors\nphase diagram assumes only SOC effect -> prediction may not hold"
   },
   {
     "question_id": "7-1",
     "question_type": "counterfactual",
-    "question": "If the overspray margin l_os increased to 10 μm but the contact spacing L remained at 30 μm, would the device satisfy the design rule L ≥ (l_os + d + l_os) to avoid shorting?",
+    "question": "Printed aerosol-jet contacts on exfoliated flakes are designed so that overspray-induced shorting is negligible for contact spacings ≥30 μm on flakes ≥50 μm. If the contact spacing were reduced to 25 μm on a 50 μm flake, would overspray-induced shorting still be negligible?",
     "gold_answer": "no",
-    "gold_trace": "The required spacing is 2*l_os + d = 2*10 μm + 20 μm = 40 μm, but L is only 30 μm, so it violates the rule.\noverspray margin increase → required_spacing increases\nrequired_spacing > actual_spacing → shorting risk"
+    "gold_trace": "25 μm spacing falls below the required ≥30 μm, so overspray can bridge the gap and cause shorting.\noptimized AJ aerosolization and gas flow rates -> controls overspray to ≤5 μm\ndevice design requires spacing ≥ (l_os + d + l_os) = 30 μm -> avoids shorting"
   },
   {
     "question_id": "7-2",
     "question_type": "counterfactual",
-    "question": "If the flake length L_flake were only 40 μm (instead of ≥50 μm) but contact spacing L is kept at 30 μm with l_os = 5 μm, would the device still meet the minimum L_flake ≥ (l_os + d + l_os) constraint?",
+    "question": "Printed AgNP inks are annealed at 150 °C for 1–3 h to sinter nanoparticles into conductive films. If annealing were instead performed at 100 °C for 2 h, would the AgNP inks still reliably sinter into conductive pathways?",
     "gold_answer": "no",
-    "gold_trace": "The rule requires L_flake ≥ 2*5 μm + 20 μm = 30 μm + 20 μm = 50 μm, but the flake is 40 μm, violating the constraint.\nflake length = 40 μm < required 50 μm → overspray shorting risk"
+    "gold_trace": "100 °C is below the 150 °C required for sintering; conductive pathways will not form reliably.\npost-print annealing at 150 °C -> sinters AgNP into conductive pathways\nannealing at <150 °C -> insufficient sintering"
   },
   {
     "question_id": "7-3",
     "question_type": "counterfactual",
-    "question": "If the AgNP ink diameter were 50 nm instead of 40 nm for printing graphene contacts, would the aerosolization assumption still hold?",
+    "question": "Printed AJ devices require a flake length ≥50 μm to prevent overspray shorting when contact spacing is ≥30 μm. If a 45 μm flake with 30 μm contacts were printed, would overspray-induced shorting still be negligible?",
     "gold_answer": "no",
-    "gold_trace": "The contract assumes AgNP inks with diameter 40 nm optimized for aerosolization; 50 nm violates that assumption.\nAgNP diameter must be 40 nm → optimal aerosolization\nchange to 50 nm → assumption broken"
+    "gold_trace": "45 μm flake length is below the 50 μm minimum, so overspray can reach adjacent contacts and short.\noptimized AJ aerosolization and gas flow rates -> overspray ≤5 μm\nflake length ≥ (L + 2d) = 50 μm -> avoids overspray shorting"
   },
   {
     "question_id": "7-4",
     "question_type": "counterfactual",
-    "question": "If the graphene device were annealed at 400 K for only 1 hour (instead of 2 hours), would you expect minimal hysteresis in the ambipolar transfer curve?",
-    "gold_answer": "uncertain",
-    "gold_trace": "The contract specifies annealing at 400 K for 2 hours; 1 hour may not fully remove adsorbates, so outcome is uncertain.\nannealing_time < required_time → incomplete adsorbate removal\nincomplete removal → possible hysteresis"
+    "question": "A printed graphene device exhibits a Dirac point at –3.5 V after annealing at 400 K for 2 h, indicating minimal doping. If the same device instead showed a Dirac point at –10 V, would it still indicate minimal doping?",
+    "gold_answer": "no",
+    "gold_trace": "A shift to –10 V indicates increased doping or traps; it no longer signifies minimal doping.\nabsence of polymer resist -> prevents adsorbate-induced doping\nDirac point near –3.5 V -> minimal doping"
   },
   {
     "question_id": "7-5",
     "question_type": "counterfactual",
-    "question": "If a MoS₂ flake thickness were 10 nm instead of 7.4 nm, would the printed device still guarantee an ON/OFF ratio greater than 10⁶?",
-    "gold_answer": "uncertain",
-    "gold_trace": "The contract prediction holds for 7.4 nm thickness; at 10 nm the behavior isn’t specified, so it’s uncertain.\nassumption: thickness = 7.4 nm → ON/OFF >10⁶\nthickness change → prediction not guaranteed"
+    "question": "The electron and hole mobilities (µ_e = 5240 cm²/V·s and µ_h = 6300 cm²/V·s) yield a mobility ratio ≈0.83 for printed graphene. If instead µ_e = 4000 cm²/V·s and µ_h = 5000 cm²/V·s were measured, would the mobility ratio still be in good agreement with high-quality graphene devices?",
+    "gold_answer": "yes",
+    "gold_trace": "4000/5000 = 0.8, which is close to the 0.83 benchmark and within acceptable variation.\nfitted mobilities µ_e and µ_h -> ratio ~0.83\n4000/5000 -> ratio 0.8, within acceptable range"
   },
   {
     "question_id": "7-6",
     "question_type": "counterfactual",
-    "question": "If the ink particle size were reduced to 20 nm instead of 40 nm for AJ printing MoS₂ contacts, would the contract’s assumption about ink properties still hold?",
-    "gold_answer": "no",
-    "gold_trace": "The contract assumes AgNP inks of diameter 40 nm; 20 nm violates that assumption.\nink diameter = 40 nm → optimized aerosolization\nchange to 20 nm → breaks assumption"
+    "question": "Printed graphene devices show negligible gate hysteresis after annealing at 400 K for 2 h. If the device were annealed at 350 K for 2 h instead, would negligible hysteresis still be expected?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Only 400 K annealing is shown to remove adsorbates; at 350 K the efficacy is unknown.\nannealing at 400 K -> desorbs gases -> negligible hysteresis\nannealing at 350 K -> unknown desorption efficacy"
   },
   {
     "question_id": "7-7",
     "question_type": "counterfactual",
-    "question": "If the BSCCO flake thickness were only 200 nm (instead of ≥414.8 nm), would the contract guarantee observing a superconducting transition at T_c ≈ 90 K?",
+    "question": "A printed MoS₂ FET on a 7.4 nm flake achieves ON/OFF ratio >10⁶. If a 3 nm flake were used under the same printing conditions, would the ON/OFF ratio still exceed 10⁶?",
     "gold_answer": "uncertain",
-    "gold_trace": "The contract assumes flakes ≥414.8 nm; at 200 nm it’s unclear if superconductivity is preserved.\nassumption: thickness ≥414.8 nm → T_c ≈90 K\nthickness < required → preservation not guaranteed"
+    "gold_trace": "The hard constraint is ∼7.4 nm; performance on 3 nm flakes is not specified.\nflake thickness ≈7.4 nm -> ON/OFF >10⁶\nthinner flake (3 nm) -> unknown switching performance"
   },
   {
     "question_id": "7-8",
     "question_type": "counterfactual",
-    "question": "If the printed BSCCO contacts were annealed in vacuum instead of an oxygen‐rich atmosphere, would the device still preserve superconductivity at T_c ≈ 90 K?",
+    "question": "For printed MoS₂ devices, the threshold voltage is ≈–40 V. If a device exhibits V_th = –20 V under identical conditions, would this match the expected threshold for high-quality printed MoS₂ devices?",
     "gold_answer": "no",
-    "gold_trace": "The contract specifies O₂‐rich annealing to avoid oxygen depletion in BSCCO; vacuum would risk oxygen loss.\nvacuum annealing → oxygen depletion\noxygen depletion → loss of superconductivity"
+    "gold_trace": "–20 V deviates significantly from the expected –40 V, so it does not match the benchmark.\ntransfer curves -> V_th ≈ –40 V\nmeasured V_th = –20 V -> off-target"
   },
   {
     "question_id": "7-9",
     "question_type": "counterfactual",
-    "question": "If the contact resistance R_c,BSCCO were measured at 10 kΩ·µm, would that still be considered comparable to complex methods according to the contract?",
-    "gold_answer": "yes",
-    "gold_trace": "The contract gives R_c,BSCCO ≈6.9 ±3.7 kΩ·µm, so 10 kΩ·µm lies within this range.\ncontract range = 6.9 ±3.7 kΩ·µm → [3.2,10.6]\n10 kΩ·µm ∈ range → comparable"
+    "question": "Printed Ag contacts on BSCCO are annealed at 150 °C in oxygen-rich atmosphere (1.5–2 mbar) to preserve superconductivity. If annealing were done at 150 °C in vacuum, would the superconducting transition at ≈90 K still be preserved?",
+    "gold_answer": "no",
+    "gold_trace": "Oxygen-rich annealing prevents oxygen loss; vacuum annealing can deplete oxygen and suppress T_c.\ninert-environment printing + oxygen annealing -> prevents oxygen loss\noxygen loss -> reduces superconducting transition"
   },
   {
     "question_id": "7-10",
     "question_type": "counterfactual",
-    "question": "If the saturation field in FGT devices remained at 0.3 T both at 250 K and 100 K (i.e., no increase), would that match the contract’s prediction?",
-    "gold_answer": "no",
-    "gold_trace": "The contract predicts an increase from 0.3 T at 250 K to 0.7 T at 100 K; no change contradicts it.\ncontract: H_sat increases 0.3→0.7 T with T drop\nobserved: no increase → contradiction"
+    "question": "Bulk BSCCO flakes (~414.8 nm thick) show T_c ≈90 K. If a 100 nm BSCCO flake were printed under identical conditions, would one expect the same T_c ≈90 K?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The bulk thickness assumption is ∼414.8 nm; thinner flakes may lose oxygen and shift T_c.\nflake thickness ≈414.8 nm -> bulk-like superconducting transition\nthinner flake (100 nm) -> unknown oxygen retention"
   },
   {
     "question_id": "7-11",
     "question_type": "counterfactual",
-    "question": "If the printed FGT contacts achieved R_c,FGT = 6.0 kΩ·µm, would that still be an improvement over Ti/Au direct contacts (~8.9 kΩ·µm)?",
-    "gold_answer": "yes",
-    "gold_trace": "6.0 kΩ·µm is lower than 8.9 kΩ·µm, so contacts are improved as per contract.\ndirect_contact_R_c = 8.9 kΩ·µm\nprinted_contact_R_c = 6.0 kΩ·µm < direct → improvement"
+    "question": "Printed FGT devices show saturation fields of 0.3 T at 250 K rising to 0.7 T at 100 K. If a device measured a saturation field of 0.5 T at 250 K, would this agree with the expected behavior?",
+    "gold_answer": "no",
+    "gold_trace": "0.5 T at 250 K exceeds the expected 0.3 T, contradicting the predicted trend.\nAHE measurements -> saturation field = 0.3 T at 250 K\nmeasured 0.5 T at 250 K -> inconsistent with prediction"
   },
   {
     "question_id": "7-12",
     "question_type": "counterfactual",
-    "question": "If only four terminals were printed on an FGT flake (instead of six), could you still perform a proper anomalous Hall effect measurement as described?",
-    "gold_answer": "no",
-    "gold_trace": "The contract specifies a six-terminal geometry is required for transverse Hall measurements; four terminals do not suffice.\nsix-terminal contacts → allows Hall geometry\nfour-terminal → missing separate voltage leads → cannot measure AHE"
+    "question": "Six-terminal printed FGT devices produce AHE loops with no coercivity. If a coercive field of 0.1 T appeared at 200 K, would that contradict the expected AHE behavior?",
+    "gold_answer": "yes",
+    "gold_trace": "Any observed coercive field contradicts the prediction of zero coercivity in the AHE loops.\nabsence of polymer resist -> reduces interface contamination -> no coercivity\nobserved coercivity 0.1 T -> contradicts no-coercivity prediction"
   }
 ]

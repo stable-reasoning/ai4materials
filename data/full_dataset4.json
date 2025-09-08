@@ -1,0 +1,338 @@
+[
+  {
+    "question_id": "9-1",
+    "question_type": "counterfactual",
+    "question": "If the curvature of the density of states at the Fermi surface N''(0) were positive rather than negative as assumed in the paper, would the clean-limit (h = 0) Stoner mean-field theory yield a nonzero magnetization at zero temperature when U·N(0) > 1?",
+    "gold_answer": "no",
+    "gold_trace": "The analytic expression for the zero-temperature magnetization M₀ ∝ √[6 U N(0)/(−U³ N''(0))] requires N''(0)<0 to produce a real M₀; a positive curvature makes the argument negative so no real magnetization exists.\nStoner criterion → M₀ formula involves 1/(-N''(0))\nN''(0)>0 → negative denominator inside square root\nnegative argument → no real M₀ → no magnetization"
+  },
+  {
+    "question_id": "9-2",
+    "question_type": "counterfactual",
+    "question": "Assuming U·N(0) = 0.9 (<1) which is nonferromagnetic in the clean limit, and introducing a finite disorder strength (h>0), will the system develop a ferromagnetic ground state at zero temperature according to the paper's theory?",
+    "gold_answer": "yes",
+    "gold_trace": "The paper explicitly states that for weak repulsive interaction (U·N(0)<1), disorder can induce a ferromagnetic ground state at zero temperature.\nClean limit U·N(0)<1 → no ferromagnetism\nDisorder introduced → combined replica–Stoner approach\nTheory predicts disorder-induced ferromagnetism even when U·N(0)<1"
+  },
+  {
+    "question_id": "9-3",
+    "question_type": "counterfactual",
+    "question": "If U·N(0) = 0.2 and the disorder is weak (large localization length L so h² ≪ 1), will the system exhibit a nonzero magnetization at zero temperature?",
+    "gold_answer": "no",
+    "gold_trace": "Numerical results (Fig.2a) show that magnetization appears only for U·N(0) ≥ 0.28; at 0.2 it remains zero under weak disorder.\nFig.2a threshold U·N(0) ≈ 0.28 → magnetization onset\n0.2 < 0.28 → magnetization remains zero"
+  },
+  {
+    "question_id": "9-4",
+    "question_type": "counterfactual",
+    "question": "For U·N(0) = 0.5 and strong disorder (short localization length L), will the finite-temperature phase diagram include a spin-glass phase between the high-temperature paramagnetic phase and the low-temperature ferromagnetic phase?",
+    "gold_answer": "yes",
+    "gold_trace": "The Landau theory predicts that beyond a critical disorder strength, a spin-glass phase intervenes between paramagnetic and ferromagnetic regions.\nFinite-T Landau theory derived\nStrong disorder → nonzero φ₋ Edward–Anderson order\nφ₋>0 region appears between PM and FM"
+  },
+  {
+    "question_id": "9-5",
+    "question_type": "counterfactual",
+    "question": "If U·N(0) = 2.0 (>1), as the disorder strength increases, will the Curie temperature T_c increase according to the Landau theory?",
+    "gold_answer": "yes",
+    "gold_trace": "Numerical evaluation of the Landau coefficients shows that T_c increases with disorder strength in agreement with the theory.\nLandau theory → a(T) shifts with h\nComputed phase diagram → T_c rises when h² grows"
+  },
+  {
+    "question_id": "9-6",
+    "question_type": "counterfactual",
+    "question": "If the electronic states were extended so that the localization length L satisfies Lᵈ → V, would disorder have any effect on ferromagnetism in this replica-Stoner theory?",
+    "gold_answer": "no",
+    "gold_trace": "In the limit Lᵈ→V, h² = U²/Lᵈ →0, so U_{kp} fluctuations vanish and the system reduces to the clean Stoner case with no disorder effect.\nExtended states → Lᵈ→V\nh² = U²/Lᵈ →0\nzero variance in U_{kp} → no disorder impact"
+  },
+  {
+    "question_id": "9-7",
+    "question_type": "counterfactual",
+    "question": "If one treated U_{kk} and U_{kp} identically by setting U_{kk} = U_{kp}, would the theory still predict a spin-glass phase at finite temperature?",
+    "gold_answer": "no",
+    "gold_trace": "The separation U_{kk}=O(1) vs U_{kp}=O(1/V) is crucial to generate random effective fields and a nonzero φ₋; without that distinction, no spin-glass order emerges.\nU_{kk}=U_{kp} → loss of O(1) vs O(1/V) separation\nno random effective magnetic field\nφ₋ remains zero → no spin-glass"
+  },
+  {
+    "question_id": "9-8",
+    "question_type": "counterfactual",
+    "question": "In the limit of vanishing disorder (h → 0) and above the ferromagnetic transition temperature, will the magnetic susceptibility χ(T) reduce to that of a pure Stoner magnet?",
+    "gold_answer": "yes",
+    "gold_trace": "The paper states that as h→0, the Landau susceptibility formula recovers the behavior of pure Stoner magnets.\nTake limit h→0\nLandau coefficient η·φ₋→0\nχ formula reduces to 1/(1−U·Σa_k) as in pure Stoner"
+  },
+  {
+    "question_id": "9-9",
+    "question_type": "counterfactual",
+    "question": "If the Landau coefficient η were positive instead of negative as assumed, would spin-glass order still enhance the ferromagnetic transition temperature T_c?",
+    "gold_answer": "no",
+    "gold_trace": "Enhancement of T_c by spin-glass order requires η<0; a positive η would reverse or suppress that enhancement.\nη<0 → T_c shift upwards by −η·φ₋\nη>0 → shift becomes negative → no enhancement"
+  },
+  {
+    "question_id": "9-10",
+    "question_type": "counterfactual",
+    "question": "If, contrary to the Landau expansion assumption, h·φ₋ were not small near the phase transition, would the derived Landau free energy still be valid for predicting phase boundaries?",
+    "gold_answer": "no",
+    "gold_trace": "The Landau free energy is derived by expanding in small h·φ₋; if that quantity is not small, higher-order terms become important and the expansion breaks down.\nLandau free energy assumes h·φ₋ ≪ 1\nLarge h·φ₋ → neglected terms O((h·φ₋)³) matter\nPrediction invalid"
+  },
+  {
+    "question_id": "9-11",
+    "question_type": "counterfactual",
+    "question": "If the distribution P(U_{kp}) were k,p-dependent rather than k,p-independent, would the effective interaction remain infinite-range in k-space under the replica approach?",
+    "gold_answer": "no",
+    "gold_trace": "The infinite-range coupling in k-space arises because P(U_{kp}) is assumed k,p-independent; introducing k,p-dependence breaks that simplification and yields non-infinite-range interactions.\nAssumed P k,p-independent → infinite-range coupling\nk,p-dependence → spatial structure → finite-range in k-space"
+  },
+  {
+    "question_id": "9-12",
+    "question_type": "counterfactual",
+    "question": "If U·N(0) = 0.1 (≪1) and finite disorder is present, will the spin-glass order parameter φ₋ be nonzero at zero temperature?",
+    "gold_answer": "yes",
+    "gold_trace": "Numerical solutions (Fig.2b) show that φ₋ remains nonzero for all U·N(0) down to low values, indicating persistent spin-glass order at zero temperature.\nFig.2b → φ₋ vs U·N(0)\nRange 0.1 ≤ U·N(0)<1 → φ₋>0"
+  },
+  {
+    "question_id": "10-1",
+    "question_type": "counterfactual",
+    "question": "Suppose a galaxy in the PASSAGE sample had an effective radius of 0.07 arcseconds instead of the typical range. Given the PSF FWHM of 0.092 arcseconds in the F150W filter, would this galaxy be considered resolved by the resolution criteria described in the study? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "No",
+    "gold_trace": "An effective radius smaller than the PSF FWHM means the source is unresolved.\nRe (0.07″) < PSF_FWHM (0.092″)\nUnresolved if Re < PSF_FWHM"
+  },
+  {
+    "question_id": "10-2",
+    "question_type": "counterfactual",
+    "question": "Suppose a galaxy lies at redshift z = 2.25 and its [O II] and [Ne III] emission lines are observed in the F115W filter while its Hβ and [O III] lines are observed in the F150W filter. According to the filter coverage criteria, would the Hα line of this galaxy be accessible in the F200W filter? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "Yes",
+    "gold_trace": "At z = 2.25 (within 1.7–2.3) Hα falls into the F200W filter band.\nRedshift z = 2.25 within 1.7–2.3 range\nFor 1.7 < z < 2.3, Hα lies in F200W filter"
+  },
+  {
+    "question_id": "10-3",
+    "question_type": "counterfactual",
+    "question": "Suppose an integrated log([Ne III]/[O II]) ratio of −0.50 and an integrated log([O III]/Hβ) ratio of 0.85 are measured. Using the AGN–SF demarcation polynomial y = 0.09 x^4 − 0.03 x^3 + 0.01 x + 0.7 (where x = log([Ne III]/[O II]) and y = log([O III]/Hβ)), would this galaxy be classified as purely star-forming? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "No",
+    "gold_trace": "At x = −0.5, the polynomial gives y ≈ 0.70; observed y = 0.85 exceeds this envelope, indicating non–star-forming ionization.\nCompute envelope y at x = −0.5 from polynomial\nEnvelope y ≈ 0.70 vs observed y = 0.85\nAbove envelope implies AGN-like, not purely star-forming"
+  },
+  {
+    "question_id": "10-4",
+    "question_type": "counterfactual",
+    "question": "Suppose when deblending the Hα+[N II] complex to obtain Hα flux for SFR calculations, the fraction Hα/(Hα+[N II]) was incorrectly assumed to be 0.9 instead of 0.823. For a measured blended line flux F_blend, would the resulting SFR estimate be overestimated by more than 10%? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "No",
+    "gold_trace": "Using 0.9 vs 0.823 yields ≈9.3% SFR overestimate, which is below the 10% threshold.\nAssumed fraction 0.9 vs true 0.823\nHα_assumed / Hα_true ≈ 0.9/0.823 ≈1.093\nSFR ∝ Hα, so overestimate ≈9.3% (<10%)"
+  },
+  {
+    "question_id": "10-5",
+    "question_type": "counterfactual",
+    "question": "Suppose a candidate in PASSAGE has signal-to-noise ratios of 2.0 in [O II], 2.1 in [O III], 2.2 in Hβ, but 1.9 in [Ne III]. According to the first-step sample selection (requiring S/N > 2 in each of the four lines), would this candidate pass the selection? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "No",
+    "gold_trace": "One line ([Ne III]) fails the S/N > 2 criterion, so the candidate is excluded.\n[Ne III] S/N = 1.9 < 2\nAll four lines must satisfy S/N > 2\nCandidate excluded"
+  },
+  {
+    "question_id": "10-6",
+    "question_type": "counterfactual",
+    "question": "Using the relation dlogZ/dlogΣ_SFR = β·ε/(1−ε) with β = 0.333 and B = 0.004, if a galaxy has mean Σ_SFR = 1.0 M_⊙ yr^−1 kpc^−2 and an observed slope dlogZ/dlogΣ_SFR = 0.5, would the implied metal-mixing timescale t_mix exceed 1000 yr? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "No",
+    "gold_trace": "Solving ε = 0.004·t_mix and 0.333·ε/(1−ε)=0.5 yields t_mix ≈150 yr, which is below 1000 yr.\nΣ_SFR^β = 1^0.333 = 1 → ε = 0.004·t_mix\n0.333·ε/(1−ε) = 0.5 → solve for t_mix\nt_mix ≈150 yr (<1000 yr)"
+  },
+  {
+    "question_id": "10-7",
+    "question_type": "counterfactual",
+    "question": "Suppose the radial binning scheme was changed to five uniform elliptical annuli of width 0.5 Re instead of the non-uniform bins (0.2, 0.6, 1.2, 1.8, 2.5 Re). For a galaxy whose reported metallicity gradient is +0.02 dex Re^−1, would this change in bin spacing reverse the sign of the measured gradient? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "No",
+    "gold_trace": "The study found that gradient sign and value are robust to the choice of binning scheme.\nGradient measurement method is insensitive to bin spacing\nUniform vs non-uniform bins yield similar slope\nSign remains positive"
+  },
+  {
+    "question_id": "10-8",
+    "question_type": "counterfactual",
+    "question": "Suppose the Hubble parameter h were 0.68 instead of 0.695 as assumed. Would the derived physical effective radius (in kpc) for a galaxy at z = 2.0 differ by more than 5% compared to the original assumption? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "No",
+    "gold_trace": "Changing h by this amount alters the angular diameter distance by less than 5%, so Re changes by <5%.\nh changes from 0.695 to 0.68 → small change in angular diameter distance\nEffective radius in kpc ∝ angular scale\nResulting change <5%"
+  },
+  {
+    "question_id": "10-9",
+    "question_type": "counterfactual",
+    "question": "Suppose the [S II] emission lines were used in the metallicity diagnostics despite being contaminated by Hα due to morphological broadening. Would including [S II] maps lead to more accurate spatially resolved metallicity measurements? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "No",
+    "gold_trace": "[S II] lines are unreliable when contaminated by Hα, which biases metallicity results.\n[S II] contaminated by Hα → inaccurate input ratios\nBiased ratios → biased metallicity maps\nAccuracy decreases when using contaminated lines"
+  },
+  {
+    "question_id": "10-10",
+    "question_type": "counterfactual",
+    "question": "Suppose a GLASS galaxy with lensing magnification μ = 1.8 was corrected for magnification when constructing its SFR and metallicity maps instead of leaving it uncorrected. Would the pixel-by-pixel correlation between SFR surface density and metallicity change significantly? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "No",
+    "gold_trace": "Magnification uniformly stretches both maps, so their correlation remains essentially unchanged.\nApply magnification correction → uniform stretch\nBoth SFR and metallicity maps stretched equally\nCorrelation between them remains similar"
+  },
+  {
+    "question_id": "10-11",
+    "question_type": "counterfactual",
+    "question": "Suppose NebulaBayes were run with a Gaussian prior peaking at 12+log(O/H)=8.5 instead of a uniform prior. Would the median posterior metallicity for a typical spatial bin differ by more than 0.1 dex? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "Uncertain",
+    "gold_trace": "A peaked prior can bias the posterior, but the magnitude of the shift depends on the data likelihood.\nPrior changed from uniform to Gaussian\nPosterior median influenced by both prior and data\nShift magnitude depends on data power → uncertain"
+  },
+  {
+    "question_id": "10-12",
+    "question_type": "counterfactual",
+    "question": "Suppose the Hα-to-SFR conversion factor were 8.0×10^−42 M_⊙ yr^−1 / (erg s^−1) instead of 7.5×10^−42. For a region with intrinsic L_Hα = 1.0×10^42 erg s^−1, would the calculated SFR change by more than 10%? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "No",
+    "gold_trace": "Original SFR =7.5, new SFR =8.0, so the change is ≈6.7%, which is below 10%.\nCompute SFR_orig = 7.5e-42×1e42 = 7.5\nCompute SFR_new = 8.0e-42×1e42 = 8.0\nRelative change ≈(8.0−7.5)/7.5≈6.7% <10%"
+  },
+  {
+    "question_id": "11-1",
+    "question_type": "counterfactual",
+    "question": "If only two reference gauges with diameters of 3 mm and 12 mm (instead of four references at 1, 3, 6, and 12 mm) are used in the P-based linear regression Method 4 for estimating glass sample diameters of 2 mm, 4 mm, and 8 mm, would the estimated measurement errors for these test parts still be reduced to within 2 μm?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Using only two extremes may fail to capture the non‐linear trend in pixel vs. mm mapping, so intermediate errors cannot be guaranteed to stay below 2 μm.\nTwo reference gauges → build linear P–D model on extremes\nLinear model on extremes → predict intermediate diameters\nNon‐linear P–D relation → possible error > threshold"
+  },
+  {
+    "question_id": "11-2",
+    "question_type": "counterfactual",
+    "question": "If the conversion factor R is taken as the average of the four glass references and then applied (Method 0) to predict diameters of test parts at 1.5, 2, 4, 5, and 8 mm, will the maximum measurement error remain below 5 μm?",
+    "gold_answer": "no",
+    "gold_trace": "The average‐R base method yields errors up to about 113 μm on the glass dataset, far exceeding 5 μm.\nCompute R_est as average → use in base conversion\nBase method errors range up to 113 μm → compare to 5 μm threshold"
+  },
+  {
+    "question_id": "11-3",
+    "question_type": "counterfactual",
+    "question": "If the metal dataset were extended to include a new workpiece of 30 mm diameter (beyond the original 3–24 mm range) and the P-based linear regression Method 4 were applied with the existing four references (3.665, 5.800, 8.594, 24.320 mm), would the predicted diameter error for the 30 mm part remain below 10 μm?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Extrapolating the linear model beyond the trained 3.665–24.320 mm range introduces untested behavior, so the error cannot be guaranteed below 10 μm.\nTrain linear model on 3.665–24.320 mm → extrapolate to 30 mm\nExtrapolation → unknown prediction error"
+  },
+  {
+    "question_id": "11-4",
+    "question_type": "counterfactual",
+    "question": "Assuming the glass reference gauges' certified uncertainty increased from 0.1 μm to 1 μm, and P-based Method 4 is applied on the glass dataset, would the worst-case total measurement error for test parts exceed 3 μm?",
+    "gold_answer": "no",
+    "gold_trace": "Even with a 1 μm gauge uncertainty plus about 1 μm algorithm error, the combined worst-case error (~2 μm) remains below 3 μm.\nReference uncertainty = 1 μm + algorithm error ≈ 1 μm → total ≈ 2 μm\nCompare total error 2 μm to 3 μm threshold"
+  },
+  {
+    "question_id": "11-5",
+    "question_type": "counterfactual",
+    "question": "If the telecentric lens working distance were misaligned by 10% (introducing focus blur) rather than perfectly set, would the P-based Method 4 still reduce measurement errors for metal parts larger than 6 mm to within 2 μm?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Focus blur from misalignment degrades edge detection accuracy; its final effect on error <2 μm is not quantified in the study.\nLens misalignment 10% → focus blur\nFocus blur → increased edge detection error\nUnknown net error impact vs. 2 μm threshold"
+  },
+  {
+    "question_id": "11-6",
+    "question_type": "counterfactual",
+    "question": "If a standard lens with a 0.5% radial distortion (instead of a telecentric lens) were used and R-based interpolation Method 2 applied to predict glass sample diameters of 6 mm and 12 mm, would the measurement errors stay under 5 μm?",
+    "gold_answer": "no",
+    "gold_trace": "Radial distortion breaks the assumed R-diameter linearity for Method 2, leading to errors well above 5 μm.\nStandard lens → 0.5% radial distortion\nRadial distortion → invalid R-D relation\nInterpolation → large error >5 μm"
+  },
+  {
+    "question_id": "11-7",
+    "question_type": "counterfactual",
+    "question": "If the glass dataset had an additional test circle of 7 mm diameter and Method 3 were applied by interpolating between the 6 mm and 12 mm references, would the predicted error likely stay below 2 μm?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Interpolation between 6 and 12 mm may yield low error, but performance for an untested 7 mm point is not established.\nMethod 3 picks P_i for 6 mm and P_{i+1} for 12 mm\nInterpolate to 7 mm → expected low error\nNo direct validation for unseen 7 mm"
+  },
+  {
+    "question_id": "11-8",
+    "question_type": "counterfactual",
+    "question": "If a new metal part of 15 mm diameter arrives with no approximate size known and Method 1 (nearest R_i) is used, would the estimated diameter error stay below 10 μm?",
+    "gold_answer": "no",
+    "gold_trace": "Nearest‐R selection for a 15 mm query picks a far reference, yielding errors larger than 10 μm in the original metal tests.\nMethod 1 selects the reference with closest P_i\n15 mm query → nearest reference far from 15 mm\nLarge mismatch → error >10 μm"
+  },
+  {
+    "question_id": "11-9",
+    "question_type": "counterfactual",
+    "question": "If the synthetic image tests used a Gaussian blur with σ=3.0 (instead of 1.5) and the sub-pixel edge detection algorithm from [7] were applied to disks of 150–600 pixels diameter, would the percentage error remain below 1%?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Doubling the blur likely degrades edge localization, but the actual impact on percentage error above 1% is not quantified.\nIncrease σ to 3.0 → stronger blur\nEdge detector [7] → reduced precision\nError vs. 1% threshold is unknown"
+  },
+  {
+    "question_id": "11-10",
+    "question_type": "counterfactual",
+    "question": "If the coordinate measurement machine (CMM) uncertainty for the metal dataset increased from 1 μm to 10 μm and P-based Method 4 were applied, would the maximum combined error for metal parts remain under 15 μm?",
+    "gold_answer": "no",
+    "gold_trace": "With 10 μm CMM uncertainty plus ~6 μm algorithm error, the combined worst-case (~16 μm) exceeds 15 μm.\nCMM uncertainty = 10 μm + algorithm error ≈ 6 μm\nTotal ≈ 16 μm → compare to 15 μm threshold"
+  },
+  {
+    "question_id": "11-11",
+    "question_type": "counterfactual",
+    "question": "If the Sub-pixel Counting algorithm [33] were replaced by a simple binary pixel-counting method with no sub-pixel weighting, would Method 4 P-based on the metal dataset still achieve a mean absolute percentage error below 0.1% for diameters in the 3–24 mm range?",
+    "gold_answer": "no",
+    "gold_trace": "Dropping sub-pixel weighting degrades measurement precision, so MAPE would exceed 0.1%.\nSimple pixel-counting → no sub-pixel precision\nReduced precision → higher percentage error"
+  },
+  {
+    "question_id": "11-12",
+    "question_type": "counterfactual",
+    "question": "If the four reference workpieces for Method 4 P-based were chosen as evenly spaced diameters 3, 10, 17, and 24 mm (instead of 3.665, 5.800, 8.594, and 24.320 mm), would the resulting linear regression slope m remain within ±0.05% of its original value?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Changing the reference spacing alters the regression data set, so the slope’s deviation cannot be predicted without re-calculation.\nNew references at 3,10,17,24 mm → recompute mean P and D\nRecompute m → compare to original ±0.05%\nOutcome is data-dependent"
+  },
+  {
+    "question_id": "12-1",
+    "question_type": "counterfactual",
+    "question": "If the holding time at peak load was extended to 90 seconds under the same indentation conditions, and assuming the elastic-to-total work ratio decreased linearly from its originally measured values of approximately 0.65 at zero holding time down to 0.61 at 60 seconds, would the ratio at 90 seconds fall below the threshold of 0.5 used to distinguish elastic-dominated behavior?",
+    "gold_answer": "no",
+    "gold_trace": "Extrapolating the linear drop (0.65→0.61 over 60 s) to 90 s gives about 0.58, still above 0.5.\nholding time ↑ → elastic ratio ↓ linearly\nlinear trend extrapolated to 90 s → ratio ≈0.58\n0.58 > 0.5 threshold → elastic-dominated"
+  },
+  {
+    "question_id": "12-2",
+    "question_type": "counterfactual",
+    "question": "Suppose the Gaussian mixture model clustering step had identified four clusters instead of three based on the information criteria. In that scenario, would cluster 0 still necessarily correspond to the group with the largest plastic energy contributions?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Adding a fourth cluster could split or reassign data so the group labeled 'cluster 0' might not contain the highest plastic energies.\nincrease cluster count → data repartition\nrepartition → cluster identities shift\nunknown plastic energy ranking in new partition"
+  },
+  {
+    "question_id": "12-3",
+    "question_type": "counterfactual",
+    "question": "If the peak load during nanoindentation were increased tenfold to 3000 μN while keeping all holding times the same, would you still expect the time‐independent elastic energy contribution to remain effectively constant across different holding durations?",
+    "gold_answer": "no",
+    "gold_trace": "At much higher loads, larger plastic zones and shear‐banding alter the elastic work, so it would likely vary with holding time.\npeak load ↑ → plastic zone size ↑\nlarger plastic zones → more plastic events\nelastic contribution → becomes time‐dependent"
+  },
+  {
+    "question_id": "12-4",
+    "question_type": "counterfactual",
+    "question": "Imagine the creep‐displacement fitting model was simplified by omitting the nonlinear exponent c and using h(t)=h₀ + a·t + b·t instead. Would this simplified model still accurately capture the holding‐segment behavior for clusters 1 and 2 across the full time range?",
+    "gold_answer": "no",
+    "gold_trace": "Clusters 1 and 2 exhibit nonlinear time‐dependence governed by exponent c; dropping c would fail to model their curvature.\nremove exponent c → model reduces to linear+proportional\nclusters 1&2 → require nonlinear exponent to fit\nsimplified model → fails clusters 1&2"
+  },
+  {
+    "question_id": "12-5",
+    "question_type": "counterfactual",
+    "question": "If the log‐likelihood difference between the Weibull and Gaussian fits for cluster 0 were only 1 (instead of the original ~20), would the information‐criterion metrics still decisively favor the Weibull model for that cluster?",
+    "gold_answer": "no",
+    "gold_trace": "A log‐likelihood difference of only 1 yields AIC/BIC differences <2, which is not considered decisive evidence.\nlog‐likelihood difference small (≈1) → ΔAIC/BIC small\nΔAIC/BIC < 2 → no strong model preference\ncannot decisively favor Weibull"
+  },
+  {
+    "question_id": "12-6",
+    "question_type": "counterfactual",
+    "question": "Suppose the normalized contact pressure distribution had been evaluated at a distance of 50 nm from the contact point, rather than the originally reported 80–150 nm range. Would the pressure predictions at that distance remain valid under the semi‐infinite elastic half‐space approximation?",
+    "gold_answer": "no",
+    "gold_trace": "Distances below the minimum contact radius fall inside the contact area, where the semi-infinite half‐space solution is not applicable.\nr=50 nm < a_min (~80 nm) → inside contact region\ninside contact region → half-space formula invalid\npressure prediction → not physically valid"
+  },
+  {
+    "question_id": "12-7",
+    "question_type": "counterfactual",
+    "question": "If the indenter half‐angle approximation had been set to 60° (instead of 70.3°) when converting Berkovich geometry to a conical indenter, would the calculated contact radius a_c decrease for the same contact depth?",
+    "gold_answer": "yes",
+    "gold_trace": "Contact radius a_c ∝ tan(half‐angle); a smaller half‐angle yields a smaller tan and thus a smaller a_c.\nhalf‐angle ↓ → tan(half‐angle) ↓\ntan(half‐angle) ∝ a_c\na_c ↓ at constant depth"
+  },
+  {
+    "question_id": "12-8",
+    "question_type": "counterfactual",
+    "question": "Suppose hardness measurements were excluded from the clustering features and only creep displacement was used with the same GMM approach on the 60-second dataset. Would you still expect to find exactly three well‐separated clusters?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Using only one feature may reduce separation power and the number of identifiable clusters could change.\nremove hardness feature → feature space dimensionality ↓\nreduced dimensionality → cluster separation weaker\ncluster count outcome → uncertain"
+  },
+  {
+    "question_id": "12-9",
+    "question_type": "counterfactual",
+    "question": "Imagine that in the Type 0 (no holding) tests a microplastic event during unloading led to a 5% underestimation of elastic work. Would this single‐test error undermine the conclusion that elastic energy contributions are essentially constant across all holding times?",
+    "gold_answer": "yes",
+    "gold_trace": "An underestimation in one group would introduce a systematic bias, making the comparison across holding times unreliable.\nmicroplastic event → elastic work underestimated\nunderestimation in Type 0 → ratio differences emerge\nconstant‐across‐times conclusion → compromised"
+  },
+  {
+    "question_id": "12-10",
+    "question_type": "counterfactual",
+    "question": "If the reported hardness standard deviation for the 30-second holding time had been significantly larger than for the no-hold tests, contradicting the uniform variability claim, would the explanation based on uniform spatial heterogeneity still hold?",
+    "gold_answer": "no",
+    "gold_trace": "A higher standard deviation at 30 s would indicate variability depends on holding time, not solely spatial heterogeneity.\nhardness_std(30s) > hardness_std(0s) → variability changes with time\ntime‐dependent variability → spatial heterogeneity explanation incomplete"
+  },
+  {
+    "question_id": "12-11",
+    "question_type": "counterfactual",
+    "question": "Suppose atomic rearrangements in the BMG were detected only at stress levels above 1% of the yield stress instead of 0.5%. Would the statement that the glass \"flows at any stress\" still be supported by those observations?",
+    "gold_answer": "yes",
+    "gold_trace": "Even if rearrangements start at 1% of yield, that is still far below macroscopic yield, supporting flow at arbitrarily low stresses.\nrearrangements observed at 1% yield\n1% is still a small fraction\n\"flow at any stress\" claim remains"
+  },
+  {
+    "question_id": "12-12",
+    "question_type": "counterfactual",
+    "question": "If the annealing temperature for the Zr–Cu–Al sample had been set to 713 K (20 K above the reported glass-transition temperature) instead of 659 K (40 K below), would X-ray diffraction still confirm an amorphous structure?",
+    "gold_answer": "no",
+    "gold_trace": "Annealing above T_g promotes structural relaxation and crystallization, leading to diffraction peaks rather than an amorphous halo.\nannealing at 713 K > T_g\ntemperature above T_g → crystallization onset\nXRD → detects crystalline peaks"
+  }
+]

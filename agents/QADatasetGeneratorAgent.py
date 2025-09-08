@@ -67,6 +67,7 @@ class QADatasetGeneratorAgent(Agent):
         pm: PromptManager
         image_store: ImageStorage
         model_config: ModelConfig
+        metadata: Dict[str, Any]
 
     async def run(self, contracts: List[Dict[str, Any]]) -> Dict[str, Any]:
         logger.info(f"processing {len(contracts)} documents")
@@ -80,7 +81,7 @@ class QADatasetGeneratorAgent(Agent):
                 raw_text = load_file(doc_bundle.get_records_path())  # document is taken from cache by id
                 contracts = load_file(Path(c['path']))  # contract is loaded from path
                 user_prompt = self.config.pm.compose_prompt(
-                    "qa_dataset_generator_user_v5.j2",
+                    "qa_dataset_generator_raw_v6.j2",
                     contracts=contracts,
                     raw_text=raw_text
                 )

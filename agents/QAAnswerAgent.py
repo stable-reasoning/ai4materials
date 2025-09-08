@@ -10,6 +10,10 @@ from utils.common import ModelConfig, DocumentBundle, load_file, Question, Answe
 from utils.prompt_manager import PromptManager
 from utils.settings import logger
 
+# tqdm for progress bar; logging-aware redirection to avoid garbled logs
+from tqdm.auto import tqdm
+from tqdm.contrib.logging import logging_redirect_tqdm
+
 
 def format_records(recs: List[Dict[str, Any]]) -> str:
     return '\n'.join([f"\n type: {r['type']}\n {r['text']}" for r in recs])
@@ -32,44 +36,46 @@ class QAAnswerAgent(Agent):
         processed_qs = []
         qs = [Question(**item) for item in qa_dataset]
         contract_map = {c['document_id']: Path(c['path']) for c in contracts}
-        #print(contract_map)
         batch = int(self.config.metadata.get('batch', 1))
+        flags = self.config.metadata.get('context_flags', '')
+        print(flags)
 
-        for q in qs:
-            doc_id = q.question_id.split('-')[0]
-            raw_text = format_records(load_file(DocumentBundle(str(doc_id)).get_records_path()))
-            contract = load_file(contract_map.get(doc_id))
-            context = []
-            flags = self.config.metadata.get('context_flags', '')
-            if 'CC' in flags:
-                context.append(f"\n[CONTRACT]\n {contract}")
-            if 'RAW_TEXT' in flags:
-                context.append(f"\n[RAW_TEXT]\n {raw_text}")
-            user_prompt = self.config.pm.compose_prompt(
-                "qa_answering_llm.j2",
-                question=q.question,
-                context=context
-            )
-            messages = [
-                {"role": "user", "content": user_prompt}
-            ]
-
-            ans = await call_llm(messages, self.config.model_config, coerce_to_json, metadata={})
-            if ans.get('answer') and ans.get('explanation'):
-                answer = Answer(
-                    question_id=q.question_id,
-                    question = q.question,
-                    experiment_id=self.env.get('experiment_id', ''),
-                    config_name=self.config.model_config.name,
-                    question_type=q.question_type,
-                    gold_answer=q.gold_answer,
-                    gold_trace=q.gold_trace,
-                    pred_answer=ans.get('answer'),
-                    pred_trace=ans.get('explanation')
+        # Progress bar around the main loop, while keeping logging clean
+        with logging_redirect_tqdm():
+            for q in tqdm(qs, total=len(qs), desc="Answering", unit="q"):
+                doc_id = q.question_id.split('-')[0]
+                raw_text = format_records(load_file(DocumentBundle(str(doc_id)).get_records_path()))
+                contract = load_file(contract_map.get(doc_id))
+                context = []
+                if 'CC' in flags:
+                    context.append(f"\n[CONTRACT]\n {contract}")
+                if 'RAW_TEXT' in flags:
+                    context.append(f"\n[RAW_TEXT]\n {raw_text}")
+                user_prompt = self.config.pm.compose_prompt(
+                    "qa_answering_llm.j2",
+                    question=q.question,
+                    context=context
                 )
-                processed_qs.append(dataclasses.asdict(answer))
-            else:
-                logger.error(f"answer is corrupted: {ans}")
+                messages = [
+                    {"role": "user", "content": user_prompt}
+                ]
+
+                ans = await call_llm(messages, self.config.model_config, coerce_to_json, metadata={})
+                if ans.get('answer') and ans.get('explanation'):
+                    answer = Answer(
+                        question_id=q.question_id,
+                        question=q.question,
+                        experiment_id=self.env.get('experiment_id', ''),
+                        config_name=self.config.model_config.name,
+                        question_type=q.question_type,
+                        gold_answer=q.gold_answer,
+                        gold_trace=q.gold_trace,
+                        pred_answer=ans.get('answer'),
+                        pred_trace=ans.get('explanation')
+                    )
+                    processed_qs.append(dataclasses.asdict(answer))
+                else:
+                    logger.error(f"answer is corrupted: {ans}")
 
         logger.info(f"got {len(processed_qs)} answers")
 

@@ -7,6 +7,9 @@ import sys
 from pathlib import Path
 from typing import List, Dict, Any
 
+from tqdm import tqdm
+from tqdm.contrib.logging import logging_redirect_tqdm
+
 from middleware.ImageStorage import ImageStorage
 from middleware.llm_middleware import coerce_to_json_list, GenericLLMCallable, call_llm
 from utils.common import DocumentBundle, ModelConfig
@@ -78,14 +81,16 @@ class DocumentProcessor:
         logger.info(f"INFO: Successfully processed and added {len(page_blocks)} blocks from page {page_number}.")
 
     async def process_document(self):
-        for idx, page_path in enumerate(self.doc_bundle.get_pages(), start=1):
-            try:
-                logger.info(f"--> {page_path.name}")
-                self.file_map[idx] = page_path
-                await self.process_page(idx, page_path)
-            except Exception as e:
-                msg = f"[error] {page_path.name}: {e}"
-                logger.error(msg, file=sys.stderr)
+        seq = list(enumerate(self.doc_bundle.get_pages(), start=1))
+        with logging_redirect_tqdm():
+            for idx, page_path in tqdm(seq, total=len(seq), desc="Answering", unit="q"):
+                try:
+                    logger.info(f"--> {page_path.name}")
+                    self.file_map[idx] = page_path
+                    await self.process_page(idx, page_path)
+                except Exception as e:
+                    msg = f"[error] {page_path.name}: {e}"
+                    logger.error(msg, file=sys.stderr)
 
         logger.info("INFO: Finalizing document...")
         self._merge_split_blocks()

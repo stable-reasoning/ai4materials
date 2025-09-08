@@ -68,9 +68,9 @@ async def call_llm(messages: List[Any],
             )
             # Extracting and printing the response content
             length = len(str(messages))
-            print(f"prompt_tokens: {resp.usage.prompt_tokens}")
-            print(f"completion_tokens: {resp.usage.completion_tokens}")
-            print(f"input bytes: {length}")
+            #print(f"prompt_tokens: {resp.usage.prompt_tokens}")
+            #print(f"completion_tokens: {resp.usage.completion_tokens}")
+            #print(f"input bytes: {length}")
 
             content = resp.choices[0].message.content.strip()
             # print(content)

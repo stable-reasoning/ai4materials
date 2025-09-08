@@ -156,12 +156,12 @@ async def main():
 
     contracts = DATA_DIR / "contracts2.json"
     dataset = DATA_DIR / "full_dataset2.json"
-    options = {'context_flags': 'CC'}
+    options = {'context_flags': 'RAW_TEXT'} # available context_flags: { CC|RAW_TEXT }
     runner = DAGRunner(
         dag=get_answer_pipeline_dag(contracts=contracts, dataset=dataset, options=options),
         working_dir="runs")
 
-    run_id = f"{runner.dag.name}-test-2"
+    run_id = f"{runner.dag.name}-test-1"
 
     await runner.run(experiment_id=run_id)
 

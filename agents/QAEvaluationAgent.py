@@ -2,6 +2,9 @@ import dataclasses
 from dataclasses import dataclass
 from typing import Dict, Any, List
 
+from tqdm import tqdm
+from tqdm.contrib.logging import logging_redirect_tqdm
+
 from core import Agent
 from middleware.ImageStorage import ImageStorage
 from middleware.llm_middleware import call_llm, coerce_to_float
@@ -30,22 +33,23 @@ class QAEvaluationAgent(Agent):
         ans_set = [Answer(**a) for a in answers]
         batch = int(self.config.metadata.get('batch', 1))
 
-        for a in ans_set:
-            user_prompt = self.config.pm.compose_prompt(
-                "qa_answer_evaluation_v1.j2",
-                answer=dataclasses.asdict(a)
-            )
-            messages = [
-                {"role": "user", "content": user_prompt}
-            ]
+        with logging_redirect_tqdm():
+            for a in tqdm(ans_set, total=len(ans_set), desc="Evaluation", unit="q"):
+                user_prompt = self.config.pm.compose_prompt(
+                    "qa_answer_evaluation_v1.j2",
+                    answer=dataclasses.asdict(a)
+                )
+                messages = [
+                    {"role": "user", "content": user_prompt}
+                ]
 
-            ans = await call_llm(messages, self.config.model_config, coerce_to_float, metadata={})
-            # ans = 1
-            if ans > -1:
-                a.eval_score = ans
-                processed_qs.append(dataclasses.asdict(a))
-            else:
-                logger.error(f"answer is corrupted: {ans}")
+                ans = await call_llm(messages, self.config.model_config, coerce_to_float, metadata={})
+                # ans = 1
+                if ans > -1:
+                    a.eval_score = ans
+                    processed_qs.append(dataclasses.asdict(a))
+                else:
+                    logger.error(f"answer is corrupted: {ans}")
 
         logger.info(f"evaluated {len(processed_qs)} answers")
 

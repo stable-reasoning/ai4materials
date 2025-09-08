@@ -52,7 +52,7 @@ def load_env_vars_to_dataclass(cls: type):
                 env_var_name = f"{cls.__env_var_prefix__}_{env_var_name}"
             env_value = os.environ.get(env_var_name)
 
-            if env_value is not None:
+            if env_value is not None: # first try to set the env var
                 if f.type is not type(None) and f.type is not str:
                     try:
                         if f.type is int:
