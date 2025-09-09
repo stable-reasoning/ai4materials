@@ -37,6 +37,8 @@ class DAG:
             sorted_order.append(task)
 
             for downstream_task in task.downstream_tasks:
+                if downstream_task.name not in in_degree:
+                    raise KeyError(f"task {downstream_task.name} is not in the DAG, check the tasks in scope of your DAG")
                 in_degree[downstream_task.name] -= 1
                 if in_degree[downstream_task.name] == 0:
                     queue.append(downstream_task)

@@ -16,12 +16,12 @@ STRICTLY use the following formatting rules for the output:
 Output schema (on the example of one block):
 
 [{
-  "type":  string(Definition|Principle|Condition|Strategy|Evidence-Based Claim|Generic).
-  "content":  string; The core statement, rephrased for clarity and atomicity.
-  "justification":  string; An explanation of how this step connects to the previous one.
-  "linked_figure":  List[type(string,string)]; A list of figure|table's labels that provide evidence for this step. If no figure is relevant, use an empty list [].
-  "source_text":  List[int]; indexes of blocks in input used to distill knowledge for this step.
-  "confidence": float[0,1]; A confidence score that the step accurately represents the idea in original text
+  "type": "string - {Definition | Principle | Condition | Strategy | Evidence-Based Claim | Generic}",
+  "content": "string - The core statement, rephrased for clarity and atomicity",
+  "justification": "string - An explanation of how this step connects to the previous one",
+  "linked_figure": "List[type(string,string)] - A list of figure|table's labels that provide evidence for this step. If no figure is relevant, use an empty list []",
+  "source_text": "List[int] - indexes of blocks in input used to distill knowledge for this step",
+  "confidence": "float[0,1] - A confidence score that the step accurately represents the idea in original text"
 }]
 
 

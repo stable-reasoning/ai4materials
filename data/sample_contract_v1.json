@@ -1,0 +1,75 @@
+{
+  "hypothesis": "The double-helix chiral structure of La(Rh,Ir)Si combined with broken inversion symmetry and strong spin–orbit coupling leads to multifold Weyl fermions and spin-polarized helicoid Fermi arcs",
+  "cause_effect": [
+    {
+      "cause": "double-helix chiral P2_{1}3 crystal structure",
+      "action_verb": "leads_to",
+      "effect": "broken inversion symmetry and structural chirality"
+    },
+    {
+      "cause": "broken inversion symmetry",
+      "action_verb": "permits",
+      "effect": "multifold band degeneracies (Weyl nodes)"
+    },
+    {
+      "cause": "strong spin–orbit coupling",
+      "action_verb": "splits",
+      "effect": "topological band degeneracies into charge ±2 Weyl nodes"
+    },
+    {
+      "cause": "multifold Weyl nodes",
+      "action_verb": "result_in",
+      "effect": "spin-polarized helicoid Fermi arcs"
+    }
+  ],
+  "assumptions": {
+    "Cubic P2_{1}3 structure": "hard constraint: required for double-helix chirality",
+    "Strong SOC comparable to measured E_SOC values": "hard constraint: ensures splitting of degeneracies",
+    "Band structure accurately described by DFT": "assumption"
+  },
+  "predictions": [
+    "DFT will show a spin-1 Weyl node (C=2) at Γ and a fourfold Weyl node (C=2) at R",
+    "Surface-state calculations or ARPES will reveal spin-polarized helicoid Fermi arcs connecting Γ and R",
+    "Measured SOC splitting values of ≈37 meV for LaRhSi and ≈207 meV for LaIrSi",
+    "Multiple band crossings at high-symmetry points consistent with multifold degeneracies"
+  ],
+  "rubric": [
+    {
+      "claim": "La(Rh,Ir)Si crystals form a double-helix chiral structure in cubic P2_{1}3 space group",
+      "justification": "Establishes structural chirality and broken inversion required for Weyl nodes",
+      "source_text": [
+        12,
+        18
+      ]
+    },
+    {
+      "claim": "Up to ten bands cross the Fermi level in both LaRhSi and LaIrSi",
+      "justification": "Multiband character with band crossings underpins multifold degeneracies",
+      "source_text": [
+        14
+      ]
+    },
+    {
+      "claim": "La(Rh,Ir)Si hosts multifold Weyl fermions at Γ and R points",
+      "justification": "Direct evidence of topological band degeneracies due to chirality and SOC",
+      "source_text": [
+        15
+      ]
+    },
+    {
+      "claim": "SOC lifts most band degeneracies except along X–M, producing E_{SOC}≈37 meV in LaRhSi and ≈207 meV in LaIrSi",
+      "justification": "Demonstrates strong SOC splitting necessary to produce and separate Weyl nodes",
+      "source_text": [
+        14
+      ]
+    },
+    {
+      "claim": "Surface-state calculations reveal spin-polarized helicoid Fermi arcs connecting Γ and R",
+      "justification": "Surface arcs confirm manifestation of topological Weyl nodes",
+      "source_text": [
+        16
+      ]
+    }
+  ],
+  "contract_id": "6-0"
+}

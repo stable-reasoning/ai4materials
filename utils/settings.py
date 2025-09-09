@@ -6,6 +6,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
+import colorlog
+from colorlog import ColoredFormatter
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -14,9 +17,10 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = ROOT_DIR / "templates"
 SCRIPTS_DIR = ROOT_DIR / "scripts"
 RUNS_DIR = ROOT_DIR / "runs"
+DATA_DIR = ROOT_DIR / "data"
 
 LOG_LEVEL = "INFO"
-APP_VERSION = "1.0.0"
+APP_VERSION = "0.1.0"
 
 print(f"Project Root Directory: {ROOT_DIR}")
 print(f"TEMPLATES Directory: {TEMPLATES_DIR}")
@@ -48,7 +52,7 @@ def load_env_vars_to_dataclass(cls: type):
                 env_var_name = f"{cls.__env_var_prefix__}_{env_var_name}"
             env_value = os.environ.get(env_var_name)
 
-            if env_value is not None:
+            if env_value is not None: # first try to set the env var
                 if f.type is not type(None) and f.type is not str:
                     try:
                         if f.type is int:
@@ -71,7 +75,7 @@ def load_env_vars_to_dataclass(cls: type):
                         ) from e
 
                 setattr(self, f.name, env_value)
-            elif f.default is dataclasses.MISSING and f.default_factory is dataclasses.MISSING: # Required & no default
+            elif f.default is dataclasses.MISSING and f.default_factory is dataclasses.MISSING:  # Required & no default
                 raise ConfigurationError(f"Missing environment variable: {env_var_name}")
 
     cls.__init__ = new_init
@@ -114,7 +118,28 @@ Path(global_config.runs_path).resolve().mkdir(parents=True, exist_ok=True)
 
 # Configure logging
 
+handler = logging.StreamHandler()
+handler.setFormatter(ColoredFormatter(
+    '%(asctime)s - %(levelname)s - %(message)s',
+    log_colors={
+        'INFO': 'black',
+        'DEBUG': 'cyan',
+        'WARNING': 'yellow',
+        'ERROR': 'red'
+    }
+))
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, handlers=[handler])
+
+
 # logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
 
+def mute_openai_logging(level=logging.WARNING):
+    # Silence third‑party libraries used by the OpenAI client
+    for name in ("openai", "httpx", "httpcore"):
+        lg = logging.getLogger(name)
+        lg.setLevel(level)  # Hide INFO; show only WARNING/ERROR/CRITICAL
+        lg.propagate = False  # Prevent bubbling to the root handlers
+
+
+mute_openai_logging()

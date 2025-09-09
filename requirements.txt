@@ -18,4 +18,6 @@ torch==2.8.0
 torchvision==0.23.0
 torchaudio==2.8.0
 litellm==1.76.1
+more-itertools==10.8.0
+colorlog==6.9.0
 pix2tex

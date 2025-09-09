@@ -41,7 +41,6 @@ class MetadataStore:
         )
         return cursor.fetchone() is not None
 
-
     def add_paper_entry(self, url: str) -> int:
         """
         Adds a new paper URL to the database with 'pending' status.
@@ -132,7 +131,7 @@ class FileDownloader:
             logging.error(f"Could not read file {file_path} for validation. Error: {e}")
             return False
 
-    def process_url_list_file(self, file_path: str) -> List[Dict[str,Any]]:
+    def process_url_list_file(self, file_path: str) -> List[Dict[str, Any]]:
         logging.info(f"Starting to process file: {file_path}")
         try:
             with open(file_path, 'r') as f:
@@ -162,7 +161,7 @@ class FileDownloader:
                 if not self._is_pdf(destination):
                     status = 'validation_failed'
                 self.db.update_status(paper_id, status)
-                added_files.append({"paper_id": paper_id, "file": str(destination)})
+                added_files.append({"paper_id": str(paper_id), "file": str(destination)})
             except ValueError as e:
                 logging.error(e)
                 self.db.update_status(paper_id, 'invalid_url')

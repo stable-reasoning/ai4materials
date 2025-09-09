@@ -1,15 +1,16 @@
+import dataclasses
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Any, List, Set
+from typing import Dict, Any, List, Set, Optional
 
 from core import Agent
 from middleware.ImageStorage import ImageStorage
 from middleware.llm_middleware import call_llm, coerce_to_json_list
-from utils.common import ModelConfig, DocumentBundle, load_file
+from utils.common import ModelConfig, DocumentBundle, load_file, Question
 from utils.prompt_manager import PromptManager
 from utils.settings import logger
 
-VALID_TYPES: Set[str] = {"yes-no", "multichoice", "3-word"}
+VALID_TYPES: Set[str] = {"counterfactual"}
 
 
 def is_record_valid(record: Any) -> bool:
@@ -20,28 +21,40 @@ def is_record_valid(record: Any) -> bool:
     if not isinstance(record, dict):
         return False
 
-    required_keys = {"type", "question", "options", "answer", "explanation", "source"}
+    required_keys = {"category", "question", "contract_id", "gold_answer"}
     if not required_keys.issubset(record.keys()):
         return False
 
     try:
-        if not (isinstance(record['type'], str) and record['type'].lower().strip() in VALID_TYPES):
+        if not (isinstance(record['category'], str) and record['category'].lower().strip() in VALID_TYPES):
             return False
         if not (isinstance(record['question'], str) and record['question']):
             return False  # Must be a non-empty string
-        if not (isinstance(record['options'], list) and all(isinstance(i, str) for i in record['options'])):
+        if not (isinstance(record['contract_id'], str)):
             return False
-        if not (isinstance(record['answer'], str) and record['answer']):
-            return False  # Must be a non-empty string
-        if not (isinstance(record['explanation'], str) and record['explanation']):
-            return False  # Must be a non-empty string
-        if not (isinstance(record['source'], list)):
-            return False
+        if not (isinstance(record['gold_answer'], dict) and record['gold_answer']):
+            return False  # Must be a non-empty object
     except (TypeError, KeyError):
         # Catch potential errors if data structure is unexpectedly malformed.
         return False
 
     return True
+
+
+def form_question_sketch(q: Dict[str, Any]) -> Optional[Question]:
+    gold_answer = q.get('gold_answer')
+    answer = gold_answer.get('answer')
+    explanation = gold_answer.get('explanation')
+    if gold_answer and answer and explanation:
+        trace = '\n'.join([explanation] + gold_answer.get('paths', []))
+        return Question(
+            question_id=q['id'],
+            question_type=q['category'],
+            question=q['question'],
+            gold_answer=answer,
+            gold_trace=trace,
+        )
+    return None
 
 
 class QADatasetGeneratorAgent(Agent):
@@ -54,19 +67,23 @@ class QADatasetGeneratorAgent(Agent):
         pm: PromptManager
         image_store: ImageStorage
         model_config: ModelConfig
+        metadata: Dict[str, Any]
 
-    async def run(self, semantic_documents: List[Dict[str, Any]]) -> Dict[str, Any]:
-        logger.info(f"processing {len(semantic_documents)} documents")
+    async def run(self, contracts: List[Dict[str, Any]]) -> Dict[str, Any]:
+        logger.info(f"processing {len(contracts)} documents")
         processed_docs = []
-
-        for doc in semantic_documents:
+        error_count = 0
+        dataset = []
+        for c in contracts:
             try:
-                doc_id = doc['document_id']
+                doc_id = c['document_id']
                 doc_bundle = DocumentBundle(str(doc_id))
-                semantic_repr = load_file(Path(doc['path']))
+                raw_text = load_file(doc_bundle.get_records_path())  # document is taken from cache by id
+                contracts = load_file(Path(c['path']))  # contract is loaded from path
                 user_prompt = self.config.pm.compose_prompt(
-                    "qa_dataset_generator_user_v2.j2",
-                    claims=semantic_repr
+                    "qa_dataset_generator_raw_v6.j2",
+                    contracts=contracts,
+                    raw_text=raw_text
                 )
                 messages = [
                     {"role": "user", "content": user_prompt}
@@ -76,12 +93,19 @@ class QADatasetGeneratorAgent(Agent):
                 valid_questions = [record for record in page_blocks if is_record_valid(record)]
                 for idx, q in enumerate(valid_questions, start=1):
                     q['id'] = f"{doc_id}-{idx}"
+                    question = form_question_sketch(q)
+                    if question:
+                        dataset.append(dataclasses.asdict(question))
                 logger.info(f"generated {len(valid_questions)} questions")
                 res_path = self.save_locally(f"questions_{doc_id}.json", valid_questions)
                 processed_docs.append({"document_id": doc_id, "path": str(res_path)})
             except Exception as e:
                 logger.error(e)
+                error_count += 1
+
+        logger.info(f"created {len(dataset)} questions, errors: {error_count}")
 
         return {
-            "qa_dataset.json": processed_docs
+            "qa_dataset.json": processed_docs,
+            "full_dataset4.json": dataset
         }

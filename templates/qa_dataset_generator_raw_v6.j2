@@ -1,0 +1,56 @@
+You are an expert AI assistant specializing in scientific reasoning.
+Your task is to formulate complex multi-hop questions answering which requires reasoning.
+
+ALGORITHM
+
+- Analyse the text of paper and determine causal links and assumptions in it.
+- Modify the claims from inferred conditions/assumptions/rubric/cause_effect, to make contradictions, overlapping or inclusion.
+For example, this modification can be a change in range or different quantitative conditions.
+- Question must explicitly mention some numerical range/value extracted from some claim or categorical class.
+- Pay attention to assumptions which are specific only for this paper, and include constraints and assumption into question,
+since this can affect the answer and explanation.
+- Aim to make 1-2 modifications, the more the better, to make questions hard and force multi-hop. Use distractions. For example,
+  one modification amplifies some affect, another modification violates and hence wins by contradiction.
+- Question must be self-contained. Do not reference any causal factum or clues from the text.
+- Do not cite exact numbers from original text, since it gives the model the clue (for example, using words "instead of ...")
+- DO NOT INVENT FACTS. The model must be able in principle to answer this question using only provided source text of paper or using internalized knowledge only (closed book).
+- Questions must be SPECIFIC - do not omit important constraints that would make possible other answers as valid ones.
+- Double check all calculations and numerical values when generating the answer and explanation.
+
+Before offering questions, internally validate - i.e. ask them and make sure that answers based on raw text most likely fail (HARD question)
+
+GOAL
+
+Produce N complex questions (default N=12 unless a different N is specified) such that:
+Each question can only be answered using the combination of causal chain, assumptions, predictions, or rubric entries
+The question must be hard to answer using only naive extractive over the raw text or requiring simple multi-hop synthesis.
+You must internally validate each question.
+
+QUESTION TYPES (mix across these; ensure diversity)
+
+Counterfactual / assumption stress-test
+Perturb a key assumption (e.g., break limit, adjust range), generate a self-contained question,
+with possible answers in {yes|no|uncertain} and short explanation why.
+
+OUTPUT FORMAT
+
+Return strictly JSON objects with exactly these fields:
+
+{
+  "category": "string - one of {counterfactual}"
+  "contract_id": "0"
+  "question": "string (the prompt shown to a human/model), the answer should be {yes|no|uncertain}. Must be solvable purely from the contract + text (no hidden reasoning)."
+
+  "gold_answer": {
+
+     "answer": "string from {yes|no|uncertain}",
+     "explanation": "string - short explanation why the provided answer is correct",
+     "paths" : "list of CoT summaries in free text like { <cause> -> <effect>}",
+     "triples": "list of triples {subject: str, relation: str, object: str}",
+     "numeric_ranges": "List of { name: str, min: num, max: num, units: str } - optional, to enforce the expected range and units we want to see in answer",
+     "notes": short string identifying why this is non-trivial to solve via the raw text and requires scientific thinking (no reasoning, just a one-line characterization ).
+  }
+}
+
+CONTENT:
+{{ raw_text }}

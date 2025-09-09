@@ -19,6 +19,15 @@ def coerce_to_json_list(content: Any) -> List[Dict[str, Any]]:
     raise ValueError("LLM did not return a JSON list.")
 
 
+def coerce_to_json(content: Any) -> Dict[str, Any]:
+    """A simple transformer that just cleans up a string."""
+    return json.loads(content)
+
+
+def coerce_to_float(content: Any) -> float:
+    return float(content)
+
+
 def coerce_to_simple_string(content: Any) -> str:
     """A simple transformer that just cleans up a string."""
     return str(content).strip()
@@ -54,15 +63,17 @@ async def call_llm(messages: List[Any],
                 model=config.model,
                 temperature=config.temperature,
                 messages=messages,
+                reasoning_effort="high",
+                verbosity="medium"
             )
             # Extracting and printing the response content
             length = len(str(messages))
-            print(f"prompt_tokens: {resp.usage.prompt_tokens}")
-            print(f"completion_tokens: {resp.usage.completion_tokens}")
-            print(f"input bytes: {length}")
+            #print(f"prompt_tokens: {resp.usage.prompt_tokens}")
+            #print(f"completion_tokens: {resp.usage.completion_tokens}")
+            #print(f"input bytes: {length}")
 
             content = resp.choices[0].message.content.strip()
-            #print(content)
+            # print(content)
             return transformer(content)
         except Exception as e:
             last_err = e

@@ -13,7 +13,7 @@ class ModelConfig:
     model: str
     temperature: float
     retries: int = 1
-    max_tokens: int = 32768
+    max_tokens: int = 65535
 
 
 @dataclass(frozen=True)
@@ -28,13 +28,26 @@ class SourceTxtBlock:
 
 
 @dataclass(frozen=True)
+class Question:
+    question_id: str
+    question_type: str
+    question: str
+    gold_answer: str
+    gold_trace: str
+
+
+@dataclass(frozen=False)
 class Answer:
     question_id: str
-    run_id: str
+    question: str
+    experiment_id: str
     config_name: str
     question_type: str
     gold_answer: str
+    gold_trace: str
     pred_answer: str
+    pred_trace: str
+    eval_score: float = -1.0
 
 
 def load_file(path: Path) -> List[Dict[str, Any]]:

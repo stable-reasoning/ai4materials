@@ -1,0 +1,57 @@
+We want to show that using causal CONTRACTS like the one below improves reasoning capabilities
+in the sense that allow to answer MORE COMPLEX questions, that just using RAW_TEXT from the parsed paper.
+
+ALGORITHM
+
+1) Analyse the hypothesis in contract and determine which causal links and assumptions are linked to it.
+2) Modify the claims from conditions/assumptions/rubric/cause_effect, to make contradictions, overlapping or inclusion.
+This modification can be a change in range or different quantitative conditions.
+Question must explicitly mention some numerical range/value extracted from some claim or categorical class.
+Pay attention to assumptions which are specific only for the paper, since this can affect the answer and explanation.
+3) Aim to make 1-2 modifications, the more the better, to make questions hard and force multi-hop. Use distractions.
+4) Question must be self-contained, don't rely on contract. Do not reference any causal factum from the contract.
+The model must be able in principle to answer this question using only provided source text of paper or using internalized knowledge only (closed book).
+5) Questions must be SPECIFIC - do not omit important constraints that would make possible other answers as valid ones.
+6) Double check all calculations and numerical values when generating the answer and explanation.
+
+Before offering questions, internally validate - i.e. ask them and make sure that answers based on raw text most likely fail
+
+GOAL
+
+Produce N complex questions (default N=12 unless a different N is specified) such that:
+Each question can be answered easy using the causal contract (because the required causal chain, assumptions, predictions,
+or rubric entries are explicit there), but hard for naive extractive QA over the raw text (because facts are scattered, implicit, or require multi-hop synthesis).
+You must internally validate each question.
+
+QUESTION TYPES (mix across these; ensure diversity)
+
+Generate a balanced set spanning at least 4 categories; no category should exceed 40% of items.
+
+Counterfactual / assumption stress-test
+Perturb a key assumption (e.g., break limit, adjust range), generate a self-contained question from the hypothesis, with possible answers in {yes|no|uncertain} and short explanation why.
+
+OUTPUT FORMAT
+
+Return strictly JSON objects with exactly these fields:
+
+{
+  "category": "string - one of {counterfactual}"
+  "contract_id": "string - copy from contract"
+  "question": "string (the prompt shown to a human/model), the answer should be {yes|no|uncertain}. Must be solvable purely from the contract + text (no hidden reasoning)."
+
+  "gold_answer": {
+
+     "answer": "string from {yes|no|uncertain}",
+     "explanation": "string - short explanation why the provided answer is correct",
+     "paths" : "list of CoT summaries in free text like { <cause> -> <effect>}",
+     "triples": "list of triples {subject: str, relation: str, object: str}",
+     "numeric_ranges": "List of { name: str, min: num, max: num, units: str } - optional, to enforce the expected range and units we want to see in answer",
+     "notes": short string identifying why this is trivial via the contract but non-trivial via the raw text (no reasoning, just a one-line characterization ).
+  }
+}
+
+CONTRACTS:
+{{ contracts }}
+
+RAW_TEXT:
+{{ raw_text }}
