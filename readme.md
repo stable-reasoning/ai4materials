@@ -133,6 +133,7 @@ python app4.py answer \
 
 **Outputs:** processed IDs, semantic documents, contracts, and a generated QA dataset — all stored under the current run directory.
 
+
 ### 🧪 Answer & Evaluation Pipeline
 
 **Goal:** answer questions under specified context settings and evaluate performance.
@@ -193,6 +194,7 @@ python app4.py answer \
 ```
 
 
+
 ## 📈 Reproducibility & Experiment Artifacts
 
 Every run produces a folder `runs/<pipeline-name>-YYYYMMDD-HHMMSS/` containing:
@@ -238,7 +240,6 @@ from app4 import get_document_pipeline_dag, get_answer_pipeline_dag
 # General notes on code architecture
 
 TBA
-
 
 
 ## 🙌 Acknowledgements
