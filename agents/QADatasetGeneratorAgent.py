@@ -107,5 +107,5 @@ class QADatasetGeneratorAgent(Agent):
 
         return {
             "qa_dataset.json": processed_docs,
-            "full_dataset.json": dataset
+            "full_dataset4.json": dataset
         }
