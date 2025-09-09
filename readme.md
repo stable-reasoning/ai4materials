@@ -161,18 +161,37 @@ python app4.py answer \
 
 ```
 <repo-root>/
-├─ app4.py                  # CLI entrypoint: build & run DAG pipelines
 ├─ agents/                  # Agent implementations (download, extract, analyze, QA, eval, ...)
 ├─ core/                    # DAG & runtime abstractions
-├─ middleware/              # Shared services (e.g., image storage)
-├─ utils/                   # Prompt manager, settings, model config, logging helpers
 ├─ data/                    # Input data (contracts, datasets)
-├─ test_data/               # Test lists / small fixtures (e.g., paper URLs)
+├─ docucache/              
+├─ middleware/              # Shared services (e.g., image storage)
 ├─ runs/                    # Experiment outputs (created at runtime)
+├─ test_data/               # Test lists / small fixtures (e.g., paper URLs)
+├─ utils/                   # Prompt manager, settings, model config, logging helpers
 ├─ requirements.txt         # Python dependencies
-└─ docs/
-   └─ project_structure.png # Project structure screenshot
+└─ app4.py                  # CLI entrypoint: build & run DAG pipelines
 ```
+
+## The file structure of DocuCache
+
+```shell
+└── docucache/
+    ├── metadata.db            <-- The SQLite database file
+    ├── 1/                     <-- First paper's folder (ID from DB)
+    │   ├── assets/
+    │   └── tmp/
+    │       └── 1706.03762.pdf
+    ├── 2/
+    │   ├── assets/
+    │   └── tmp/
+    │       └── 2203.02155.pdf
+    └── 3/
+        ├── assets/
+        └── tmp/
+            └── 2307.09288.pdf
+```
+
 
 ## 📈 Reproducibility & Experiment Artifacts
 
@@ -220,24 +239,6 @@ from app4 import get_document_pipeline_dag, get_answer_pipeline_dag
 
 TBA
 
-# The file structure of DocuCache
-
-```shell
-└── docucache/
-    ├── metadata.db            <-- The SQLite database file
-    ├── 1/                     <-- First paper's folder (ID from DB)
-    │   ├── assets/
-    │   └── tmp/
-    │       └── 1706.03762.pdf
-    ├── 2/
-    │   ├── assets/
-    │   └── tmp/
-    │       └── 2203.02155.pdf
-    └── 3/
-        ├── assets/
-        └── tmp/
-            └── 2307.09288.pdf
-```
 
 
 ## 🙌 Acknowledgements
