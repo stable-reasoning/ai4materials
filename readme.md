@@ -16,7 +16,8 @@ This repository contains a modular, DAG‑based framework for experimenting with
 * **Document Pipeline** — downloads papers, extracts pages, performs multi‑stage analysis, and synthesizes structured artifacts (semantic summaries and contracts) before generating QA datasets.
 * **Answer & Evaluation Pipeline** — answers the generated questions under configurable context settings and evaluates performance with transparent, reproducible artifacts.
 
-The pipelines are built from interoperable **agents** orchestrated by a lightweight **DAG runner**, making it easy to plug in new components, models, or evaluation strategies. The project is being prepared for top‑tier conference submission; code quality, reproducibility, and documentation are priorities.
+The pipelines are built from interoperable **agents** orchestrated by a lightweight **DAG runner**, making it easy to plug in new components, models, or evaluation strategies. Code quality, reproducibility, and documentation are priorities.
+
 
 > 📖 Paper: *coming soon*
 
