@@ -5,7 +5,7 @@
 <p align="center">
  <a><img alt="Status" src="https://img.shields.io/badge/status-research_prototype-6a5acd"></a>
  <a><img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-blue"></a>
- <a><img alt="License" src="https://img.shields.io/badge/license-TBD-lightgrey"></a>
+ <a><img alt="License" src="https://img.shields.io/badge/license-MIT-lightgrey"></a>
 </p>
 
 
