@@ -1,0 +1,42 @@
+[
+  {
+    "document_id": "1",
+    "path": "/home/alex/projects/amark/runs/document_pipeline-20250910-121138/contract_generation/contract_1.json"
+  },
+  {
+    "document_id": "2",
+    "path": "/home/alex/projects/amark/runs/document_pipeline-20250910-121138/contract_generation/contract_2.json"
+  },
+  {
+    "document_id": "3",
+    "path": "/home/alex/projects/amark/runs/document_pipeline-20250910-121138/contract_generation/contract_3.json"
+  },
+  {
+    "document_id": "4",
+    "path": "/home/alex/projects/amark/runs/document_pipeline-20250910-121138/contract_generation/contract_4.json"
+  },
+  {
+    "document_id": "5",
+    "path": "/home/alex/projects/amark/runs/document_pipeline-20250910-121138/contract_generation/contract_5.json"
+  },
+  {
+    "document_id": "6",
+    "path": "/home/alex/projects/amark/runs/document_pipeline-20250910-121138/contract_generation/contract_6.json"
+  },
+  {
+    "document_id": "7",
+    "path": "/home/alex/projects/amark/runs/document_pipeline-20250910-121138/contract_generation/contract_7.json"
+  },
+  {
+    "document_id": "8",
+    "path": "/home/alex/projects/amark/runs/document_pipeline-20250910-121138/contract_generation/contract_8.json"
+  },
+  {
+    "document_id": "9",
+    "path": "/home/alex/projects/amark/runs/document_pipeline-20250910-121138/contract_generation/contract_9.json"
+  },
+  {
+    "document_id": "10",
+    "path": "/home/alex/projects/amark/runs/document_pipeline-20250910-121138/contract_generation/contract_10.json"
+  }
+]

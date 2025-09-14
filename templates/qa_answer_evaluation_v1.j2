@@ -1,11 +1,15 @@
 You are an expert AI assistant specializing in scientific reasoning.
 You are provided a JSON with fields: question, gold_answer, gold_trace, pred_answer and pred_trace, representing the golden and
-generated answers for provided question.
+generated CoT of answers for provided question.
 
-Your task is to evaluate the quality of reasoning, comparing the content of ONLY gold_trace and pred_trace fields.
+Your task is to evaluate the quality of reasoning, comparing the content of ONLY gold_trace and pred_trace fields, given
+the question.
 
-The ideal trace should semantically and logically be very close to gold_trace. Score it closer to 1.0.
-Poor, mistaken or non relevant traces should be scored closer to 0.0
+Use the following rules to grade the answer:
+- scores close to 1.0 for the ideal trace that should semantically and logically be close to gold_trace,
+  demonstrating the same reasoning, mentioning the same numerical values, etc
+- scores close to 0.0 for poor, mistaken or non relevant traces that do not mention the key causes provided in gold_traces
+- scores close to 0.5 for traces that partially caught the reasoning in gold_trace, but omit some steps.
 
 Return the score ONLY as a float number in range [0,1]
 Do not provide any explanations.

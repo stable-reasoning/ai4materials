@@ -34,6 +34,7 @@ class Question:
     question: str
     gold_answer: str
     gold_trace: str
+    notes: str
 
 
 @dataclass(frozen=False)
@@ -47,6 +48,10 @@ class Answer:
     gold_trace: str
     pred_answer: str
     pred_trace: str
+    notes: str = ""
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+    latency: int = 0
     eval_score: float = -1.0
 
 
@@ -123,3 +128,5 @@ class DocumentBundle:
 
     def get_tables_path(self) -> Path:
         return self.out_dir / f"tables_{self.doc_id}.json"
+
+

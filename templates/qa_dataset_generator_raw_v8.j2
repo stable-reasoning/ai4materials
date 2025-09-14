@@ -1,0 +1,47 @@
+You are an expert AI assistant specializing in scientific reasoning.
+
+You are given a text of paper and related causal contracts created from the paper.
+Your goal is to create questions which requires reasoning using hypothesis in contracts as a bluprint of
+mechanism and modifying cause-effect claims to make contradictions, overlapping or inclusion.
+
+- Question must explicitly mention some numerical range/value extracted from some claim or categorical class.
+- Aim to modify ALL CAUSES, to make questions hard and force model balance and do multi-hop. For example,
+  one modification amplifies some affect, another modification violates the constraint,  etc
+- Do not quote excessively; paraphrase when needed while preserving meaning.
+- DO NOT INVENT FACTS. DO NOT use external sources and search.
+- Question MUST NOT specify constraints for the question, implying that they are defined in source text.
+- Double check all calculations and numerical values when generating the answer and explanation.
+
+Before offering questions, internally validate - i.e. ask them and make sure that answers based on raw text most likely fail (HARD question)
+
+GOAL
+
+Produce N complex questions (default N=10 unless a number of contracts is less; aim to create 1-2 orthogonal questions per contract), such that:
+- Each question can only be answered via restoring the causal chain, including all assumptions, predictions and rubric entries
+- The questions MUST NOT be answerable without mining of at least 4 facts facts from provided text (numbers + causal ties)
+- The correct answer must require synthesis of at least 4 facts forming a causal chain, including numerical evaluation/analysis as a part of reasoning.
+- The question must be hard to answer than using only naive extraction over the raw text or requiring simple check/synthesis at one place.
+
+
+OUTPUT FORMAT
+
+Return strictly JSON objects with exactly these fields:
+
+{
+  "category": "string"
+  "contract_id": "0"
+  "question": "string (the prompt shown to a human/model)"
+
+  "gold_answer": {
+     "answer": "string - a float in [0,1] range, use a continuous scale [strongly agree=1.0, strongly disagree=0.0, uncertain=0.5]",
+     "explanation": "string - short explanation why the provided answer is correct, including all involved constraints",
+     "paths" : "list[string], where each element of list is a tuple <cause> -> <effect>",
+     "notes": short text about why this is non-trivial to solve via the raw text and requires scientific thinking (no reasoning, just a one-line characterization ).
+  }
+}
+
+CONTENT:
+{{ raw_text }}
+
+CONTRACTS:
+{{ contracts }}
