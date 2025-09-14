@@ -60,7 +60,6 @@ def form_question_sketch(q: Dict[str, Any]) -> Optional[Question]:
 
 
 class QADatasetGeneratorAgent(Agent):
-    """An agent to fetch posts from a public API."""
 
     config: "QADatasetGeneratorAgent.Config"
 

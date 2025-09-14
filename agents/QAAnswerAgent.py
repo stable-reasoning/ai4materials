@@ -23,7 +23,6 @@ def mask(q: Dict[str, Any]) -> Dict[str, Any]:
 
 
 class QAAnswerAgent(Agent):
-    """An agent to fetch posts from a public API."""
 
     config: "QAAnswerAgent.Config"
 

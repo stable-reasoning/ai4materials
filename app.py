@@ -33,12 +33,13 @@ DEFAULT_RETRIES = 3
 
 os.environ["LITELLM_LOG"] = "ERROR"
 
+
 # ------------------------------ DAG builders ------------------------------ #
 
 def get_document_pipeline_dag(
-    paper_li: Path,
-    options: Optional[Dict[str, Any]] = None,
-    model_config: Optional[ModelConfig] = None,
+        paper_li: Path,
+        options: Optional[Dict[str, Any]] = None,
+        model_config: Optional[ModelConfig] = None,
 ) -> DAG:
     """Build the document-processing pipeline DAG."""
     prompt_manager = PromptManager()
@@ -124,10 +125,10 @@ def get_document_pipeline_dag(
 
 
 def get_answer_pipeline_dag(
-    dataset: Path,
-    contracts: Path,
-    options: Optional[Dict[str, Any]] = None,
-    model_config: Optional[ModelConfig] = None,
+        dataset: Path,
+        contracts: Path,
+        options: Optional[Dict[str, Any]] = None,
+        model_config: Optional[ModelConfig] = None,
 ) -> DAG:
     """Build the QA+evaluation pipeline DAG."""
     prompt_manager = PromptManager()
@@ -179,11 +180,11 @@ def get_answer_pipeline_dag(
 # ------------------------------ runners ------------------------------ #
 
 async def run_document(
-    papers_list: Path,
-    working_dir: str,
-    run_id: Optional[str] = None,
-    context_flags: Optional[str] = None,
-    model_config: Optional[ModelConfig] = None,
+        papers_list: Path,
+        working_dir: str,
+        run_id: Optional[str] = None,
+        context_flags: Optional[str] = None,
+        model_config: Optional[ModelConfig] = None,
 ) -> None:
     options = {"context_flags": context_flags} if context_flags else None
     dag = get_document_pipeline_dag(
@@ -197,12 +198,12 @@ async def run_document(
 
 
 async def run_answer(
-    dataset: Path,
-    contracts: Path,
-    working_dir: str,
-    context_flags: Optional[str] = None,
-    run_id: Optional[str] = None,
-    model_config: Optional[ModelConfig] = None,
+        dataset: Path,
+        contracts: Path,
+        working_dir: str,
+        context_flags: Optional[str] = None,
+        run_id: Optional[str] = None,
+        model_config: Optional[ModelConfig] = None,
 ) -> None:
     options = {"context_flags": context_flags} if context_flags else None
     dag = get_answer_pipeline_dag(

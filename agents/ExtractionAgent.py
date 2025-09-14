@@ -8,7 +8,6 @@ from utils.settings import logger
 
 
 class ExtractionAgent(Agent):
-    """An agent to fetch posts from a public API."""
 
     async def run(self, file_paths: List[Dict[str, Any]]) -> Dict[str, Any]:
         logger.info(f"extracting data from {len(file_paths)} files")

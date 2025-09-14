@@ -6,7 +6,6 @@ from utils.settings import logger
 
 
 class DownloadAgent(Agent):
-    """An agent to fetch posts from a public API."""
 
     async def run(self, file_with_urls: str) -> Dict[str, Any]:
         logger.info(f"Fetching files")

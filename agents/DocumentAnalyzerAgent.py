@@ -11,7 +11,6 @@ from utils.settings import logger
 
 
 class DocumentAnalyzerAgent(Agent):
-    """An agent to fetch posts from a public API."""
 
     config: "DocumentAnalyzerAgent.Config"
 
