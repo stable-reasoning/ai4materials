@@ -6,6 +6,7 @@ Usage examples - see README
 
 import argparse
 import asyncio
+import os
 import sys
 from dataclasses import dataclass
 from datetime import datetime
@@ -26,10 +27,11 @@ from utils.common import ModelConfig
 from utils.prompt_manager import PromptManager
 from utils.settings import logger, ROOT_DIR, DATA_DIR
 
-DEFAULT_MODEL = "o4-mini"
+DEFAULT_MODEL = "openai/o4-mini"
 DEFAULT_TEMPERATURE = 1.0
 DEFAULT_RETRIES = 3
 
+os.environ["LITELLM_LOG"] = "ERROR"
 
 # ------------------------------ DAG builders ------------------------------ #
 
@@ -257,20 +259,19 @@ def _parse_model_args(ns: argparse.Namespace) -> ModelArgs:
 
 def make_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="app4",
+        prog="app",
         description="Run document or answer pipelines via CLI.",
-    )
-
-    parser.add_argument(
-        "--working-dir",
-        default="runs",
-        help="Directory to store run artifacts (default: runs)",
     )
 
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     # document subcommand
     p_doc = subparsers.add_parser("document", help="Run the document pipeline")
+    p_doc.add_argument(
+        "--working-dir",
+        default="runs",
+        help="Directory to store run artifacts (default: runs)",
+    )
     p_doc.add_argument(
         "--papers",
         type=Path,

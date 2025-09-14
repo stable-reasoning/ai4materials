@@ -137,7 +137,17 @@ logger.setLevel(level=logging.INFO)
 
 def mute_openai_logging(level=logging.WARNING):
     # Silence third‑party libraries used by the OpenAI client
-    for name in ("openai", "httpx", "httpcore"):
+    for name in (
+            "LiteLLM",  # primary LiteLLM logger
+            "litellm",  # some modules may use package name
+            "litellm.utils",
+            "litellm.router",
+            "litellm.proxy",
+            "openai",
+            "litellm",
+            "httpx",
+            "httpcore"
+    ):
         lg = logging.getLogger(name)
         lg.setLevel(level)  # Hide INFO; show only WARNING/ERROR/CRITICAL
         lg.propagate = False  # Prevent bubbling to the root handlers

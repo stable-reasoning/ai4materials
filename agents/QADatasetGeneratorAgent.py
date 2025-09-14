@@ -75,7 +75,7 @@ class QADatasetGeneratorAgent(Agent):
         logger.info(f"processing {len(contracts)} documents")
         processed_docs = []
         error_count = 0
-        dataset = []
+        dataset_size = 0
         for c in contracts:
             try:
                 doc_id = c['document_id']
@@ -101,17 +101,17 @@ class QADatasetGeneratorAgent(Agent):
                     if question:
                         batch.append(dataclasses.asdict(question))
                 logger.info(f"generated {len(batch)} questions")
+                dataset_size += len(batch)
                 res_path = self.save_locally(f"questions_{doc_id}.json", batch)
                 processed_docs.append({"document_id": doc_id, "path": str(res_path)})
             except Exception as e:
                 logger.error(e)
                 error_count += 1
 
-        logger.info(f"created {len(dataset)} questions, errors: {error_count}")
+        logger.info(f"created {dataset_size} questions, errors: {error_count}")
 
         return {
             "qa_dataset.json": processed_docs
-            #"full_dataset_1.json": dataset
         }
 
 

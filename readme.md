@@ -98,10 +98,10 @@ Minimal configuration is required for local runs. By default, artifacts are writ
 **Document Pipeline** — given a list of paper URLs:
 
 ```bash
-python app.py document \
+python app.py document  --working-dir runs \
   --papers ./test_data/papers_1.lst \
-  --working-dir runs \
-  --model o4-mini --temperature 1.0 --retries 3
+  --run-id doc_pipeline_test  \
+  --model openai/o4-mini --temperature 1.0 --retries 3
 ```
 
 **Answer & Evaluation Pipeline** — given a QA dataset and contracts:
@@ -112,7 +112,7 @@ python app.py answer \
   --dataset   ./data/full_dataset2.json \
   --flags RAW_TEXT \
   --working-dir runs \
-  --model o4-mini --temperature 1.0 --retries 3
+  --model openai/o4-mini --temperature 1.0 --retries 3
 ```
 
 > Both commands create a timestamped experiment folder inside `runs/` that contains all intermediate and final artifacts.
@@ -213,7 +213,7 @@ You can pass a custom `--run-id` to name the experiment folder deterministically
 ### Common CLI Flags
 
 * `--working-dir` (default: `runs`) — base directory for artifacts.
-* `--model` (default: `o4-mini`) — model name/ID.
+* `--model` (default: `openai/o4-mini`) — model name/ID in a standard format provider/model_name.
 * `--temperature` (default: `1.0`) — sampling temperature.
 * `--retries` (default: `3`) — retry attempts for model calls.
 
@@ -241,7 +241,8 @@ from app import get_document_pipeline_dag, get_answer_pipeline_dag
 
 # General notes on code architecture
 
-TBA
+The LLM client part is implemented using LiteLLM library, and this makes our too model-agnostic. When using two providers,
+appropriate API keys must be provided. 
 
 
 ## 🙌 Acknowledgements
