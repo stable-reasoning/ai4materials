@@ -159,7 +159,6 @@ python app.py answer \
 
 ## 📦 Project Structure
 
-> The repository includes a screenshot of the file tree. Commit it under `docs/project_structure.png` (or update the path in the header image).
 
 ```
 <repo-root>/
