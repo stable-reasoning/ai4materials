@@ -99,7 +99,7 @@ Minimal configuration is required for local runs. By default, artifacts are writ
 
 ```bash
 python app.py document \
-  --papers ./test_data/papers_3.lst \
+  --papers ./test_data/papers_1.lst \
   --working-dir runs \
   --model o4-mini --temperature 1.0 --retries 3
 ```
@@ -165,14 +165,16 @@ python app.py answer \
 <repo-root>/
 ├─ agents/                  # Agent implementations (download, extract, analyze, QA, eval, ...)
 ├─ core/                    # DAG & runtime abstractions
-├─ data/                    # Input data (contracts, datasets)
+├─ data/                    # Generated artifacts (contracts, datasets, etc)
+├─ docs/                    # Technical documentation
 ├─ docucache/              
 ├─ middleware/              # Shared services (e.g., image storage)
+├─ notebooks/               # Analytics for thesis            
 ├─ runs/                    # Experiment outputs (created at runtime)
 ├─ test_data/               # Test lists / small fixtures (e.g., paper URLs)
 ├─ utils/                   # Prompt manager, settings, model config, logging helpers
 ├─ requirements.txt         # Python dependencies
-└─ app4.py                  # CLI entrypoint: build & run DAG pipelines
+└─ app.py                  # CLI entrypoint: build & run DAG pipelines
 ```
 
 ## The file structure of DocuCache
@@ -218,19 +220,19 @@ You can pass a custom `--run-id` to name the experiment folder deterministically
 
 ### Document Pipeline
 
-* `--papers` — path to a text file containing one URL per line (default: `./test_data/papers_3.lst`).
+* `--papers` — path to a text file containing one URL per line (default: `./test_data/papers_1.lst`).
 * `--run-id` — optional experiment/run identifier.
 
 ### Answer & Evaluation Pipeline
 
-* `--dataset` — path to a QA dataset JSON (default: `./data/full_dataset2.json`).
-* `--contracts` — path to a contracts JSON (default: `./data/contracts2.json`).
-* `--flags` — context flags (e.g., `RAW_TEXT`, `CC`, or `CC|RAW_TEXT`).
+* `--dataset` — path to a QA dataset JSON (default: `./data/test_dataset.json`).
+* `--contracts` — path to a contracts JSON (default: `./data/test_contracts.json`).
+* `--flags` — context flags (e.g., `RAW_TEXT`, `CC`, or `CC+RAW_TEXT`).
 * `--run-id` — optional experiment/run identifier.
 
 ### Programmatic Use
 
-Import and extend the DAG builders from `app4.py`:
+Import and extend the DAG builders from `app.py`:
 
 ```python
 from app import get_document_pipeline_dag, get_answer_pipeline_dag

@@ -52,7 +52,7 @@ def load_env_vars_to_dataclass(cls: type):
                 env_var_name = f"{cls.__env_var_prefix__}_{env_var_name}"
             env_value = os.environ.get(env_var_name)
 
-            if env_value is not None: # first try to set the env var
+            if env_value is not None:  # first try to set the env var
                 if f.type is not type(None) and f.type is not str:
                     try:
                         if f.type is int:
@@ -118,7 +118,7 @@ Path(global_config.runs_path).resolve().mkdir(parents=True, exist_ok=True)
 
 # Configure logging
 
-handler = logging.StreamHandler()
+handler = colorlog.StreamHandler()
 handler.setFormatter(ColoredFormatter(
     '%(asctime)s - %(levelname)s - %(message)s',
     log_colors={
@@ -128,8 +128,9 @@ handler.setFormatter(ColoredFormatter(
         'ERROR': 'red'
     }
 ))
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO, handlers=[handler])
+logger = colorlog.getLogger()
+logger.addHandler(handler)
+logger.setLevel(level=logging.INFO)
 
 
 # logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')

@@ -1,22 +1,7 @@
 """
 CLI-enabled entrypoint for running the document or answer pipelines.
 
-Usage examples:
-  # Document pipeline (uses default test list if not provided)
-  python app3.py document \
-      --papers ./test_data/papers_3.lst \
-      --working-dir runs
-
-  # Answer pipeline (paths default to previous hardcoded files if omitted)
-  python app3.py answer \
-      --contracts ./data/contracts2.json \
-      --dataset ./data/full_dataset2.json \
-      --context-flags RAW_TEXT \
-      --working-dir runs
-
-  # Override model/runtime knobs
-  python app3.py answer --contracts ./data/contracts2.json --dataset ./data/full_dataset2.json \
-      --model o4-mini --temperature 0.7 --retries 3
+Usage examples - see README
 """
 
 import argparse
@@ -289,8 +274,8 @@ def make_parser() -> argparse.ArgumentParser:
     p_doc.add_argument(
         "--papers",
         type=Path,
-        default=(ROOT_DIR / "test_data/papers_3.lst"),
-        help="Path to a file containing paper URLs (default: test_data/papers_3.lst)",
+        default=(ROOT_DIR / "test_data/papers_1.lst"),
+        help="Path to a file containing paper URLs (default: test_data/papers_1.lst)",
     )
     p_doc.add_argument(
         "--run-id",
@@ -303,14 +288,14 @@ def make_parser() -> argparse.ArgumentParser:
     p_ans.add_argument(
         "--dataset",
         type=Path,
-        default=(DATA_DIR / "full_dataset2.json"),
-        help="Path to QA dataset JSON (default: data/full_dataset2.json)",
+        default=(DATA_DIR / "test_dataset.json"),
+        help="Path to QA dataset JSON (default: data/test_dataset.json)",
     )
     p_ans.add_argument(
         "--contracts",
         type=Path,
-        default=(DATA_DIR / "contracts2.json"),
-        help="Path to contracts JSON (default: data/contracts2.json)",
+        default=(DATA_DIR / "test_contracts.json"),
+        help="Path to contracts JSON (default: data/test_contracts.json)",
     )
     p_ans.add_argument(
         "--flags",
