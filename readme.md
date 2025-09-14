@@ -98,7 +98,7 @@ Minimal configuration is required for local runs. By default, artifacts are writ
 **Document Pipeline** — given a list of paper URLs:
 
 ```bash
-python app4.py document \
+python app.py document \
   --papers ./test_data/papers_3.lst \
   --working-dir runs \
   --model o4-mini --temperature 1.0 --retries 3
@@ -107,7 +107,7 @@ python app4.py document \
 **Answer & Evaluation Pipeline** — given a QA dataset and contracts:
 
 ```bash
-python app4.py answer \
+python app.py answer \
   --contracts ./data/contracts2.json \
   --dataset   ./data/full_dataset2.json \
   --flags RAW_TEXT \
@@ -233,7 +233,7 @@ You can pass a custom `--run-id` to name the experiment folder deterministically
 Import and extend the DAG builders from `app4.py`:
 
 ```python
-from app4 import get_document_pipeline_dag, get_answer_pipeline_dag
+from app import get_document_pipeline_dag, get_answer_pipeline_dag
 
 # Build a custom DAG and run it with your own runner/configuration
 ```
