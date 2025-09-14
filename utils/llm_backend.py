@@ -5,6 +5,7 @@ from typing import List, Dict, Any
 from openai import OpenAI
 
 from utils.common import ModelConfig
+from time import perf_counter_ns
 
 
 def coerce_blocks(raw: Any) -> List[Dict[str, Any]]:
@@ -23,12 +24,14 @@ async def call_openai_parse(
 
     for _ in range(max_retries):
         try:
+            start = perf_counter_ns()
             # Responses API (multi-modal)
             resp = client.chat.completions.create(
                 model=model,
                 temperature=temperature,
                 messages=messages,
             )
+            latency = (perf_counter_ns() - start) // 1_000_000  # ms
             # Extracting and printing the response content
             length = len(str(messages))
             print(f"prompt_tokens: {resp.usage.prompt_tokens}")
@@ -42,35 +45,6 @@ async def call_openai_parse(
             raw_json = m.group(0) if m else content
             data = json.loads(raw_json)
             return coerce_blocks(data)
-        except Exception as e:
-            last_err = e
-    raise RuntimeError(f"OpenAI parse failed for {last_err}")
-
-
-async def test_call_openai_parse(
-        client: OpenAI,
-        messages: List[Any],
-        config: ModelConfig,
-        max_retries: int = 1) -> str:
-    last_err = None
-
-    for _ in range(max_retries):
-        try:
-            # Responses API (multi-modal)
-            resp = client.chat.completions.create(
-                model=config.model,
-                temperature=config.temperature,
-                messages=messages,
-            )
-            # Extracting and printing the response content
-            length = len(str(messages))
-            print(f"prompt_tokens: {resp.usage.prompt_tokens}")
-            print(f"completion_tokens: {resp.usage.completion_tokens}")
-            print(f"input bytes: {length}")
-
-            content = resp.choices[0].message.content.strip()
-            #print(content)
-            return str(content).strip()
         except Exception as e:
             last_err = e
     raise RuntimeError(f"OpenAI parse failed for {last_err}")

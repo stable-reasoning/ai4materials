@@ -30,6 +30,7 @@ def get_type(data: Dict[str, Any], key: str) -> str:
 # TODO: add auto-injection of reference_header entry if not present - useful for multi-chapter books or conference vols
 # TODO: accurate extraction of figures and tables using ViLM models
 # TODO: link captions and figures
+# TODO: add llm metrics logging
 
 class DocumentProcessor:
     """

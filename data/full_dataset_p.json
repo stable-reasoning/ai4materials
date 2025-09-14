@@ -1,0 +1,1430 @@
+[
+  {
+    "question_id": "1-1",
+    "question_type": "counterfactual",
+    "question": "In a polycrystalline La2CoMnO6 perovskite at 15 K, a 6 T magnetic field produces an isotropic magnetostriction ΔL(H) = -5×10^{-4} along all crystallographic axes, rather than the anisotropic shrinkage observed originally. Would you still expect an inversion of the relative occupancy of the Co d_xz and d_yz t_2g orbitals under such isotropic compression? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "The inversion of d_xz and d_yz occupancy arises from anisotropic compression that lifts their energy degeneracy. An isotropic shrinkage would shift both orbitals equally, preserving their original occupancy order, so no inversion occurs.\n6 T field → isotropic lattice shrinkage\nisotropic shrinkage → equal energy shift of d_xz and d_yz\nequal energy shift → no inversion of occupancy"
+  },
+  {
+    "question_id": "1-2",
+    "question_type": "counterfactual",
+    "question": "In a polycrystalline La2CoMnO6 perovskite, the charge-transfer energy Δ_CT at 2 K is found to decrease only by approximately 0.5 eV compared to its room-temperature value, instead of the 1.1 eV decrease reported. Would this modified Δ_CT still satisfy U_dd > Δ_CT, maintaining its classification as a positive charge-transfer insulator? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "Even with only a 0.5 eV decrease, Δ_CT remains below U_dd, so the condition U_dd > Δ_CT still holds, preserving the positive charge-transfer insulator classification.\nRoom-temperature Δ_CT < U_dd\nCooling reduces Δ_CT by 0.5 eV\nResulting Δ_CT < U_dd → positive CT insulator"
+  },
+  {
+    "question_id": "1-3",
+    "question_type": "counterfactual",
+    "question": "In a La2CoMnO6-like system at 2 K under H = 6 T, suppose the metal–ligand hybridization parameter V(eg) decreases by 0.02 eV instead of increasing. Would multiplet simulations then predict an increased fraction of ligand-hole (d^{n+1}L) configurations in the Co ground state? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "A decrease in V(eg) reduces Co–O hybridization strength, lowering the weight of ligand-hole configurations rather than increasing it.\nH = 6 T would normally increase V(eg)\nInstead V(eg) decreases by 0.02 eV → reduced hybridization\nReduced hybridization → fewer ligand-hole states"
+  },
+  {
+    "question_id": "1-4",
+    "question_type": "counterfactual",
+    "question": "Consider a La2CoMnO6 sample with a doubled Co3+/Co2+ ratio compared to the reported composition, exhibiting ΔL(H) = -6×10^{-4} at 15 K under 6 T. Would this larger magnetostriction necessarily yield a stronger magnetodielectric effect than originally observed? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "uncertain",
+    "gold_trace": "The magnetodielectric effect depends on multiple factors (polaron hopping, microstructure, valence disorder). A larger magnetostriction alone does not guarantee a stronger MD response.\nHigher Co3+/Co2+ ratio → increased magnetostriction\nMD effect depends on additional mechanisms (polaron hopping, microstructure)\nMagnetostriction change alone is insufficient to predict MD strength"
+  },
+  {
+    "question_id": "1-5",
+    "question_type": "counterfactual",
+    "question": "In a polycrystalline La2CoMnO6 at 150 K under H = 3 T, assume that all Co/Mn–O bond lengths shrink equally by 0.01% (uniform octahedral compression). Would the originally reported anisotropic straightening of the Co–O–Mn bond angles still occur? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Uniform shrinkage of all bond lengths yields isotropic strain, so there is no preferential straightening in one direction and anisotropic angle change would not occur.\nUniform bond shrinkage → isotropic strain\nIsotropic strain → equal angle changes in all directions\nNo anisotropic straightening results"
+  },
+  {
+    "question_id": "1-6",
+    "question_type": "counterfactual",
+    "question": "In a La2CoMnO6 sample showing two ferromagnetic transitions at 250 K and 170 K instead of 230 K and 157 K, if magnetostriction is found to onset at the higher 170 K transition, would significant magnetostriction still be absent above 170 K? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "Magnetostriction only appears below the lower ferromagnetic ordering (here at 170 K). Above that temperature, even if a higher transition exists at 250 K, no significant magnetostriction is expected between 170 K and 250 K.\nFM ordering at 170 K → magnetostriction onset below 170 K\nAbove 170 K and below 250 K → no magnetostriction\nHence significant magnetostriction absent above 170 K"
+  },
+  {
+    "question_id": "1-7",
+    "question_type": "counterfactual",
+    "question": "In an LCMO-like perovskite, if the Co L3-edge multiplet feature C intensity increased by 10% under H = 6 T at 2 K (compared to H = 0) rather than the smaller change originally observed, would the DFT-projected DOS for the Co d_yz orbital necessarily exhibit a 10% increase in unoccupied state density? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "uncertain",
+    "gold_trace": "XAS intensity changes do not map linearly to DFT DOS values; other factors (matrix elements, polarization) affect the spectroscopic amplitude, so a 10% XAS change does not guarantee a 10% DOS change.\nFeature C XAS increase → suggests d_yz DOS change\nXAS and DOS mapping not one-to-one\nHence exact 10% DOS increase is uncertain"
+  },
+  {
+    "question_id": "1-8",
+    "question_type": "counterfactual",
+    "question": "Suppose that in La2CoMnO6 at 2 K, the O K-edge pre-peak spectral weight decreased by 5% under H = 6 T, instead of the observed increase. Would this still support that O 2p electrons mainly contribute to the H-induced population increase at Co sites? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "A decrease in the O K-edge pre-peak indicates reduced O→Co charge transfer, contradicting the idea that O 2p electrons are mainly driving the Co 3d population increase.\nO K-edge pre-peak decrease → less O→Co transfer\nReduced transfer → O 2p cannot account for Co population increase\nThus the contribution hypothesis fails"
+  },
+  {
+    "question_id": "1-9",
+    "question_type": "counterfactual",
+    "question": "If at room temperature (300 K) under H = 3 T a detectable unit cell volume shrinkage of -0.001% was measured (instead of negligible), would this contradict the reported behavior? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "The authors report negligible lattice shrinkage at room temperature. A measurable -0.001% change would contradict their claim of negligible effect.\nReported room-temperature shrinkage under 3 T → negligible\nMeasured -0.001% → non-negligible\nTherefore contradiction arises"
+  },
+  {
+    "question_id": "1-10",
+    "question_type": "counterfactual",
+    "question": "In DFT simulations of a disordered La2CoMnO6 using an 80-atom SQS, if application of H = 6 T at low temperature yielded an increased density of unoccupied Co e_g states near the Fermi level (instead of a decrease), would that be consistent with the experimentally observed multiplet XAS changes? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Multiplet XAS data show a net decrease in unoccupied e_g states under H. A DFT-predicted increase would contradict the spectroscopic observation.\nXAS multiplet analysis → decreased e_g unoccupied weight\nDFT hypothetically predicts increase → contradiction\nThus inconsistent"
+  },
+  {
+    "question_id": "1-11",
+    "question_type": "counterfactual",
+    "question": "Consider a La2CoMnO6-like perovskite at 2 K, if the Co 3d spin-orbit coupling ζ_{3d} increased by only 5% under H = 6 T, instead of the standard increase used in multiplet simulations. Would this small change significantly alter the predicted relative intensities of multiplet features B and C? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "uncertain",
+    "gold_trace": "Multiplet intensities are sensitive to multiple parameters; a 5% change in ζ_{3d} alone may have a minor or negligible effect, so the magnitude of spectral modulation is uncertain.\nζ_{3d} small increase → minor crystal field modification\nMinor field change → likely negligible effect on feature intensities\nTherefore significance is uncertain"
+  },
+  {
+    "question_id": "1-12",
+    "question_type": "counterfactual",
+    "question": "In an LCMO-like system at 2 K, if the core-hole potential U_{pd} increased by 0.5 eV under H = 6 T, leaving U_{dd} unchanged, would the difference U_{dd} - U_{pd} remain positive? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "Even with U_{pd} increased by 0.5 eV, U_{dd} remains larger than U_{pd}, so U_{dd} - U_{pd} stays positive.\nOriginal U_{dd} > U_{pd}\nU_{pd} increases by 0.5 eV → new U_{pd}\nU_{dd} still > new U_{pd} → difference positive"
+  },
+  {
+    "question_id": "1-13",
+    "question_type": "counterfactual",
+    "question": "If the Co–O–Mn apical bond angle straightening under H = 3 T at 150 K increased by 0.1° instead of the originally observed ~0.05°, and the equatorial change remained at ~0.05°, would the anisotropy between apical and equatorial angle changes double? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "An increase from 0.05° to 0.1° in apical change, against a constant 0.05° equatorial change, doubles the ratio (0.1/0.05 vs. 0.05/0.05), thus doubling the anisotropy.\nApical angle change → 0.1°\nEquatorial angle change → 0.05°\nAnisotropy ratio → 0.1/0.05 = 2× (originally 1×)"
+  },
+  {
+    "question_id": "1-14",
+    "question_type": "counterfactual",
+    "question": "Assume the monoclinic P2_1/n ordering occurs rather than the disordered Pnma structure in La2CoMnO6, with Co and Mn on distinct sites. If this structural ordering reduces the magnetic lattice shrinkage by 20% at 150 K under 3 T, would the qualitative conclusion that octahedral distortions control magnetostrictive anisotropy still hold? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "Even with reduced magnitude of overall shrinkage, the underlying mechanism—anisotropic octahedral distortions driving anisotropic magnetostriction—remains valid regardless of cation ordering.\nP2_1/n ordering → 20% less shrinkage\nOctahedral distortions still anisotropic\nAnisotropic distortions → anisotropic magnetostriction"
+  },
+  {
+    "question_id": "1-15",
+    "question_type": "counterfactual",
+    "question": "In a hypothetical DFT setup for La2CoMnO6, if the plane-wave cutoff energy were lowered from 500 eV to 300 eV, would you trust the computed trends in transition-metal–oxygen covalency under H = 6 T? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "uncertain",
+    "gold_trace": "Lowering the cutoff can compromise the accuracy of orbital overlaps and energy levels, making the reliability of subtle covalency trends under field uncertain.\nCutoff energy reduction → potential loss of basis-set completeness\nBasis-set issues → uncertain orbital overlap accuracy\nHence covalency trends uncertain"
+  },
+  {
+    "question_id": "1-16",
+    "question_type": "counterfactual",
+    "question": "Suppose the magnetic field ramp rate in the capacitive dilatometer was increased to 1 T/min (instead of 0.1 T/min) introducing a thermal lag of ±0.5 K. Would the measured ΔL(H) at 15 K under 6 T likely remain within ±10% of the originally reported value? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "uncertain",
+    "gold_trace": "Thermal lag can affect the sample temperature, altering strain measurements; whether the final ΔL stays within ±10% depends on the thermal coupling and measurement sensitivity, so it is uncertain.\nHigher ramp rate → thermal lag ±0.5 K\nThermal lag → changes in sample temperature\nTemperature change → uncertain ΔL accuracy"
+  },
+  {
+    "question_id": "1-17",
+    "question_type": "counterfactual",
+    "question": "If the sample’s pellet length L0 was doubled to 1 mm but the same capacitance changes were recorded in the dilatometer at 15 K and 6 T, would the computed relative length change ΔL(H) double? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "ΔL(H) is a relative change normalized by L0, so doubling L0 with identical capacitance changes yields the same ΔL(H), not double.\nΔL formula normalizes by L0\nDoubling L0 → same numerator/denominator ratio\nΔL unchanged"
+  },
+  {
+    "question_id": "1-18",
+    "question_type": "counterfactual",
+    "question": "Consider XAS measurements on La2CoMnO6 where linear polarizations were not averaged, leaving a residual dichroism of 2%. Would the extracted Co valence state proportions be significantly biased? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "uncertain",
+    "gold_trace": "A residual dichroism of 2% could introduce slight biases in relative peak intensities, but whether that materially affects valence state proportions depends on spectral noise and fitting sensitivity.\nResidual dichroism 2% → slight XAS line-shape distortion\nLine-shape distortion → potential bias in multiplet fitting\nMagnitude of bias → uncertain"
+  },
+  {
+    "question_id": "1-19",
+    "question_type": "counterfactual",
+    "question": "In DFT SQS simulations for La2CoMnO6 disorder, if only 60 atoms were used instead of 80, would the predicted qualitative DOS changes under H = 6 T likely remain the same? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "uncertain",
+    "gold_trace": "Reducing supercell size may introduce finite-size effects and alter disorder statistics, so qualitative DOS trends under field may or may not be preserved.\n60-atom supercell → reduced sampling of disorder\nFinite-size effects → possible DOS alterations\nQualitative trends → uncertain"
+  },
+  {
+    "question_id": "1-20",
+    "question_type": "counterfactual",
+    "question": "Suppose during multiplet simulations for Co2+ at 2 K, the crystal field splitting 10Dq was held constant rather than increased under H = 6 T. Would the simulated XAS spectra still reproduce the experimentally observed increase in feature D relative to features B/C? The answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Feature D’s relative increase is tied to an enhanced 10Dq under field. Holding 10Dq constant removes that effect, so the simulation would fail to reproduce the observed spectral change.\nConstant 10Dq → no additional e_g splitting\nNo splitting change → no feature D intensity increase\nSimulated spectra mismatch experiment"
+  },
+  {
+    "question_id": "2-1",
+    "question_type": "counterfactual",
+    "question": "In a pump–probe experiment on monolayer WSe2, suppose that immediately after optical excitation (at a femtosecond delay) the lattice temperature were to jump to about 800 K while maintaining an excitation density of roughly 2×10^19 cm^-3. Would thermal lattice expansion dominate the transient absorption response under these conditions?",
+    "gold_answer": "no",
+    "gold_trace": "On femtosecond timescales, thermal equilibration and lattice expansion are negligible, and Coulomb screening from excited carriers remains the dominant effect.\nfemtosecond delay -> negligible lattice expansion\nphotoexcited carriers -> Coulomb screening -> dominant TA contribution"
+  },
+  {
+    "question_id": "2-2",
+    "question_type": "counterfactual",
+    "question": "On a picosecond delay in monolayer WSe2, at an excitation density of about 2×10^19 cm^-3 and a lattice temperature near 800 K, would Coulomb screening contribute more to the transient absorption than thermal lattice expansion?",
+    "gold_answer": "no",
+    "gold_trace": "At picosecond delays, incoherent electron–ion collisions yield lattice expansion that dominates the red shift, whereas electronic screening plays a minor role.\npicosecond delay -> thermal expansion significant\nthermal expansion -> red shift -> dominant TA contribution"
+  },
+  {
+    "question_id": "2-3",
+    "question_type": "counterfactual",
+    "question": "If you simulate the femtosecond transient absorption of WSe2 at an excitation density around 2×10^19 cm^-3 using a non-equilibrium Bethe–Salpeter equation that includes Pauli blocking but deliberately omits excited-state screening, would the calculated blue shift match experimental observations?",
+    "gold_answer": "no",
+    "gold_trace": "Coulomb screening is the primary cause of the observed blue shift; omitting it prevents reproduction of the experimental shift.\nomit screening -> loss of Coulomb screening effect\nPauli blocking alone -> minor effect -> no blue shift"
+  },
+  {
+    "question_id": "2-4",
+    "question_type": "counterfactual",
+    "question": "In CsPbBr3 at a picosecond delay with an excitation density around 3×10^21 cm^-3, if instead of modeling lattice expansion at 350 K one assumes carriers remain at ambient 300 K without lattice expansion, would Pauli blocking become the dominant electronic effect in the transient absorption spectrum?",
+    "gold_answer": "no",
+    "gold_trace": "Even with no lattice expansion, Coulomb screening from photoexcited carriers still outweighs Pauli blocking at picosecond delays.\npicosecond delay -> Coulomb screening > Pauli blocking\nno thermal effect -> electronic TA still dominated by screening"
+  },
+  {
+    "question_id": "2-5",
+    "question_type": "counterfactual",
+    "question": "At a femtosecond delay in CsPbBr3 with an excitation density near 3×10^21 cm^-3, if the carrier distribution follows a Fermi–Dirac at 600 K instead of lower temperatures, would the transient absorption amplitude continue to increase significantly beyond its value at 500 K?",
+    "gold_answer": "no",
+    "gold_trace": "The TA response saturates around 500 K as carrier delocalization in k-space no longer increases screening significantly.\ncarrier temperature >500 K -> screening saturation\nsaturation -> no significant TA increase"
+  },
+  {
+    "question_id": "2-6",
+    "question_type": "counterfactual",
+    "question": "In CsPbBr3 at femtosecond delays with an excitation density below 1×10^20 cm^-3, would photoinduced Coulomb screening still be the primary contributor to the transient absorption signal?",
+    "gold_answer": "yes",
+    "gold_trace": "Coulomb screening dominates electronic effects at femtosecond delays across a wide density range, and Pauli blocking remains minor.\nfemtosecond delay -> Coulomb screening primary\nlow density -> screening still > blocking"
+  },
+  {
+    "question_id": "2-7",
+    "question_type": "counterfactual",
+    "question": "In anatase TiO2 at a picosecond delay with an excitation density around 2×10^19 cm^-3 and a lattice temperature of roughly 800 K, would lattice expansion still produce a positive transient absorption peak near 4.98 keV?",
+    "gold_answer": "yes",
+    "gold_trace": "Thermal expansion reduces the core-to-conduction gap, yielding a positive TA peak around 4.98 keV on the picosecond timescale.\nthermal expansion -> reduced core gap\nreduced gap -> positive TA feature near 4.98 keV"
+  },
+  {
+    "question_id": "2-8",
+    "question_type": "counterfactual",
+    "question": "On a picosecond delay in TiO2, if the excitation density is doubled from about 2×10^19 to roughly 4×10^19 cm^-3 at fixed temperature, would the negative feature near 4.984 keV in the TA spectrum switch to a positive feature?",
+    "gold_answer": "no",
+    "gold_trace": "Increasing density enhances Coulomb screening, which deepens the negative signal; it does not flip to positive.\ndoubling density -> increased screening\nincreased screening -> stronger negative feature"
+  },
+  {
+    "question_id": "2-9",
+    "question_type": "counterfactual",
+    "question": "At a femtosecond delay in anatase TiO2, if a pump polarized along the x-axis and another polarized along the z-axis both yield the same excited carrier density, would their transient absorption amplitudes be essentially identical?",
+    "gold_answer": "yes",
+    "gold_trace": "When the excited carrier density and k-space delocalization are the same, Coulomb screening—and thus TA amplitude—does not depend on polarization direction.\nsame carrier density -> same screening strength\nscreening strength -> TA amplitude"
+  },
+  {
+    "question_id": "2-10",
+    "question_type": "counterfactual",
+    "question": "In anatase TiO2 at femtosecond delays under equal pump fluence, if the wavelength is increased from 355 nm to 400 nm, would the resulting transient absorption amplitude decrease relative to the shorter-wavelength case?",
+    "gold_answer": "yes",
+    "gold_trace": "Longer pump wavelength populates a narrower energy range near band edges, reducing polarizability and thus Coulomb screening and TA amplitude.\nlonger wavelength -> narrower state population\nnarrower population -> reduced screening -> lower TA amplitude"
+  },
+  {
+    "question_id": "2-11",
+    "question_type": "counterfactual",
+    "question": "For any of the three materials studied (WSe2, CsPbBr3, TiO2), if one uses only real-time TDDFT to generate carrier distributions at picosecond delays without constrained DFT, would the thermal contribution to the transient absorption spectrum be captured?",
+    "gold_answer": "no",
+    "gold_trace": "RT-TDDFT describes non-thermal carrier dynamics on femtosecond scales; constrained DFT is required to model thermalized occupations and lattice expansion on picosecond timescales.\nRT-TDDFT -> non-thermal fs\ncDFT -> thermal occupations on ps"
+  },
+  {
+    "question_id": "2-12",
+    "question_type": "counterfactual",
+    "question": "If the non-equilibrium Bethe–Salpeter equation includes excited-state occupations only in the dipole matrix elements but retains ground-state screening, would it correctly separate Pauli blocking and Coulomb screening effects in the TA spectrum?",
+    "gold_answer": "no",
+    "gold_trace": "Without updating the screening with excited occupations, Coulomb screening changes cannot be captured, and the separation fails.\nground-state screening -> no photoinduced screening change\ndipole-only update -> includes Pauli blocking but misses screening"
+  },
+  {
+    "question_id": "2-13",
+    "question_type": "counterfactual",
+    "question": "If the equilibrium absorption spectrum of monolayer WSe2 is computed with a k-point grid half as dense as the original simulation, would the calculated spectrum still reproduce the experimental peak positions qualitatively?",
+    "gold_answer": "no",
+    "gold_trace": "A coarser k-point sampling reduces resolution of excitonic features and shifts peak positions, failing to match experiment.\nhalved k-grid -> poorer Brillouin-zone sampling\npoor sampling -> inaccurate exciton energies -> misaligned peaks"
+  },
+  {
+    "question_id": "2-14",
+    "question_type": "counterfactual",
+    "question": "In a non-equilibrium BSE simulation of any of these solids, if the screened Coulomb interaction is evaluated using ground-state occupations instead of photoexcited occupations, would the calculation correctly capture photoinduced Coulomb screening in the transient absorption?",
+    "gold_answer": "no",
+    "gold_trace": "Using ground-state occupations fixes the screening at equilibrium, so photoinduced reduction of electron-hole interaction is not modeled.\nground-state occupations -> equilibrium screening\nno screening update -> no photoinduced screening effect"
+  },
+  {
+    "question_id": "2-15",
+    "question_type": "counterfactual",
+    "question": "For CsPbBr3 at femtosecond delays with a fixed excitation density of approximately 8×10^16 cm^-3, if the carrier distribution follows a Fermi–Dirac at 200 K instead of 298 K, would the transient absorption amplitude be smaller?",
+    "gold_answer": "yes",
+    "gold_trace": "Lower carrier temperature localizes electrons and holes nearer to band extremes, reducing Coulomb screening and thus TA amplitude.\nlower temperature -> more localized carriers\nlocalization -> weaker screening -> smaller TA"
+  },
+  {
+    "question_id": "2-16",
+    "question_type": "counterfactual",
+    "question": "In CsPbBr3 at femtosecond delays, if one incorrectly applies lattice expansion at 350 K in the simulation, would the transient absorption spectrum display a red-shift component?",
+    "gold_answer": "no",
+    "gold_trace": "Thermal lattice expansion effects manifest only on picosecond timescales; at femtosecond delays they are not active.\nfemtosecond delay -> no thermal expansion effect\nno thermal expansion -> no red shift from lattice"
+  },
+  {
+    "question_id": "2-17",
+    "question_type": "counterfactual",
+    "question": "In anatase TiO2 at femtosecond delays and equal pump fluence, if the pump wavelength is shortened from 266 nm to 200 nm, would the transient absorption amplitude increase further compared to the 266 nm excitation?",
+    "gold_answer": "yes",
+    "gold_trace": "Shorter pump wavelength populates states farther from band edges over a broader energy range, raising polarizability and enhancing Coulomb screening and TA amplitude.\nshorter wavelength -> broader energy excitation\nbroader excitation -> increased screening -> higher TA amplitude"
+  },
+  {
+    "question_id": "2-18",
+    "question_type": "counterfactual",
+    "question": "If spin–orbit coupling were included in the ground-state calculation of WSe2 at the Se M4,5 edges, would the computed equilibrium absorption spectrum necessarily align better with experiment?",
+    "gold_answer": "uncertain",
+    "gold_trace": "While SOC can split and shift core-exciton features, the net impact on agreement with experiment is not determined by the given data.\nheavy atom -> SOC affects energy levels\neffect on spectral alignment -> not specified"
+  },
+  {
+    "question_id": "2-19",
+    "question_type": "counterfactual",
+    "question": "At an excitation density near 3×10^21 cm^-3 in CsPbBr3, would the blue shift of the exciton resonance exceed its equilibrium binding energy of roughly 360 meV?",
+    "gold_answer": "no",
+    "gold_trace": "Photoinduced screening reduces the binding energy from ~360 meV to ~90 meV, so the blue shift (~270 meV) remains below the initial binding energy.\nequilibrium binding ~360 meV\nscreening reduces binding to ~90 meV -> shift ~270 meV"
+  },
+  {
+    "question_id": "2-20",
+    "question_type": "counterfactual",
+    "question": "In anatase TiO2 at a fixed excitation density of about 1.8×10^19 cm^-3, if the carrier temperature is increased from 500 K to 700 K, would the transient absorption response amplitude significantly increase beyond its value at 500 K?",
+    "gold_answer": "no",
+    "gold_trace": "The TA response saturates around 500 K, so further increases in carrier temperature yield negligible additional enhancement.\ncarrier temperature above 500 K -> screening saturation\nsaturation -> no significant TA increase"
+  },
+  {
+    "question_id": "3-1",
+    "question_type": "counterfactual",
+    "question": "If the Hubbard parameter U_eff were increased from the baseline value of 3.0 eV to 4.0 eV, would the calculated band gap increase while both the in-plane exchange constant J_ab and the out-of-plane exchange constant J_c decrease relative to the baseline values?",
+    "gold_answer": "yes",
+    "gold_trace": "The text states that increasing U_eff leads to an increase in the band gap and a reduction in both J_ab and J_c.\nU_eff ↑ -> band gap ↑\nU_eff ↑ -> J_ab ↓ and J_c ↓"
+  },
+  {
+    "question_id": "3-2",
+    "question_type": "counterfactual",
+    "question": "If the Hubbard parameter U_eff were reduced from 3.0 eV to 2.0 eV, would the predicted Co^{2+} magnetic moment decrease and the band gap narrow compared to the baseline?",
+    "gold_answer": "yes",
+    "gold_trace": "The text reports that lowering U_eff reduces both the magnetic moment and the band gap.\nU_eff ↓ -> magnetic moment ↓\nU_eff ↓ -> band gap ↓"
+  },
+  {
+    "question_id": "3-3",
+    "question_type": "counterfactual",
+    "question": "If U_eff were increased from 3.0 eV to 5.0 eV, would both the in-plane exchange constant J_ab and the out-of-plane exchange constant J_c remain positive?",
+    "gold_answer": "yes",
+    "gold_trace": "The baseline values of J_ab and J_c are positive, and although increasing U_eff reduces them, the text does not indicate they change sign at moderate increases.\nBaseline J_ab, J_c > 0\nU_eff ↑ -> J_ab, J_c ↓ (but remain > 0)"
+  },
+  {
+    "question_id": "3-4",
+    "question_type": "counterfactual",
+    "question": "If angle-resolved photoemission (SR-ARPES) had an energy resolution of 30 meV, would it be able to resolve the predicted 20 meV spin splitting along the AZ¯A high-symmetry line?",
+    "gold_answer": "no",
+    "gold_trace": "A 30 meV resolution is coarser than the 20 meV splitting, so the splitting would be unresolvable.\nPredicted spin splitting ≈ 20 meV\nARPES resolution = 30 meV > splitting -> cannot resolve"
+  },
+  {
+    "question_id": "3-5",
+    "question_type": "counterfactual",
+    "question": "If the SR-ARPES energy resolution were improved to 10 meV, would it then be capable of resolving the 20 meV spin splitting?",
+    "gold_answer": "yes",
+    "gold_trace": "A 10 meV resolution is finer than the 20 meV splitting, so the splitting should be detectable.\nPredicted spin splitting ≈ 20 meV\nARPES resolution = 10 meV < splitting -> resolvable"
+  },
+  {
+    "question_id": "3-6",
+    "question_type": "counterfactual",
+    "question": "If one probes the band structure of the G-AFM phase on a k_x = 0.3 plane (in units of the reciprocal lattice coordinate), would the spin-up and spin-down bands remain degenerate?",
+    "gold_answer": "no",
+    "gold_trace": "Degeneracy is protected only on k_x = 0 and k_x = π/2 planes by the T{R2x} symmetry; at k_x = 0.3 it is not protected.\nT{R2x} symmetry protects k_x = 0, π/2 -> degeneracy\nk_x = 0.3 is not one of those planes -> splitting"
+  },
+  {
+    "question_id": "3-7",
+    "question_type": "counterfactual",
+    "question": "If hole doping lowers the Fermi level to –0.75 eV instead of –1.25 eV, would the Fermi-surface topology still necessarily exhibit the d-wave pattern predicted at –1.25 eV?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The d-wave topology is demonstrated only at –1.25 eV; behavior at –0.75 eV is not specified in the text.\nFS topology at –1.25 eV -> d-wave\nFS topology at –0.75 eV -> not reported"
+  },
+  {
+    "question_id": "3-8",
+    "question_type": "counterfactual",
+    "question": "If hole doping lowers the Fermi level to –1.25 eV, would the resulting Fermi surface exhibit anisotropic band splitting that is absent in the k_z=0 and k_x=0 planes but present in the k_y=0 plane, as predicted?",
+    "gold_answer": "yes",
+    "gold_trace": "At –1.25 eV doping, the text predicts a d-wave topology with splitting absent in k_z=0 and k_x=0 and present in k_y=0.\nDoping to –1.25 eV -> FS with d-wave topology\nSymmetry -> splitting absent at k_z=0, k_x=0; present at k_y=0"
+  },
+  {
+    "question_id": "3-9",
+    "question_type": "counterfactual",
+    "question": "If the in-plane optical conductivity shows peaks at approximately 3.1 eV and 4.3 eV, and the out-of-plane conductivity shows peaks at approximately 3.7 eV and 4.0 eV, does this pattern match the predicted inter-orbital transitions for the G-AFM configuration?",
+    "gold_answer": "yes",
+    "gold_trace": "G-AFM is predicted to have two in-plane peaks (α1≈3.1 eV, α2≈4.3 eV) and two c-axis peaks (β1≈3.7 eV, β2≈4.0 eV).\nG-AFM α1, α2 at ~3.1, 4.3 eV in ab-plane\nG-AFM β1, β2 at ~3.7, 4.0 eV along c-axis"
+  },
+  {
+    "question_id": "3-10",
+    "question_type": "counterfactual",
+    "question": "If the ab-plane optical conductivity exhibits peaks at ~3.1 eV and ~4.3 eV but the c-axis measurement shows no peaks above a noise floor of 0.05 (in the same units), is the magnetic structure likely to be G-AFM?",
+    "gold_answer": "no",
+    "gold_trace": "G-AFM predicts additional c-axis peaks (β1, β2), so their absence contradicts G-AFM.\nG-AFM requires β1, β2 peaks in c-axis\nNo c-axis peaks observed -> not G-AFM"
+  },
+  {
+    "question_id": "3-11",
+    "question_type": "counterfactual",
+    "question": "If the ab-plane optical conductivity peaks at ~1.6 eV and ~2.4 eV and the c-axis shows peaks at ~3.5 eV and ~4.0 eV, is this pattern consistent with the A-AFM configuration?",
+    "gold_answer": "yes",
+    "gold_trace": "A-AFM is predicted to have α1≈1.6 eV, α2≈2.4 eV in-plane, and β1≈3.5 eV, β2≈4.0 eV along c-axis.\nA-AFM α1, α2 at ~1.6, 2.4 eV in ab-plane\nA-AFM β1, β2 at ~3.5, 4.0 eV along c-axis"
+  },
+  {
+    "question_id": "3-12",
+    "question_type": "counterfactual",
+    "question": "If the ab-plane optical conductivity shows peaks at ~3.2 eV and ~4.1 eV and the c-axis shows peaks at ~1.7 eV and ~2.4 eV, does this optical signature indicate a C-AFM ordering?",
+    "gold_answer": "yes",
+    "gold_trace": "C-AFM is predicted to have α1≈3.2 eV, α2≈4.1 eV in-plane and β1≈1.7 eV, β2≈2.4 eV along c-axis.\nC-AFM α1, α2 at ~3.2, 4.1 eV in ab-plane\nC-AFM β1, β2 at ~1.7, 2.4 eV along c-axis"
+  },
+  {
+    "question_id": "3-13",
+    "question_type": "counterfactual",
+    "question": "If the P hat{T} symmetry were inadvertently preserved in NaCoF3, would the Berry curvature vanish identically in all directions, causing the anomalous Hall conductivity to be zero?",
+    "gold_answer": "yes",
+    "gold_trace": "The text states that preserved P hat{T} symmetry forces the Berry curvature to vanish, which makes AHC identically zero.\nP hat{T} preserved -> Ω^α(k) = 0 in all directions\nΩ = 0 -> AHC = 0"
+  },
+  {
+    "question_id": "3-14",
+    "question_type": "counterfactual",
+    "question": "If only the y-component of the Berry curvature (Ω^y_n(k)) is nonzero while Ω^x_n(k) and Ω^z_n(k) vanish, would one observe anomalous Hall, Nernst, and thermal Hall effects exclusively along the y-direction?",
+    "gold_answer": "yes",
+    "gold_trace": "Nonzero Ω^y induces transport only in the y-direction; other components vanish.\nΩ^y ≠ 0 -> y-direction transport\nΩ^x, Ω^z = 0 -> no x- or z-direction transport"
+  },
+  {
+    "question_id": "3-15",
+    "question_type": "counterfactual",
+    "question": "If a Kerr rotation angle of 0.05° is measured at its peak, would this value still lie well above typical P hat{T}-protected antiferromagnets and be considered a signature of altermagnetism?",
+    "gold_answer": "yes",
+    "gold_trace": "Typical P hat{T}-protected antiferromagnets show Kerr rotations ~0.001°, so 0.05° is ≈50× larger, consistent with altermagnetism.\nTypical PT-AFM Kerr ~0.001°\nMeasured 0.05° >> 0.001° -> altermagnetic signature"
+  },
+  {
+    "question_id": "3-16",
+    "question_type": "counterfactual",
+    "question": "If the Faraday rotation measured in transmission geometry is only 200 degrees/cm instead of the predicted ≈1100 degrees/cm, is this discrepancy sufficient to conclusively rule out altermagnetic behavior in NaCoF3?",
+    "gold_answer": "uncertain",
+    "gold_trace": "While the measured value is much lower than the prediction, experimental factors (thickness, sample quality) could account for the reduction, so one cannot definitively rule out altermagnetism.\nPredicted Faraday ≈1100 °/cm\nMeasured 200 °/cm << predicted -> could be sample-dependent"
+  },
+  {
+    "question_id": "3-17",
+    "question_type": "counterfactual",
+    "question": "If the lifetime broadening δ in the Kubo formula were set to zero, would the optical conductivity peaks become infinitely sharp delta functions?",
+    "gold_answer": "yes",
+    "gold_trace": "With δ→0, the denominator → (ω_mn^2−ω^2), so transitions yield delta-like peaks in the conductivity.\nδ = 0 -> no imaginary broadening term\nDenominator real -> delta-function peaks"
+  },
+  {
+    "question_id": "3-18",
+    "question_type": "counterfactual",
+    "question": "If U_eff were entirely removed (i.e., set to 0 eV), would the G-AFM configuration still necessarily remain the ground state according to the provided calculations?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The text reports G-AFM stability at U_eff ≥ 3 eV, but the U_eff = 0 eV case (pure GGA) is not discussed.\nReported ground state at U_eff = 3 eV -> G-AFM\nU_eff = 0 eV scenario not covered -> unknown"
+  },
+  {
+    "question_id": "3-19",
+    "question_type": "counterfactual",
+    "question": "If the small-angle assumption for the Kerr and Faraday formulas were violated, for example if θ_k reached 10°, would the simplified expressions still hold quantitatively?",
+    "gold_answer": "no",
+    "gold_trace": "The derivation assumes θ_k ≪ 1 rad; at 10° (~0.17 rad) the small-angle approximation breaks down.\nSmall-angle approximation requires θ_k << 1\nθ_k = 10° (~0.17 rad) not << 1 -> approximation invalid"
+  },
+  {
+    "question_id": "3-20",
+    "question_type": "counterfactual",
+    "question": "If the experimental temperature were raised to 300 K, introducing a Fermi-Dirac broadening of about 25 meV, would the sharp peaks around 4 eV in the anomalous Hall conductivity remain resolvable?",
+    "gold_answer": "yes",
+    "gold_trace": "Thermal broadening (~25 meV) is negligible compared to the 4 eV peak width, so the peaks stay distinct.\nThermal broadening ~25 meV at 300 K\nPeak energy scale ~4 eV >> broadening -> resolvable"
+  },
+  {
+    "question_id": "4-1",
+    "question_type": "counterfactual",
+    "question": "Achiral 4-fluorobenzylammonium perovskite (FBA)_2PbBr_4 shows an XRD-measured tilt-angle difference ΔD_tilt of 0°. If a new XRD measurement reports ΔD_tilt = 2° for this achiral compound, would it exhibit inversion symmetry-breaking comparable to that in the chiral (R/S-FMBA)_2PbBr_4, which shows ΔD_tilt ≈14°? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "A ΔD_tilt of 2° is far below the ~14° value associated with inversion symmetry-breaking in chiral FMBA, so the achiral FBA would not exhibit similar symmetry-breaking.\nachiral FBA ΔD_tilt=0°\nnew measured ΔD_tilt=2°\ncompare to 14° threshold\nno comparable symmetry-breaking"
+  },
+  {
+    "question_id": "4-2",
+    "question_type": "counterfactual",
+    "question": "For the chiral perovskite (R)-FMBA, the XRD-measured out-of-plane distortion D_out is 37.7°. If a DFT calculation without van der Waals corrections yields D_out = 17.7°, would this value lie within ±5° of the experimental D_out? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "The difference between 17.7° and 37.7° is 20°, which exceeds the ±5° tolerance, so it is not within ±5° of experiment.\nXRD D_out=37.7°\nDFT no-vdW D_out=17.7°\ndifference=20°\n20°>5°\nno"
+  },
+  {
+    "question_id": "4-3",
+    "question_type": "counterfactual",
+    "question": "Literature reports maximum tilt-angle differences ΔD_tilt of up to 15° in certain chiral perovskites. If a new chiral perovskite shows ΔD_tilt = 16°, would it exceed the maximum previously reported? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "16° exceeds the previously reported maximum of 15° for ΔD_tilt in chiral perovskites.\nliterature max ΔD_tilt=15°\nnew ΔD_tilt=16°\n16°>15°\nexceeds max"
+  },
+  {
+    "question_id": "4-4",
+    "question_type": "counterfactual",
+    "question": "The DFT-RPA computed optical absorption onset wavelength for FBA is 475 nm, while experiment shows a prominent peak at 381 nm. If a DFT-RPA calculation for a similar achiral perovskite yields an onset at 400 nm, would you expect the experimental onset to be at a shorter wavelength than 400 nm? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "DFT-RPA consistently overestimates wavelength (underestimates energy), so the experimental onset should appear at a shorter wavelength than the DFT-RPA predicted 400 nm.\nDFT-RPA overestimates wavelength\nDFT onset=400 nm\nexperimental peaks appear at shorter wavelengths\nyes"
+  },
+  {
+    "question_id": "4-5",
+    "question_type": "counterfactual",
+    "question": "PDOS analysis shows Br p-orbitals dominate the valence band edge in both FBA and FMBA perovskites. If a modified perovskite shows Pb s-orbital contributing 60% at the valence band maximum, would this follow the observed orbital contribution trend? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "The established PDOS trend is for Br p-orbitals to dominate at the valence band edge; a 60% Pb s contribution contradicts this.\nobserved valence PDOS: Br p > others\nmodified shows Pb s =60%\ncontradicts trend\nno"
+  },
+  {
+    "question_id": "4-6",
+    "question_type": "counterfactual",
+    "question": "Computed direct bandgap energies are 2.54 eV for FBA and 2.65 eV for FMBA perovskites. If a new variant exhibits a bandgap of 2.60 eV, would it lie between the reported FBA and FMBA bandgaps? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "2.60 eV falls between 2.54 eV and 2.65 eV, so it lies within the reported range.\nFBA bandgap=2.54 eV\nFMBA bandgap=2.65 eV\nnew bandgap=2.60 eV\n2.54<2.60<2.65\nyes"
+  },
+  {
+    "question_id": "4-7",
+    "question_type": "counterfactual",
+    "question": "DFT-relaxed enantiomeric structures differ by a maximum atomic displacement of ~0.02 Å. If a new measurement shows a displacement of 0.05 Å, would this exceed typical noise levels and suggest a true structural difference? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "0.05 Å exceeds the ~0.02 Å noise threshold, indicating a structural difference beyond irreproducibility.\nnoise threshold=0.02 Å\nnew displacement=0.05 Å\n0.05>0.02\nsuggest structural difference\nyes"
+  },
+  {
+    "question_id": "4-8",
+    "question_type": "counterfactual",
+    "question": "For RPA optical spectra of FMBA, 400 occupied states are included. If a new calculation includes only 150 occupied states for FMBA, would this match the original computational setup? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "The original RPA calculation required 400 occupied states; using only 150 does not match.\noriginal occupied states=400\nnew occupied states=150\n150<400\ndoes not match\nno"
+  },
+  {
+    "question_id": "4-9",
+    "question_type": "counterfactual",
+    "question": "A kinetic energy cutoff of 1225 eV is used for wavefunction convergence thresholds (forces <10^-4 Ry/bohr). If the cutoff is reduced by 20% to ~980 eV, would the original convergence thresholds likely still be met? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Reducing the cutoff by 20% from 1225 eV to ~980 eV would likely fail to meet the stringent convergence thresholds set for forces.\ncutoff=1225 eV ensures convergence\nreduced cutoff=980 eV\nlikely fails thresholds\nno"
+  },
+  {
+    "question_id": "4-10",
+    "question_type": "counterfactual",
+    "question": "DFT calculations with Grimme D2 vdW corrections yielded benzene ring rotations closer to XRD than calculations without vdW, with an original rotation discrepancy of ~5°. If an alternate dispersion correction yields a 10° discrepancy, would it be more accurate than the D2 correction? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "A 10° discrepancy is larger than the 5° discrepancy achieved with the original vdW correction, so it is less accurate.\noriginal correction discrepancy=5°\nalternate yields=10°\n10°>5°\nless accurate\nno"
+  },
+  {
+    "question_id": "4-11",
+    "question_type": "counterfactual",
+    "question": "Literature correlates a tilt-angle difference ΔD_in >20° with significant Rashba spin splitting in chiral perovskites. If a chiral perovskite shows ΔD_in = 25°, would you predict large spin splittings? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "Since 25° exceeds the 20° threshold associated with Rashba spin splitting, large spin splittings are expected.\ncorrelation ΔD_in>20°\nnew ΔD_in=25°\n25>20\npredict spin splitting large\nyes"
+  },
+  {
+    "question_id": "4-12",
+    "question_type": "counterfactual",
+    "question": "Computed polarized optical spectra show z-polarized absorption only below ~350 nm for FMBA. If a new calculation shows significant z-polarized absorption at 400 nm, would this contradict the reported polarization trend? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "400 nm is above the reported 350 nm limit for z-polarized absorption, contradicting the trend.\nreported z absorption <350 nm\nnew z absorption=400 nm\n400>350\ncontradicts trend\nyes"
+  },
+  {
+    "question_id": "4-13",
+    "question_type": "counterfactual",
+    "question": "Experimentally, FMBA displays a prominent absorption peak at 381 nm. If a modified FMBA sample shows its prominent peak at 360 nm, would this be characterized as a blue shift relative to the original sample? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "360 nm is shorter than 381 nm, indicating a blue shift.\noriginal peak=381 nm\nnew peak=360 nm\n360<381\nblue shift\nyes"
+  },
+  {
+    "question_id": "4-14",
+    "question_type": "counterfactual",
+    "question": "The DFT-RPA absorption onset is at 475 nm, neglecting excitonic effects. If a calculation including excitonic corrections yields an onset at 350 nm, would this wavelength be shorter than the original computed onset? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "350 nm is shorter than the original 475 nm onset, so it is indeed a shorter wavelength.\noriginal onset=475 nm\nexcitonic onset=350 nm\n350<475\nshorter\nyes"
+  },
+  {
+    "question_id": "4-15",
+    "question_type": "counterfactual",
+    "question": "In FMBA, the y-polarized absorption intensity at onset is much higher than x-polarized. If a variant shows equal x and y intensities at the onset, would this align with FMBA behavior? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "FMBA exhibits a strong anisotropy (y >> x) at onset, so equal intensities would not align with that behavior.\nFMBA y >> x\nvariant x=y\ncontradicts\nno"
+  },
+  {
+    "question_id": "4-16",
+    "question_type": "counterfactual",
+    "question": "Both FBA and FMBA exhibit direct bandgaps at the Γ point. If a new perovskite has its valence band maximum at Γ but conduction band minimum at M, would it be classified as having an indirect bandgap? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "If the valence band maximum and conduction band minimum occur at different k-points (Γ vs M), the bandgap is indirect.\nVB max=Γ\nCB min=M\nk-points differ\nindirect bandgap\nyes"
+  },
+  {
+    "question_id": "4-17",
+    "question_type": "counterfactual",
+    "question": "The Python code computes D_in using both full 3D projection and simplified 2D projection, which may differ if layer corrugation is significant. If these methods yield D_in values differing by only 1° for FMBA, would the difference be considered negligible? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "A difference of 1° between projection methods is small and would be considered negligible for most analyses.\nmethod1 D_in\nmethod2 D_in\ndifference=1°\n1° small\nnegligible\nyes"
+  },
+  {
+    "question_id": "4-18",
+    "question_type": "counterfactual",
+    "question": "The RPA optical absorption spectra were computed with a 9×9×3 k-point grid. If a 6×6×3 grid produces spectra that agree within 0.1 eV up to 500 nm, would the 6×6×3 grid be considered sufficiently dense? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "Agreement within 0.1 eV indicates the coarser 6×6×3 grid is sufficiently dense for low-energy spectra.\noriginal k-grid=9×9×3\nnew grid=6×6×3\nspectral difference ≤0.1 eV\ndense enough\nyes"
+  },
+  {
+    "question_id": "4-19",
+    "question_type": "counterfactual",
+    "question": "Omitting vdW corrections reportedly causes significant changes in angular distortion metrics like D_out. If a DFT calculation without vdW corrections shows D_out differing by only 1° from the vdW-included value, would this be considered a significant deviation as described? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "A 1° difference is small and would not qualify as the significant deviation reported when omitting vdW corrections.\nexpected significant change\nobserved change=1°\n1° small\nnot significant\nno"
+  },
+  {
+    "question_id": "4-20",
+    "question_type": "counterfactual",
+    "question": "The RPA absorption spectra included 30 unoccupied states. If a recalculation uses 50 unoccupied states and shows no change in the low-energy onset below 500 nm, would this indicate the original number of unoccupied states was sufficient? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "If increasing from 30 to 50 unoccupied states does not alter the low-energy onset, the original 30 states were sufficient.\noriginal unocc=30\nnew unocc=50\nonset unchanged\n30 sufficient\nyes"
+  },
+  {
+    "question_id": "5-1",
+    "question_type": "counterfactual",
+    "question": "Assuming an initial solute volume fraction φ₀ = 0.35 and a seed-to-film-height ratio r₀/h₀ = 0.10, for a process with vₑ/v_g = 3.0 and L/h₀ = 0.80, does the model predict a perfectly flat, pinhole-free film of rectangular crystals? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Compute the fast-evaporation threshold: (1−φ₀)/(φ₀−r₀/h₀) = 0.65/0.25 = 2.6. Since vₑ/v_g = 3.0 > 2.6, evaporation ends before crystals reach the surface (E→T→G). Then check L/h₀ > 2φ₀ → 0.80 > 0.70, so impingement occurs after crystals touch (ETIG pathway), yielding a flat, pinhole-free morphology.\nvₑ/v_g (3.0) > threshold (2.6) → ETG region\nL/h₀ (0.80) > 2φ₀ (0.70) → ETIG pathway\nETIG → flat, pinhole-free film"
+  },
+  {
+    "question_id": "5-2",
+    "question_type": "counterfactual",
+    "question": "With φ₀ = 0.20, r₀/h₀ = 0.10, vₑ/v_g = 4.0 and L/h₀ = 0.30, does crystal impingement (I) occur before evaporation ends (E)? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Compute impingement-before-evaporation threshold: (1−φ₀)/(L/(2h₀)−r₀/h₀) = 0.80/(0.15−0.10) = 0.80/0.05 = 16. Since vₑ/v_g = 4.0 < 16, impingement occurs before evaporation terminates (I→E).\nthreshold_I_before_E = 16\nvₑ/v_g (4.0) < 16 → I before E"
+  },
+  {
+    "question_id": "5-3",
+    "question_type": "counterfactual",
+    "question": "Given φ₀ = 0.30, r₀/h₀ = 0.10, a low drying-to-growth ratio vₑ/v_g = 0.20 and spacing L/h₀ = 3.00, does the model predict pinholes in the final film? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Slow evaporation (vₑ/v_g < (1−φ₀)/(φ₀−r₀/h₀)=0.70/0.20=3.5) and large spacing (L/h₀ = 3.00 > 8φ₀/π ≈ 0.764) satisfy GTE pathway conditions, which yields pinholes.\nvₑ/v_g (0.20) < 3.5 → slow-evaporation region\nL/h₀ (3.00) > 8φ₀/π (≈0.764) → no impingement (GTE) → pinholes"
+  },
+  {
+    "question_id": "5-4",
+    "question_type": "counterfactual",
+    "question": "If φ₀ = 0.30, r₀/h₀ = 0.10, with vₑ/v_g = 0.20 and L/h₀ = 0.50, does the model predict a pinhole-free film? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Slow evaporation (0.20 < 3.5) and L/h₀ = 0.50 < 8φ₀/π ≈ 0.764 lead to impinged crystals (IGTE pathway no.5), which is pinhole-free.\nvₑ/v_g (0.20) < 3.5 → slow-evaporation region\nL/h₀ (0.50) < 0.764 → impingement before surface contact → IGTE\nIGTE → pinhole-free film"
+  },
+  {
+    "question_id": "5-5",
+    "question_type": "counterfactual",
+    "question": "For φ₀ = 0.25, r₀/h₀ = 0.10, vₑ/v_g = 1.0 and L/h₀ = 0.40, do crystals reach the film surface (event T) before solvent evaporation ends (event E)? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Compute time to contact t_T = (1−0.10)/(1+1)·h₀/v_g = 0.45 h₀/v_g; minimal evaporation time t_s = (h₀−h_f)/vₑ = (1−0.25)h₀/1 = 0.75 h₀. Since 0.45 < 0.75, T occurs before E.\nt_T (0.45) < t_s (0.75) → T before E"
+  },
+  {
+    "question_id": "5-6",
+    "question_type": "counterfactual",
+    "question": "With φ₀ = 0.20, r₀/h₀ = 0.10, is the boundary between the fast evaporation region and other sequences independent of L/h₀? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "The fast-evaporation boundary is vₑ/v_g > (1−φ₀)/(φ₀−r₀/h₀), which contains no L/h₀ term, so it is horizontal in the (L/h₀, vₑ/v_g) map and independent of L/h₀.\nEquation for fast region: vₑ/v_g > (1−φ₀)/(φ₀−r₀/h₀)\nL/h₀ does not appear → independent"
+  },
+  {
+    "question_id": "5-7",
+    "question_type": "counterfactual",
+    "question": "If the initial volume fraction φ₀ increases from 0.25 to 0.30 at fixed r₀/h₀ = 0.10, does the threshold for fast evaporation (vₑ/v_g) required to get a flat film shift to a lower value? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Fast-evaporation threshold = (1−φ₀)/(φ₀−r₀/h₀). Increasing φ₀ reduces numerator and increases denominator, so the ratio decreases, shifting the threshold downward.\nthreshold1 = (1−φ₀)/(φ₀−r₀/h₀)\n↑φ₀ → ↓(1−φ₀) & ↑(φ₀−r₀/h₀) → ↓threshold1"
+  },
+  {
+    "question_id": "5-8",
+    "question_type": "counterfactual",
+    "question": "For φ₀ = 0.40 and r₀/h₀ = 0.10, at vₑ/v_g = 2.0 and L/h₀ = 0.75, does the model predict pinhole-free flat crystals? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Threshold = (1−0.40)/(0.40−0.10) = 0.60/0.30 = 2.0. vₑ/v_g = 2.0 equals threshold, so evaporation ends at same time as crystal-surface contact but still in fast region. Also L/h₀ = 0.75 > 2φ₀ = 0.80? Actually 0.75 < 0.80, but EITG (no impingement order change) still produces flat, pinhole-free film by summary of sequences 1–3.\nvₑ/v_g (2.0) = threshold (2.0) → borderline fast region\nL/h₀ (0.75) slightly < 0.80 → EITG pathway\nEITG → flat, pinhole-free film"
+  },
+  {
+    "question_id": "5-9",
+    "question_type": "counterfactual",
+    "question": "For φ₀ = 0.25, r₀/h₀ = 0.10, vₑ/v_g = 0.50 and L/h₀ = 0.40, does impingement occur before crystals reach the film surface? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Compute boundary: vₑ/v_g < (2−L/h₀)/(L/h₀−2r₀/h₀) = (2−0.40)/(0.40−0.20)=1.60/0.20=8. Since 0.50<8, impingement occurs before surface contact (I before T).\nthreshold_IT = 8\nvₑ/v_g (0.50) < 8 → I before T"
+  },
+  {
+    "question_id": "5-10",
+    "question_type": "counterfactual",
+    "question": "Under φ₀ = 0.25 and r₀/h₀ = 0.15 with vₑ/v_g = 3.0 and L/h₀ = 0.60, does the model predict a perfectly flat film? Answer yes or no.",
+    "gold_answer": "no",
+    "gold_trace": "Threshold = (1−0.25)/(0.25−0.15) = 0.75/0.10 = 7.5. vₑ/v_g = 3.0 < 7.5, so it is not in the fast-evaporation flat region.\nthreshold_fast = 7.5\nvₑ/v_g (3.0) < 7.5 → not flat region"
+  },
+  {
+    "question_id": "5-11",
+    "question_type": "counterfactual",
+    "question": "With φ₀ = 0.25 and r₀/h₀ = 0.05, if we set vₑ/v_g = 4.0 and L/h₀ = 0.80, is the film predicted to be perfectly flat? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Threshold = (1−0.25)/(0.25−0.05) = 0.75/0.20 = 3.75. vₑ/v_g = 4.0 > 3.75, so in fast region. L/h₀ = 0.80 > 2φ₀ = 0.50 yields ETIG flat pathway.\nthreshold_fast = 3.75\nvₑ/v_g (4.0) > 3.75 → fast region\nL/h₀ (0.80) > 0.50 → ETIG pathway"
+  },
+  {
+    "question_id": "5-12",
+    "question_type": "counterfactual",
+    "question": "If φ₀ = 0.25 and r₀/h₀ = 0.05 with vₑ/v_g = 3.0 and L/h₀ = 0.60, does the model predict a perfectly flat film? Answer yes or no.",
+    "gold_answer": "no",
+    "gold_trace": "Threshold = (1−0.25)/(0.25−0.05)=3.75. vₑ/v_g = 3.0 < 3.75, so it is not in the fast-evaporation flat region.\nthreshold_fast = 3.75\nvₑ/v_g (3.0) < 3.75 → not flat region"
+  },
+  {
+    "question_id": "5-13",
+    "question_type": "counterfactual",
+    "question": "Given φ₀ = 0.30, r₀/h₀ = 0.10 and very low drying ratio vₑ/v_g = 0.10 with L/h₀ = 0.50, does the model predict trenches between crystal domes but no pinholes? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Low vₑ/v_g places us in slow-evaporation, low-spacing region (ITGE or TIGE), which yields trenches between domes but full coverage (no pinholes).\nvₑ/v_g (0.10) < slow-evap threshold\nL/h₀ (0.50) < 8φ₀/π (≈0.764) → trench morphology"
+  },
+  {
+    "question_id": "5-14",
+    "question_type": "counterfactual",
+    "question": "For φ₀ = 0.30, r₀/h₀ = 0.10, at vₑ/v_g = 0.10 and L/h₀ = 0.90, does the model predict pinholes? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Very slow evaporation and L/h₀ = 0.90 > 8φ₀/π ≈ 0.764 satisfies GTE pathway, leading to pinholes.\nvₑ/v_g (0.10) < 3.5\nL/h₀ (0.90) > 0.764 → GTE pinhole region"
+  },
+  {
+    "question_id": "5-15",
+    "question_type": "counterfactual",
+    "question": "If φ₀ = 0.30 and r₀/h₀ = 0.10, increasing φ₀ to 0.35 at constant vₑ/v_g and L/h₀, does the fast-evaporation threshold decrease? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Threshold = (1−φ₀)/(φ₀−r₀/h₀). Increasing φ₀ lowers numerator and increases denominator, so threshold falls.\nthreshold = (1−φ₀)/(φ₀−r₀/h₀)\n↑φ₀ → ↓threshold"
+  },
+  {
+    "question_id": "5-16",
+    "question_type": "counterfactual",
+    "question": "Under φ₀ = 0.40, r₀/h₀ = 0.10, with vₑ/v_g = 2.0 and L/h₀ = 0.70, would the film be perfectly flat? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Threshold = 0.60/0.30 = 2.0. Here vₑ/v_g = 2.0 = threshold → fast-evaporation region. All fast sequences (1-3) produce flat, pinhole-free films regardless of exact L/h₀ in moderate range.\nvₑ/v_g = threshold (2.0)\nfast region grouping → flat film"
+  },
+  {
+    "question_id": "5-17",
+    "question_type": "counterfactual",
+    "question": "If φ₀ = 0.30 and r₀/h₀ = 0.10 at very high vₑ/v_g = 10.0 and any L/h₀, does evaporation always end before crystal growth? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "For vₑ/v_g > (1−φ₀)/(φ₀−r₀/h₀)=0.70/0.20=3.5, evaporation ends before crystals reach the surface or growth stops. At 10 > 3.5, E occurs first, regardless of L/h₀.\nvₑ/v_g (10.0) > 3.5 → E first"
+  },
+  {
+    "question_id": "5-18",
+    "question_type": "counterfactual",
+    "question": "With φ₀ = 0.30, r₀/h₀ = 0.10, does the formula for the slow-evaporation pinhole boundary L/h₀ > 8φ₀/π depend on vₑ/v_g? Answer yes or no.",
+    "gold_answer": "no",
+    "gold_trace": "The pinhole boundary L/h₀ > 8φ₀/π is derived purely from mass balance, independent of vₑ/v_g. It defines the spacing above which impingement fails.\npinhole boundary = 8φ₀/π\nno vₑ/v_g term → no dependence"
+  },
+  {
+    "question_id": "5-19",
+    "question_type": "counterfactual",
+    "question": "If φ₀ = 0.20, r₀/h₀ = 0.10, and you double the initial crystal size to r₀/h₀ = 0.20 at fixed vₑ/v_g and L/h₀, does the fast-evaporation threshold (1−φ₀)/(φ₀−r₀/h₀) increase or decrease? Answer increase or decrease.",
+    "gold_answer": "increase",
+    "gold_trace": "Threshold = (1−φ₀)/(φ₀−r₀/h₀). Increasing r₀/h₀ reduces denominator, thus the ratio increases.\nthreshold = (1−φ₀)/(φ₀−r₀/h₀)\n↑r₀/h₀ → ↓(φ₀−r₀/h₀) → ↑threshold"
+  },
+  {
+    "question_id": "5-20",
+    "question_type": "counterfactual",
+    "question": "For φ₀ = 0.25 and r₀/h₀ = 0.10, altering the initial film height h₀ alone shifts the map horizontally. Does increasing h₀ shift the L/h₀ value of a fixed L to the left? Answer yes or no.",
+    "gold_answer": "yes",
+    "gold_trace": "Normalized spacing L/h₀ decreases when h₀ increases at fixed L, so map point moves left.\nL/h₀ = constant_L / h₀\n↑h₀ → ↓L/h₀ → left shift"
+  },
+  {
+    "question_id": "6-1",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: Suppose during APTMS vacuum deposition on FA₀.₇₈Cs₀.₂₂Pb(I₀.₈₅Br₀.₁₅)₃ films, a strong non‐nucleophilic base (DBU) at similar concentration to that used in the NMR experiments is introduced into the vapor phase at room temperature and gauge pressure of –25 in. of Hg, thereby enabling complete conversion of APTMS and FA⁺ to its cyclic formamidine–silicon adduct. Under a 90 s deposition time, would the ToF‐SIMS depth profile of silicon for APTMS now exhibit a shallower penetration (i.e., more surface‐confined profile) similar to that observed for AEAPTMS-treated films at the same deposition time?",
+    "gold_answer": "yes",
+    "gold_trace": "DBU drives APTMS→cyclic adduct formation, yielding a bulkier species that restricts Si penetration similarly to AEAPTMS.\nDBU presence → complete APTMS+FA⁺ reaction\ncomplete reaction → cyclic formamidine–Si adduct\nbulky adduct → limited penetration\nlimited penetration → shallow Si depth profile"
+  },
+  {
+    "question_id": "6-2",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: If the solution‐phase reaction between AEAPTMS and FAI is performed in DMSO-d₆ at double the concentration (0.08 M instead of 0.04 M) under otherwise identical mixing conditions at room temperature, would the cyclization to 1‐(3‐(trimethoxysilyl)propyl)‐4,5‐dihydro‐1H‐imidazol‐3‐ium still be essentially complete within ca. 5 min?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Reaction kinetics often depend on concentration, but the paper gives no rate law, so completion time at 0.08 M is indeterminate.\nkinetics depend on collision frequency\nconcentration doubling → altered collision rate\nno data on rate vs. concentration → uncertainty"
+  },
+  {
+    "question_id": "6-3",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: Based on the trend that AEAPTMS treatments extend TRPL lifetimes with increasing deposition times up to 360 s, if the deposition time is extended further to 900 s under the same room‐temperature vacuum deposition conditions (∼–25 in. Hg), would the TRPL lifetime of AEAPTMS-passivated FA₀.₇₈Cs₀.₂₂Pb(I₀.₈₅Br₀.₁₅)₃ films exceed that observed at 360 s?",
+    "gold_answer": "yes",
+    "gold_trace": "AEAPTMS shows monotonic TRPL lifetime increase up to 360 s with no observed plateau; extending to 900 s should further increase lifetime.\nAEAPTMS deposition ↑ time → TRPL lifetime ↑\nno exception reported for AEAPTMS at 360 s\ntherefore, at 900 s, lifetime > lifetime at 360 s"
+  },
+  {
+    "question_id": "6-4",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: APTMS treatments generally increase TRPL lifetimes with longer deposition times except at 360 s where no further gain is observed. If the APTMS deposition time is set to 180 s (midway between 90 s and 360 s) under identical vacuum conditions, would you expect an increased TRPL lifetime relative to the 90 s APTMS treatment?",
+    "gold_answer": "yes",
+    "gold_trace": "The only exception reported is at 360 s; thus at 180 s (<360 s), the lifetime should continue to increase over 90 s.\nincreasing APTMS time up to 360 s → TRPL lifetime ↑\n360 s is the first exception\n180 s < 360 s → lifetime > 90 s case"
+  },
+  {
+    "question_id": "6-5",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: If the vacuum‐deposition gauge pressure is lowered further from –25 in. of Hg to –50 in. of Hg at room temperature for AEAPTMS passivation, would you expect the processing window (range of deposition times yielding improved device performance) to widen compared to the –25 in. of Hg case?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The effect of deeper vacuum on deposition rate and film thickness is not quantified in the paper, making its impact on processing window indeterminate.\npressure ↓ → deposition rate ↑?\nthicker film → potential shift in optimal time\nno data on pressure effect on window → uncertainty"
+  },
+  {
+    "question_id": "6-6",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: If the deposition of APTMS and AEAPTMS is performed at 75 °C instead of room temperature but at the same gauge pressure (–25 in. of Hg), would AEAPTMS still exhibit a wider processing window than APTMS?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Temperature can affect deposition kinetics and reactivity; the text only reports room‐temperature results, so we cannot predict the window change.\ntemperature ↑ → reaction/deposition kinetics change\nunknown impact on passivation vs. damage trade‐off\ntext lacks high-temperature data → uncertain"
+  },
+  {
+    "question_id": "6-7",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: If APTMS were functionalized to contain two primary amine groups (instead of one) but no neighboring secondary amine—so it cannot form the imidazolium ring like AEAPTMS—would you expect it to react completely with FA⁺ in solution under the NMR conditions described (0.04 M in DMSO-d₆) after 5 min?",
+    "gold_answer": "no",
+    "gold_trace": "Ring formation requires a neighboring secondary amine; without it, cyclization is unfavorable and reaction remains incomplete.\nno secondary amine → no 5-membered ring\nno ring → reaction stalls\nthus incomplete reaction after 5 min"
+  },
+  {
+    "question_id": "6-8",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: If the FA⁺ fraction in the perovskite composition were reduced from 0.78 to 0.70 (i.e., FA₀.₇₀Cs₀.₃₀Pb(I₀.₈₅Br₀.₁₅)₃) under otherwise identical passivation conditions, would you expect the ToF-SIMS signal decrease of FA⁺ (m/z = 45.05) upon AEAPTMS deposition to be proportionally smaller?",
+    "gold_answer": "yes",
+    "gold_trace": "Lower FA⁺ content provides fewer sites for AEAPTMS reaction, so the absolute decrease in FA⁺ signal should be smaller.\nFA⁺ fraction ↓ → fewer reactable cations\nAEAPTMS reaction produces imidazolium\nfewer reactable sites → smaller FA⁺ signal drop"
+  },
+  {
+    "question_id": "6-9",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: The paper reports a perovskite bandgap of ~1.66 eV. If instead the bandgap were engineered to 1.75 eV under identical passivation with APTMS at 30 s, would you expect the observed correlation between increased TRPL lifetime and open-circuit voltage (V_OC) improvements to hold proportionally?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Bandgap affects V_OC independently of lifetime; the text does not provide a quantitative lifetime–V_OC relation across bandgaps.\nbandgap ↑ → V_OC baseline shifts\nTRPL lifetime ↔ V_OC correlation may change\nno cross-bandgap data → uncertainty"
+  },
+  {
+    "question_id": "6-10",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: The UV–Vis spectra show a small decline in extinction with increasing deposition time for both amino-silanes. If both APTMS and AEAPTMS are deposited for only 30 s under –25 in. of Hg at room temperature, would you expect to observe any measurable decline in UV–Vis extinction relative to an unpassivated film?",
+    "gold_answer": "yes",
+    "gold_trace": "The paper reports that even at 30 s both silanes cause a small but measurable extinction decline compared to unpassivated.\n30 s treatment → UV–Vis shows decline\nboth APTMS and AEAPTMS at 30 s → measurable extinction drop"
+  },
+  {
+    "question_id": "6-11",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: The J_SC of AEAPTMS-treated devices at 30 s is slightly lower than unpassivated. If deposition time is increased beyond 30 s to 90 s under the same device architecture, would you expect J_SC to decrease further?",
+    "gold_answer": "yes",
+    "gold_trace": "Longer deposition increases insulating layer thickness, further hindering charge extraction and reducing J_SC.\ndeposition time ↑ → insulating layer thickens\nthicker layer → charge extraction barrier ↑\nbarrier ↑ → J_SC ↓"
+  },
+  {
+    "question_id": "6-12",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: If APTMS deposition is extended to 900 s but the perovskite decomposition is somehow fully suppressed (no UV–Vis or XRD changes), would you still observe a drop in power conversion efficiency (PCE) compared to the optimized 30 s treatment?",
+    "gold_answer": "yes",
+    "gold_trace": "Even without decomposition, a thick insulating silane layer impedes charge extraction, lowering FF and J_SC and thus PCE.\n900 s → thick silane layer\nthick layer → electrical insulation\ninsulation → FF & J_SC drop\nFF & J_SC drop → PCE drop"
+  },
+  {
+    "question_id": "6-13",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: If the TRPL lifetime of an AEAPTMS-passivated film were doubled relative to unpassivated (e.g., from 100 ns to 200 ns), would you expect the open-circuit voltage (V_OC) of the corresponding device to double as well under otherwise identical conditions?",
+    "gold_answer": "no",
+    "gold_trace": "V_OC improvement correlates sub‐linearly with lifetime and saturates; a 2× lifetime does not produce a 2× V_OC.\nTRPL lifetime ↑ correlates with V_OC ↑\nrelationship is not linear or 1:1\nthus 2× lifetime ≠ 2× V_OC"
+  },
+  {
+    "question_id": "6-14",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: In ToF‐SIMS depth profiles at 90 s, APTMS shows Si penetration 1.5× deeper than AEAPTMS. If a 1:1 molar mixture of APTMS and AEAPTMS is co-deposited for 90 s under identical conditions, would you expect the resultant Si penetration depth to be intermediate (≈1.25× that of AEAPTMS alone)?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Co-deposition kinetics and reactivity interplay are not studied; mixture could dominate by one component.\nAPTMS high vapor pressure → deeper penetration\nAEAPTMS reactivity → surface confinement\nmixture behavior not characterized → uncertain depth"
+  },
+  {
+    "question_id": "6-15",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: The ToF-SIMS on unpassivated films shows a weak C₃H₂N₇⁺ signal due to ion-bombardment artifacts, while AEAPTMS-passivated films show ~20× higher signal. If an unpassivated film showed a C₃H₂N₇⁺ signal equal to that of a 30 s AEAPTMS film, would you still attribute the signal increase exclusively to AEAPTMS reactivity?",
+    "gold_answer": "no",
+    "gold_trace": "If background signal equals treated, one cannot distinguish AEAPTMS reaction product from artifact.\nunpassivated artifact → high C₃H₂N₇⁺ signal\ntreated film → same signal level\ncannot attribute to AEAPTMS alone"
+  },
+  {
+    "question_id": "6-16",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: If APTMS reactions with FAI are conducted in methanol-d₄ (0.04 M) for 10 hours instead of DMSO-d₆, would the reaction proceed to completion under the conditions described?",
+    "gold_answer": "yes",
+    "gold_trace": "The text reports that in methanol-d₄ the APTMS–FA⁺ reaction does proceed to completion.\nAPTMS+FA⁺ in MeOD₄ → reaction completion\n10 h is sufficient time given solvent competition"
+  },
+  {
+    "question_id": "6-17",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: The AEAPTMS + FAI reaction in DMSO-d₆ forms a 5-membered imidazolium but cannot form a 5-membered cyclic formamidine adduct when a strong base is present. If DBU is added to the AEAPTMS/FAI solution (0.04 M) in DMSO-d₆, would you expect suppression of imidazolium formation compared to the neat AEAPTMS reaction?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The text notes base-induced APTMS adduct formation but does not directly address DBU effect on AEAPTMS-FA cyclization, making it unclear.\nDBU can accept protons\nAEAPTMS cyclization is thermodynamically favorable\nno data on DBU effect → uncertain outcome"
+  },
+  {
+    "question_id": "6-18",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: If AEAPTMS were redesigned to form an eight-membered cyclic adduct rather than a five-membered imidazolium during reaction with FA⁺ in DMSO-d₆ (0.04 M), would you expect the reaction to still be essentially complete within ca. 5 min?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Larger ring formation is generally slower and less favorable; the text gives no kinetics for an eight-membered case.\nring size ↑ → cyclization kinetics ↓\n5-membered ring is fast, 8-membered unknown\nno data → uncertainty"
+  },
+  {
+    "question_id": "6-19",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: The paper shows AEAPTMS yields higher solar cell PCE than APTMS for lead-based perovskites. If the divalent cation were switched from Pb²⁺ to Sn²⁺ in FA₀.₇₈Cs₀.₂₂BX₃, would you expect AEAPTMS to still outperform APTMS under identical passivation conditions?",
+    "gold_answer": "uncertain",
+    "gold_trace": "AEAPTMS binding cooperativity is reported for Pb²⁺; its performance with Sn²⁺ is unstudied and may differ.\nAEAPTMS cooperatively binds undercoordinated Pb²⁺\nSn²⁺ binding affinities differ\nno Sn²⁺ data → uncertain"
+  },
+  {
+    "question_id": "6-20",
+    "question_type": "counterfactual",
+    "question": "Counterfactual: If a perovskite with the same composition retained its 3D phase fully at 900 s APTMS deposition (no UV–Vis or XRD losses), would you still see a decrease in fill factor (FF) compared to the 30 s treatment?",
+    "gold_answer": "yes",
+    "gold_trace": "Even if 3D phase is intact, thick insulating APTMS layers impede charge extraction, lowering FF.\n900 s deposition → thick insulating layer\ninsulating layer → charge extraction barrier\nbarrier → FF decrease"
+  },
+  {
+    "question_id": "7-1",
+    "question_type": "counterfactual",
+    "question": "If the Cs+ cation displacement were reduced to 0.05 Å (well below the reported ~0.144 Å) while maintaining a bandgap of ~2.3 eV and P_s ~4.3 μC/cm2 at 300 K, would we still expect to observe a polarization ratio (J_max/J_min) of ~41 at 128 mW/cm2 illumination?",
+    "gold_answer": "no",
+    "gold_trace": "A much smaller Cs+ displacement would weaken ferroelectric polarization and shift current anisotropy, reducing the polarization ratio well below 41.\nReduced Δd -> lower spontaneous polarization\nLower polarization -> reduced shift current anisotropy\nReduced anisotropy -> lower J_max/J_min"
+  },
+  {
+    "question_id": "7-2",
+    "question_type": "counterfactual",
+    "question": "If the incident photon energy were lowered to 1.8 eV (below the material’s bandgap of ~2.3 eV) at 149 mW/cm2 intensity, would we still measure an open-circuit photovoltage exceeding 14 V?",
+    "gold_answer": "no",
+    "gold_trace": "Photon energy below bandgap cannot be absorbed, so no APV effect and no V_oc >14 V.\nPhoton energy < Eg\nNo intrinsic absorption\nNo APV photovoltage generated"
+  },
+  {
+    "question_id": "7-3",
+    "question_type": "counterfactual",
+    "question": "If the device channel length were extended to 3.0 mm (beyond the tested 0.8–2.0 mm range) under 149 mW/cm2 illumination at 405 nm, would the open-circuit voltage still reach or exceed 40 V?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Voltage scales with channel length within tested range, but behavior beyond 2.0 mm is not established.\nChannel length increases -> V_oc increases linearly within 0.8–2.0 mm\nNo data for 3.0 mm -> cannot extrapolate reliably"
+  },
+  {
+    "question_id": "7-4",
+    "question_type": "counterfactual",
+    "question": "If the operating temperature is raised to 350 K (above the Curie temperature of 338 K) while keeping all other conditions unchanged, would the ferroelectric APV response (V_oc) remain measurable?",
+    "gold_answer": "no",
+    "gold_trace": "Above T_c, the material loses ferroelectric polarization, eliminating the built-in field and APV response.\nTemperature > T_c\nLoss of ferroelectric polarization\nNo built-in field -> no APV response"
+  },
+  {
+    "question_id": "7-5",
+    "question_type": "counterfactual",
+    "question": "If the light intensity is reduced to 10 mW/cm2 (below the tested 58–149 mW/cm2 range), would you still expect the polarization ratio J_max/J_min to exceed 41?",
+    "gold_answer": "no",
+    "gold_trace": "Polarization ratio increases with illumination and peaks at 41 near 128 mW/cm2; it is lower at lower intensities.\nIntensity ↓ -> polarization ratio ↓\nMeasured max ratio at 128 mW/cm2\nAt 10 mW/cm2 ratio <41"
+  },
+  {
+    "question_id": "7-6",
+    "question_type": "counterfactual",
+    "question": "If the shift current tensor component σ_z (along the c-axis) were equal to σ_x (along the a-axis), would the measured polarization ratio J_max/J_min still approach 41?",
+    "gold_answer": "no",
+    "gold_trace": "Equal shift current along axes implies no anisotropy, so polarization ratio would be close to 1, far below 41.\nσ_z = σ_x\nNo anisotropy in shift current\nPolarization ratio ≈1"
+  },
+  {
+    "question_id": "7-7",
+    "question_type": "counterfactual",
+    "question": "Suppose the bandgap were increased to 3.0 eV while Cs+ displacement and polarization remain the same; would the shift current peak still occur at 2.45 eV?",
+    "gold_answer": "no",
+    "gold_trace": "Shift current peaks near the bandgap energy; if Eg shifts to 3.0 eV, the peak shifts accordingly, not at 2.45 eV.\nEg increases to 3.0 eV\nShift current peak ≈ Eg\nPeak at 2.45 eV invalid"
+  },
+  {
+    "question_id": "7-8",
+    "question_type": "counterfactual",
+    "question": "If the spontaneous polarization P_s were halved to 2.15 μC/cm2 at 300 K, with all other variables unchanged, would the device be expected to reach an open-circuit photovoltage of ~40 V under 149 mW/cm2?",
+    "gold_answer": "no",
+    "gold_trace": "Half the polarization would weaken the built-in field and reduce V_oc significantly below 40 V.\nP_s decreases by 50%\nBuilt-in field decreases\nV_oc decreases below 40 V"
+  },
+  {
+    "question_id": "7-9",
+    "question_type": "counterfactual",
+    "question": "If the incident light wavelength were changed to 600 nm (~2.07 eV) under the same intensity, would the device still generate a V_oc above 20 V?",
+    "gold_answer": "no",
+    "gold_trace": "600 nm (2.07 eV) is below Eg (2.3 eV), so no efficient absorption and V_oc would drop below 20 V.\nPhoton energy < Eg\nWeak absorption\nV_oc < 20 V"
+  },
+  {
+    "question_id": "7-10",
+    "question_type": "counterfactual",
+    "question": "If only 1 minute of pre-illumination were applied before measurement, instead of 4–20 minutes, would the open-circuit voltage V_oc still decrease significantly from its initial ~20 V value?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Ion migration effects were reported after at least 4 minutes; at 1 minute, decrease might be minor and is not characterized.\nPre-illumination <4 min\nIon migration minimal\nUncertain V_oc change"
+  },
+  {
+    "question_id": "7-11",
+    "question_type": "counterfactual",
+    "question": "If the half-wave plate were removed so that illumination polarization were random, would the measured polarization ratio J_max/J_min remain ~41?",
+    "gold_answer": "no",
+    "gold_trace": "Random polarization would yield similar J_sc for all angles, giving a ratio near 1, not 41.\nNo polarization control\nJ_sc constant vs. angle\nPolarization ratio ~1"
+  },
+  {
+    "question_id": "7-12",
+    "question_type": "counterfactual",
+    "question": "If the APV mechanism were solely due to a depolarization field (classical theory) and not shift current, would we expect a strong dependence of J_sc on light polarization angle (180° periodicity)?",
+    "gold_answer": "no",
+    "gold_trace": "Classical depolarization-field models cannot explain polarization-angle-dependent photocurrent direction and magnitude.\nClassical depolarization field model\nNo polarization-angle dependence\nCannot explain 180° periodicity"
+  },
+  {
+    "question_id": "7-13",
+    "question_type": "counterfactual",
+    "question": "If σ_y (shift current along b-axis) equaled σ_x (along a-axis) and σ_z remained highest, would the polarization-sensitive ratio J_max/J_min still exceed 20?",
+    "gold_answer": "no",
+    "gold_trace": "With σ_y = σ_x, only one axis is significantly stronger (σ_z), giving ratio ~σ_z/σ_x, which is much less than 20 in this material.\nσ_y = σ_x\nAnisotropy only between z and x\nRatio σ_z/σ_x <20"
+  },
+  {
+    "question_id": "7-14",
+    "question_type": "counterfactual",
+    "question": "If the channel length were halved to 0.4 mm, would we still observe an open-circuit voltage of at least 14 V under 149 mW/cm2 illumination?",
+    "gold_answer": "no",
+    "gold_trace": "At 0.8 mm channel length, V_oc was ~14 V; halving length to 0.4 mm would further halve voltage if trend linear.\nV_oc ∝ channel length\n0.4 mm = half of 0.8 mm\nV_oc ≈7 V <14 V"
+  },
+  {
+    "question_id": "7-15",
+    "question_type": "counterfactual",
+    "question": "If the crystal remained in polar space group Ama2 but became paraelectric (no switchable P_s) at room temperature, would you still expect to observe the above-bandgap APV voltages (~40 V)?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Shift current requires non-centrosymmetry, which remains, but switchable ferroelectric polarization is absent; APV may persist but uncertain magnitude.\nPolar non-centrosymmetric structure persists\nShift current may still occur\nUnknown if voltage reaches ~40 V"
+  },
+  {
+    "question_id": "7-16",
+    "question_type": "counterfactual",
+    "question": "If the pre-illumination time were only 2 minutes rather than 4 minutes, would the rise time t_rise still increase by about 460%?",
+    "gold_answer": "no",
+    "gold_trace": "Significant ion migration effects and t_rise amplification were observed after ≥4 minutes pre-illumination; at 2 minutes the increase would be smaller.\nPre-illumination <4 min\nIon migration less pronounced\nt_rise increase <<460%"
+  },
+  {
+    "question_id": "7-17",
+    "question_type": "counterfactual",
+    "question": "If the short-circuit current density J_sc along the c-axis increased to 20 nA/cm2 under 149 mW/cm2, while the b-axis J_sc remained at 13 nA/cm2, would the polarization ratio J_max/J_min still be ~41?",
+    "gold_answer": "no",
+    "gold_trace": "With J_max=20 and J_min=13, ratio =20/13≈1.54, far below 41.\nJ_sc,c = 20\nJ_sc,b = 13\n20/13≈1.54 <41"
+  },
+  {
+    "question_id": "7-18",
+    "question_type": "counterfactual",
+    "question": "If the material’s bandgap were narrowed to 1.8 eV and all other properties unchanged, would the shift current at photon energy 2.45 eV still be –5.8 μA/V2?",
+    "gold_answer": "no",
+    "gold_trace": "Shift current peak aligns with new bandgap; at 2.45 eV above Eg=1.8 eV, spectral response would differ from –5.8 μA/V2.\nEg = 1.8 eV\n2.45 eV > Eg\nshift current peak shifts\nvalue ≠ –5.8 μA/V2"
+  },
+  {
+    "question_id": "7-19",
+    "question_type": "counterfactual",
+    "question": "If the polarization dependence of J_sc followed a cos^4(θ) law instead of the reported sin^2(θ)/cos^2(θ) form, would the J_sc(θ) data still fit the model J=Iβ31 sin^2(θ)+Iβ33 cos^2(θ)?",
+    "gold_answer": "no",
+    "gold_trace": "A cos^4(θ) dependence cannot be represented as a linear combination of sin^2(θ) and cos^2(θ).\nAssume J_sc ∝ cos^4(θ)\nModel uses sin^2 and cos^2 terms\nMismatch in functional form -> poor fit"
+  },
+  {
+    "question_id": "7-20",
+    "question_type": "counterfactual",
+    "question": "If the ionic migration energy barrier for Cs+ cations were increased such that no migration occurred under illumination, would we still observe the 460% rise time amplification after pre-illumination?",
+    "gold_answer": "no",
+    "gold_trace": "Rise time amplification is attributed to ion migration; no migration means no t_rise increase.\nHigh migration barrier -> no ion migration\nNo new defects/traps\nt_rise unchanged"
+  },
+  {
+    "question_id": "8-1",
+    "question_type": "counterfactual",
+    "question": "If the acceptor doping density of Spiro-OMeTAD is increased to 1×10^21 cm^-3, beyond the experimentally determined optimal range, would the PCE of the planar DHLSC still exceed 22.8%? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Doping above 1×10^20 cm^-3 induces increased ionized impurity scattering and SRH recombination, which reduces PCE below the optimal value.\nDoping >1e20 cm^-3 -> more impurity scattering -> stronger recombination -> lower PCE"
+  },
+  {
+    "question_id": "8-2",
+    "question_type": "counterfactual",
+    "question": "If the operating temperature of the optimized HEPSC cell rises to 60°C (333 K) under non-isothermal conditions, would it still retain at least 90% of its isothermal PCE? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "uncertain",
+    "gold_trace": "The paper reports 94.5% retention at 52°C, but it does not provide data above that temperature, so the outcome at 60°C is unclear.\nTemperature increase -> bandgap narrowing & V_oc drop -> PCE drop; unknown if drop stays above 10%"
+  },
+  {
+    "question_id": "8-3",
+    "question_type": "counterfactual",
+    "question": "If the Spiro-OMeTAD ellipsoid major-axis radius is increased from 115 nm to 125 nm while keeping the minor-axis at 110 nm, would the champion PCE of the HEPSC still exceed 26%? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "The optimum major/minor axes for Spiro-OMeTAD are 115/110 nm; increasing the major axis perturbs resonance conditions, reducing PCE below 26%.\nMajor radius >115 nm -> suboptimal optical confinement -> PCE drop below 26%"
+  },
+  {
+    "question_id": "8-4",
+    "question_type": "counterfactual",
+    "question": "If the TiO₂ ellipsoid major and minor radii are both set to 140 nm in Str. II, would the PCE at that stage exceed 24.3%? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Optimum radii for TiO₂ are 135/135 nm yielding 24.25%; increasing both to 140 nm moves away from optimum and does not reach 24.3%.\nRadii >optimum -> less forward scattering -> PCE stays ≤24.25%"
+  },
+  {
+    "question_id": "8-5",
+    "question_type": "counterfactual",
+    "question": "If the MgF₂ anti-reflective coating thickness were increased to 150 nm, would the PCE of the planar DHLSC exceed 25%? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "At 100 nm MgF₂ the PCE peaks at 24.32%; increasing thickness beyond the optimum raises reflection again and does not push PCE above 25%.\nARC thickness >100 nm -> reflection increases -> carrier generation drops -> PCE stays <25%"
+  },
+  {
+    "question_id": "8-6",
+    "question_type": "counterfactual",
+    "question": "If the MAPbI₃ absorber thickness in the planar DHLSC is reduced from 200 nm to 150 nm, would the PCE remain above 20% before any ellipsoid patterning? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Thinning the absorber below 200 nm reduces optical absorption significantly, dropping J_sc and PCE below 20%.\nAbsorber thickness 150 nm -> less light absorption -> lower J_sc -> PCE <20%"
+  },
+  {
+    "question_id": "8-7",
+    "question_type": "counterfactual",
+    "question": "If the AM1.5G illumination range in the FDTD simulation were extended to 1100 nm but inter-band photo-generation were still only evaluated up to 830 nm, would the reported J_sc increase by more than 1 mA/cm²? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "MAPbI₃'s bandgap limits absorption to ≈830 nm; extending the source to 1100 nm adds no new carriers, so J_sc does not increase by >1 mA/cm².\nSpectrum beyond 830 nm -> no inter-band transitions -> J_sc stays unchanged"
+  },
+  {
+    "question_id": "8-8",
+    "question_type": "counterfactual",
+    "question": "If the Au nanosphere radius is increased to 100 nm in Str. VI, would the PCE improvement over Str. V exceed 0.1%? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Larger Au spheres disrupt back‐contact continuity and raise recombination; PCE actually decreases, so no improvement >0.1%.\nAu radius ↑ -> contact irregularities ↑ -> recombination ↑ -> PCE declines"
+  },
+  {
+    "question_id": "8-9",
+    "question_type": "counterfactual",
+    "question": "If the CuO and Spiro-OMeTAD thicknesses are both set to 200 nm in the planar DHLSC, would the PCE drop below the initial simulation benchmark of 19.93%? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "HTL layers thicker than optimal (300 nm/60 nm) add series resistance and trap states, so with both at 200 nm the PCE falls below 19.93%.\nHTL thickness >> optimum -> resistance ↑ -> trap recombination ↑ -> PCE <19.93%"
+  },
+  {
+    "question_id": "8-10",
+    "question_type": "counterfactual",
+    "question": "If the acceptor doping densities of CuO and Spiro-OMeTAD were swapped (CuO at 1×10^19 cm^-3 and Spiro-OMeTAD at 5×10^19 cm^-3), would the planar DHLSC PCE still reach 22.79%? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Swapping optimals misaligns the stepwise energy cascade and weakens interfacial fields, reducing PCE below the 22.79% peak.\nDoping swap -> degraded energy alignment -> weaker carrier extraction -> PCE <22.79%"
+  },
+  {
+    "question_id": "8-11",
+    "question_type": "counterfactual",
+    "question": "If the calculated surface depth t_d equals half the minor-axis radius (t_d = r_minor/2) for an ellipsoid with r_minor = 110 nm, would the resulting surface height h still be positive? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "Using h = r_minor - t_d = 110 nm - 55 nm = 55 nm, which is positive.\nt_d = r_minor/2 -> h = r_minor - t_d = positive value"
+  },
+  {
+    "question_id": "8-12",
+    "question_type": "counterfactual",
+    "question": "If the ellipsoid depth t_d for the MgF₂ ARC layer is increased from 10 nm to 20 nm (r_major=194 nm, r_minor=140 nm), would the effective major radius r_eff-major decrease by more than 2 nm? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "r_eff-major = 194×√[1−(20/140)²] ≈192.2 nm, a change of ≈1.8 nm, which is less than 2 nm.\nCompute r_eff-major with t_d=20 → difference ≈1.8 nm <2 nm"
+  },
+  {
+    "question_id": "8-13",
+    "question_type": "counterfactual",
+    "question": "If reflectance in the 300–830 nm range were only reduced to 12% (instead of 9.4%) by the ARC, would the PCE boost still be at least 1% absolute? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Reducing reflectance from 15.4% to only 12% yields a smaller absorption gain, falling short of the 1.44% PCE boost observed at 9.4%.\nReflectance reduction smaller -> less absorption increase -> PCE boost <1%"
+  },
+  {
+    "question_id": "8-14",
+    "question_type": "counterfactual",
+    "question": "If the LUMO energy of Spiro-OMeTAD were shifted only by 0.20 eV (from -4.93 to -5.13 eV) instead of 0.39 eV, would the VBO at the CuO/Spiro interface still be reduced to a magnitude less than 0.3 eV? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "A smaller LUMO shift reduces the VBO improvement by only ~0.20 eV, leaving the offset more negative than -0.3 eV.\nLUMO shift 0.20 eV -> VBO improves by 0.20 eV only -> remains <–0.3 eV"
+  },
+  {
+    "question_id": "8-15",
+    "question_type": "counterfactual",
+    "question": "If the planar DHLSC is tested at an isothermal temperature of 350 K instead of 300 K, would its short-circuit current density J_sc drop below 27 mA/cm²? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Rising temperature improves carrier mobility, so J_sc increases slightly (e.g., from 27.25 to 27.27 mA/cm² at 323 K) and stays above 27 mA/cm².\nHigher temperature -> mobility ↑ -> J_sc ↑ -> stays >27 mA/cm²"
+  },
+  {
+    "question_id": "8-16",
+    "question_type": "counterfactual",
+    "question": "If the sphere‐patterned Au back contact were omitted entirely (Str. VI removed), would the PCE of the HEPSC remain within 0.05% of the Str. V configuration? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "Introducing 10 nm Au spheres only gave a 0.04% PCE gain; omitting them leaves PCE within that 0.05% margin.\nNo Au sphere -> PCE difference = 0.04% <0.05%"
+  },
+  {
+    "question_id": "8-17",
+    "question_type": "counterfactual",
+    "question": "If the Spiro-OMeTAD and CuO acceptor doping densities are both set to the lower bounds of their optimal ranges (5×10^18 cm^-3 for CuO, 1×10^18 cm^-3 for Spiro), would the planar DHLSC PCE still exceed 22%? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "Doping both at the lower end of the optimal windows (5e18 and 1e18) still enhances hole conductivity and fields enough to push PCE above 22%.\nDoping within optimal range -> improved conductivity & fields -> PCE >22%"
+  },
+  {
+    "question_id": "8-18",
+    "question_type": "counterfactual",
+    "question": "If the VBO at the CuO/Spiro interface remained at –0.55 eV (no I₂O₅ doping), would the PCE of the DHLSC still improve over the undoped planar cell baseline? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Without reducing the VBO from –0.55 to –0.23 eV, hole extraction remains inefficient and no net PCE improvement is observed relative to the baseline.\nNo VBO reduction -> energy barrier stays high -> recombination remains -> no PCE gain"
+  },
+  {
+    "question_id": "8-19",
+    "question_type": "counterfactual",
+    "question": "If the ellipsoid-patterned MgF₂ ARC were omitted entirely, reverting to a flat 100 nm ARC, would the PCE of the DHLSC drop below 24%? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "Removing nanophotonic patterning reduces broadband light trapping; the planar ARC yields 24.32% with flat ARC, so without MgF₂ pattern the PCE would fall below 24%.\nNo ellipsoid ARC -> less light trapping -> PCE <24%"
+  },
+  {
+    "question_id": "8-20",
+    "question_type": "counterfactual",
+    "question": "If the Spiro-OMeTAD bandgap Eg were increased by 0.2 eV (from 3.02 to 3.22 eV) via stronger oxidation, would the VBO at the CuO/Spiro junction become positive? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "Adding 0.2 eV to Eg improves VBO by 0.2 eV, shifting from –0.23 to –0.03 eV, which remains slightly negative and not positive.\nEg increase 0.2 eV -> VBO improves by 0.2 -> offset stays at –0.03 eV"
+  },
+  {
+    "question_id": "8-21",
+    "question_type": "counterfactual",
+    "question": "If the simulation counted photogeneration up to 900 nm instead of 830 nm, would the computed IQE in the near-IR region show peaks beyond 830 nm in the planar DHLSC? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "no",
+    "gold_trace": "MAPbI₃ absorption cuts off around 830 nm; no additional photogeneration or IQE peaks appear beyond 830 nm.\nBandgap cutoff ~830 nm -> no photo-generation beyond -> IQE remains zero"
+  },
+  {
+    "question_id": "8-22",
+    "question_type": "counterfactual",
+    "question": "If the work function of ITO were reduced from 4.2 eV to 4.0 eV by changing its composition, would the ITO/TiO₂ conduction band offset still favor electron extraction? Answer should be {yes|no|uncertain}.",
+    "gold_answer": "yes",
+    "gold_trace": "A small reduction from 4.2 to 4.0 eV still keeps ITO's Fermi level above TiO₂'s conduction band, preserving favorable electron extraction.\nITO WF 4.0 eV -> still above TiO₂ CB -> electrons flow out"
+  },
+  {
+    "question_id": "9-1",
+    "question_type": "counterfactual",
+    "question": "In a modified experiment where the MAPbI3 film’s transverse optical phonon half-width at half-maximum (HWHM) is broadened to 0.15 THz (instead of the original ∼0.078 THz), with all other parameters unchanged, would the hybrid phonon-EIT system still exhibit two well-resolved transparency windows at around 0.9 THz and 1.2 THz?",
+    "gold_answer": "no",
+    "gold_trace": "Broader phonon HWHM weakens the phonon–metamaterial coupling and reduces Rabi splitting below the threshold needed to resolve dual EIT peaks.\nIncrease phonon HWHM → reduce phonon oscillator strength → decrease Rabi splitting\nRabi splitting falls below the minimum separation to form two transparent windows → dual EIT peaks merge or vanish"
+  },
+  {
+    "question_id": "9-2",
+    "question_type": "counterfactual",
+    "question": "If the split-ring resonator (SRR) capacitive gap g is doubled from 3 µm to 6 µm, while keeping the perovskite phonon at f_ph = 0.97 THz, would the experimental SRR–phonon Rabi splitting still exceed the strong-coupling threshold V_st = 0.294 meV?",
+    "gold_answer": "no",
+    "gold_trace": "A larger SRR gap reduces field confinement and lowers Rabi splitting, making it fall below the 0.294 meV threshold.\nIncrease SRR gap → decrease local field enhancement → reduce coupling potential V\nReduced V < V_st → no strong coupling"
+  },
+  {
+    "question_id": "9-3",
+    "question_type": "counterfactual",
+    "question": "Suppose the input THz polarization is rotated by 45° (halfway between y- and x-polarizations). Would the hybrid phonon-EIT structure still display two distinct EIT-like transparency peaks?",
+    "gold_answer": "uncertain",
+    "gold_trace": "At 45°, both rod and SRR are partially excited, leading to overlap of bright-dark pathways; the resulting interference may be intermediate and not clearly dual EIT.\nRotate polarization to 45° → partial excitation of rod and SRR\nPartial bright-dark coupling → ambiguous interference → uncertain dual EIT"
+  },
+  {
+    "question_id": "9-4",
+    "question_type": "counterfactual",
+    "question": "If the quartz substrate (ε_r = 4.41) is replaced by polyamide (ε_r ≈ 3.4) without redesigning the metamaterial geometry, and the MAPbI3 layer remains 200 nm thick, would the EIT peak shift to 1.08 THz after coating to align with f_ph = 0.97 THz?",
+    "gold_answer": "no",
+    "gold_trace": "A lower-permittivity substrate causes a smaller redshift upon coating, so the EIT peak would remain above 1.08 THz and misalign with the phonon mode.\nSubstrate permittivity ↓ → smaller effective index change\nMapbI3 coating → smaller resonance redshift than 0.22 THz → peak ≠1.08 THz"
+  },
+  {
+    "question_id": "9-5",
+    "question_type": "counterfactual",
+    "question": "Imagine the metallic rod length L is increased by 10% from 75 µm to 82.5 µm, shifting its dipole resonance down by ∼0.1 THz. Would the hybrid phonon-EIT still produce upper- and lower-polaritonic-EIT peaks at exactly 1.2 THz and 0.9 THz?",
+    "gold_answer": "no",
+    "gold_trace": "A longer rod lowers its resonance and alters the polariton positions; peaks would shift accordingly and not remain at 1.2 THz and 0.9 THz.\nRod length ↑10% → f_rod ↓∼0.1 THz\nPolaritonic branches shift with f_rod → EIT peaks move away from original values"
+  },
+  {
+    "question_id": "9-6",
+    "question_type": "counterfactual",
+    "question": "If the experimental phonon and SRR HWHM values (Γ_ph, Γ_SRR) were tripled to 0.969 meV and 0.783 meV, respectively, would the measured interaction potential V = 0.538 meV still exceed the strong-coupling threshold V_st?",
+    "gold_answer": "no",
+    "gold_trace": "Tripling the HWHM raises V_st to ∼0.623 meV, so V = 0.538 meV falls below threshold and fails strong coupling.\nΓ_ph and Γ_SRR ×3 → V_st = √(0.969²+0.783²)/2≈0.623 meV\nMeasured V (0.538 meV) < V_st → no strong coupling"
+  },
+  {
+    "question_id": "9-7",
+    "question_type": "counterfactual",
+    "question": "Suppose the rod–phonon Rabi splitting is measured at only 0.20 THz (instead of ∼0.31 THz). Would the hybrid system still show a clear split of the single EIT peak into two at 0.9 THz and 1.2 THz?",
+    "gold_answer": "no",
+    "gold_trace": "A smaller rod Rabi splitting reduces separation of polaritons and prevents the EIT peak from resolving into two distinct windows at the original frequencies.\nRod Rabi splitting ↓ to 0.20 THz → polariton separation ↓\nInsufficient separation → EIT peaks overlap → no dual split at 0.9/1.2 THz"
+  },
+  {
+    "question_id": "9-8",
+    "question_type": "counterfactual",
+    "question": "If the MAPbI3 film thickness is reduced to 50 nm (quarter of the original 200 nm), would the SRR–phonon Rabi splitting still exceed 0.26 THz experimentally?",
+    "gold_answer": "no",
+    "gold_trace": "A thinner film lowers oscillator strength and field overlap, reducing coupling strength so Rabi splitting falls below 0.26 THz.\nFilm thickness ↓ to 50 nm → reduced phonon oscillator strength\nWeaker coupling → Rabi splitting < 0.26 THz"
+  },
+  {
+    "question_id": "9-9",
+    "question_type": "counterfactual",
+    "question": "Assume a hypothetical perovskite with f_ph = 1.1 THz and HWHM = 0.05 THz replaces MAPbI3. Would the hybrid structure still produce group-delay peaks at 0.9 THz and 1.3 THz?",
+    "gold_answer": "no",
+    "gold_trace": "Shifting f_ph to 1.1 THz moves both polaritonic-EIT peaks upward, so delays occur around new polariton positions, not at 0.9 THz and 1.3 THz.\nChange phonon f_ph to 1.1 THz → polaritonic states center on 1.1 THz ± splitting\nGroup-delay peaks shift accordingly → no peaks at original 0.9/1.3 THz"
+  },
+  {
+    "question_id": "9-10",
+    "question_type": "counterfactual",
+    "question": "If the near-field coupling coefficient κ between bright and dark modes halves due to environmental change, would the EIT transparency bandwidth remain as broad as when κ ≈ 0.3 THz?",
+    "gold_answer": "no",
+    "gold_trace": "Halving κ narrows the destructive-interference window, reducing EIT bandwidth proportionally.\nκ ↓ by 50% → weaker near-field coupling\nTransparency bandwidth ∝ κ → bandwidth narrows"
+  },
+  {
+    "question_id": "9-11",
+    "question_type": "counterfactual",
+    "question": "If the metamaterial periodicity along x is increased by 50% to 100 µm (shifting f_rod to 1.1 THz and f_SRR to 1.15 THz) but f_ph remains 0.97 THz, would the hybrid system still show a clear avoided crossing around f_ph in a 2D contour plot?",
+    "gold_answer": "yes",
+    "gold_trace": "Even with shifted resonances, the tunable periodicity will still sweep across f_ph and reveal avoided crossing when f_MM = f_ph.\nPeriodicity ↑ → f_MM shifts but can be tuned across f_ph\nAvoided crossing appears whenever f_MM = 0.97 THz"
+  },
+  {
+    "question_id": "9-12",
+    "question_type": "counterfactual",
+    "question": "If the SRR gap is reduced to 1 µm to enhance field confinement, would simulation predict a phonon-polaritonic Rabi splitting exceeding 0.5 THz for the SRR–MAPbI3 system?",
+    "gold_answer": "yes",
+    "gold_trace": "A smaller gap boosts field confinement and coupling, increasing simulated Rabi splitting above 0.5 THz as per trend between gap and Ω_R.\nGap ↓ → E-field enhancement ↑ → coupling strength V ↑\nHigher V leads to Ω_R > 0.5 THz in simulation"
+  },
+  {
+    "question_id": "9-13",
+    "question_type": "counterfactual",
+    "question": "If the experimental THz pulse energy is doubled to 7.5 nJ/pulse, would the perovskite MAPbI3 layer experience significant heating that broadens its phonon HWHM by more than 20% at room temperature?",
+    "gold_answer": "no",
+    "gold_trace": "THz pulse energies of a few nJ produce negligible heating in the film, so phonon linewidth remains essentially unchanged.\nPulse energy ↑ to 7.5 nJ → still low photon flux\nMinimal heating → HWHM change <20%"
+  },
+  {
+    "question_id": "9-14",
+    "question_type": "counterfactual",
+    "question": "Assuming room-temperature is raised to 350 K, red-shifting the MAPbI3 phonon from 0.97 THz to 0.92 THz, would the dual-EIT-like peaks remain at the original frequencies of 0.9 THz and 1.2 THz?",
+    "gold_answer": "no",
+    "gold_trace": "A red-shifted phonon changes both polaritonic states and shifts the EIT peaks downward from 0.9/1.2 THz.\nT ↑ to 350 K → f_ph ↓ to 0.92 THz\nPolaritonic-EIT peaks follow f_ph shift → not at 0.9/1.2 THz"
+  },
+  {
+    "question_id": "9-15",
+    "question_type": "counterfactual",
+    "question": "If the metamaterial’s periodicity along y is shortened by 30% (to ∼65 µm) while x remains 67 µm, would the dual-EIT-like response still appear when scanning f_EIT across the phonon mode?",
+    "gold_answer": "yes",
+    "gold_trace": "Even with modified y-periodicity, scanning f_EIT via dimensional tuning still crosses f_ph and yields dual-EIT-like features near avoided-crossing.\nPeriodicity y ↓ → f_EIT tuning range shifts\nScanning f_EIT across f_ph → avoided crossing and dual-EIT still manifest"
+  },
+  {
+    "question_id": "9-16",
+    "question_type": "counterfactual",
+    "question": "If the group-delay measurement resolution is limited to 0.05 THz increments, would the split peaks at 0.9 THz and 1.3 THz still be resolvable in the hybrid phonon-EIT system?",
+    "gold_answer": "yes",
+    "gold_trace": "The two peaks are separated by 0.4 THz, much larger than the 0.05 THz resolution, so they remain distinguishable.\nPeak separation = 0.4 THz > resolution 0.05 THz\nDistinct peaks remain resolvable"
+  },
+  {
+    "question_id": "9-17",
+    "question_type": "counterfactual",
+    "question": "Assume perovskite film undulates ±50 nm around 200 nm. Would the dual-EIT-like effect still reproducibly appear with transmittance amplitude variation under 10%?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Thickness variations can locally alter coupling and absorption; whether amplitude stays within 10% depends on uniformity and cannot be assured without simulation.\nThickness variation ±50 nm → local f_ph and absorption vary\nAmplitude variation uncertain → may exceed 10%"
+  },
+  {
+    "question_id": "9-18",
+    "question_type": "counterfactual",
+    "question": "If the SRR resonance damping (Γ_SRR) is artificially reduced by half (from 0.063 THz to ∼0.032 THz), would the experimental Rabi splitting in the SRR–phonon system increase noticeably above 0.4 THz?",
+    "gold_answer": "yes",
+    "gold_trace": "Lower damping narrows resonance so coupling appears stronger, raising the measured Rabi splitting above 0.4 THz.\nΓ_SRR ↓ by 50% → sharper SRR resonance\nEnhanced coupling → Ω_R increases to >0.4 THz"
+  },
+  {
+    "question_id": "9-19",
+    "question_type": "counterfactual",
+    "question": "If the metamaterial is translated so that y_up = 0.5·L1 (half of the maximum translation), would the hybrid phonon-EIT spectrum collapse to a single Rabi splitting from the rod only?",
+    "gold_answer": "uncertain",
+    "gold_trace": "At half translation, SRR is partially deactivated; the spectrum may show mixed dual EIT and rod polariton features and cannot be predicted without full simulation.\nTranslation = 0.5·L1 → partial SRR dark-mode deactivation\nPartial EIT and polariton → mixed spectral features → uncertain outcome"
+  },
+  {
+    "question_id": "9-20",
+    "question_type": "counterfactual",
+    "question": "If the numerical model treated temporal coupled-mode theory (t-CMT) instead of the coupled oscillator model, but still in the weak coupling limit, would it predict the dual transparency windows in the strongly coupled phonon-EIT system?",
+    "gold_answer": "no",
+    "gold_trace": "t-CMT applies in weak coupling and cannot capture the strong-coupling Rabi splitting that underlies the dual transparency windows.\nUse t-CMT (weak coupling) → no Rabi splitting term\nDual transparent windows arise from strong coupling → not predicted"
+  },
+  {
+    "question_id": "9-21",
+    "question_type": "counterfactual",
+    "question": "If the experimental transmittance at the single EIT peak (1.3 THz) is only 50% instead of ∼80%, due to higher losses, would you still expect to observe a 1.5 ps group delay peak at that frequency?",
+    "gold_answer": "uncertain",
+    "gold_trace": "A lower transmittance can weaken the dispersion slope and reduce group delay; whether 1.5 ps persists depends on loss-induced phase change and cannot be determined without detailed phase data.\nTransmittance ↓ to 50% → absorption ↑\nGroup delay ∝ dispersion slope → could ↓ below 1.5 ps"
+  },
+  {
+    "question_id": "9-22",
+    "question_type": "counterfactual",
+    "question": "If a substrate with ε_r = 2.5 is used instead of quartz (ε_r = 4.41), but the metamaterial geometry is unchanged, would the single EIT peak (without phonon) still occur at 1.3 THz?",
+    "gold_answer": "no",
+    "gold_trace": "Lower permittivity reduces effective index and raises resonance frequencies, so the EIT peak moves above 1.3 THz.\nε_r substrate ↓ → effective index ↓\nResonance frequency ∝ 1/√ε → f_EIT ↑ above 1.3 THz"
+  },
+  {
+    "question_id": "9-23",
+    "question_type": "counterfactual",
+    "question": "If the MAPbI3 phonon line is deactivated (Lorentz oscillator off) but the film remains, would you still observe dual transparency windows in the 2D transmittance contour plot when varying f_EIT?",
+    "gold_answer": "no",
+    "gold_trace": "Without the active phonon, there is no avoided crossing or polaritonic branches, so only the single EIT peak persists.\nDeactivate phonon → no hybridization → no Rabi splitting\nSingle EIT window remains across f_EIT scan"
+  },
+  {
+    "question_id": "10-1",
+    "question_type": "counterfactual",
+    "question": "In a hypothetical d2 double perovskite, the remnant cubic crystal field splitting of the Jeff=2 manifold is 200 meV while the spin–orbit coupling constant is 100 meV. Does the Eg doublet carry any dipolar (K=1) moments?",
+    "gold_answer": "no",
+    "gold_trace": "By symmetry the non-Kramers Eg doublet of the Jeff=2 manifold carries only quadrupolar and octupolar moments and zero dipolar ones, regardless of the relative magnitudes of CF splitting and SOC.\nThe Eg doublet arises from Jeff=2 splitting by cubic crystal field\nGroup-theory and explicit projection show Eg has no K=1 dipoles"
+  },
+  {
+    "question_id": "10-2",
+    "question_type": "counterfactual",
+    "question": "If a d2 double perovskite exhibits a pure hidden-order phase transition at 60 K and its Hund’s coupling J_H is 0.3 eV, is the ground-state multiplet well-separated from excited states?",
+    "gold_answer": "yes",
+    "gold_trace": "60 K (~5 meV) is much smaller than J_H=0.3 eV (~300 meV), so the ground-state multiplet is well separated from excited states.\nTransition energy ≪ Hund’s coupling\nLarge separation defines an isolated GSM"
+  },
+  {
+    "question_id": "10-3",
+    "question_type": "counterfactual",
+    "question": "Consider a d1 double perovskite with Hubbard U = 1 eV, which is below the typical 2–4 eV range mentioned for multipolar Mott insulators. Would this compound still be classified as a multipolar Mott insulator?",
+    "gold_answer": "no",
+    "gold_trace": "Multipolar Mott insulators require U in the 2–4 eV range to suppress charge fluctuations; U=1 eV is too small to localize electrons sufficiently.\nMultipolar Mott insulators require U≥2 eV\nU=1 eV falls below that threshold"
+  },
+  {
+    "question_id": "10-4",
+    "question_type": "counterfactual",
+    "question": "In a cubic lattice hosting quadrupolar (K=2) operators, the classical electrostatic coupling between two quadrupoles at nearest-neighbor distance r0 decays as r^(-5). If the next-nearest neighbor distance is √2·r0, is the quadrupole–quadrupole coupling at the next-nearest neighbor less than 20% of that at the nearest neighbor?",
+    "gold_answer": "yes",
+    "gold_trace": "The ratio is (√2)^(-5)=2^(-2.5)≈0.177<0.20, so it is less than 20%.\nDecay law ∝r^(-5)\nCompute ratio (√2)^(-5)≈0.177<0.20"
+  },
+  {
+    "question_id": "10-5",
+    "question_type": "counterfactual",
+    "question": "In a d1 double perovskite model, hopping between two orthogonal t₂g orbitals mediated by ligand p-orbitals yields a superexchange term of opposite sign to the direct diagonal term regardless of the ligand Hund’s coupling magnitude. If the ligand Hund’s coupling were increased from 0.5 eV to 1.5 eV, would this orthogonal-orbital-hopping superexchange still have the opposite sign relative to the direct J_SE term?",
+    "gold_answer": "yes",
+    "gold_trace": "The opposite sign of the orthogonal hopping term arises from symmetry and Hund’s rule on the ligand p shell, not from its magnitude.\nOrthogonal-orbital superexchange sign set by symmetry\nHund’s coupling magnitude does not flip the sign"
+  },
+  {
+    "question_id": "10-6",
+    "question_type": "counterfactual",
+    "question": "Ordered double perovskites of heavy 5d ions have a B′–B′ spacing √2 a, aiding localization. If one engineered a compound with the same composition but with B′–B′ spacing equal to a (i.e., reduced by √2), would you expect it to remain a multipolar Mott insulator given U=3 eV and SOC=0.3 eV?",
+    "gold_answer": "no",
+    "gold_trace": "Reduced B′–B′ spacing increases d–d hopping and bandwidth, undermining Mott localization even with U=3 eV.\nLocalization requires reduced hopping\nSmaller spacing increases hopping and delocalization"
+  },
+  {
+    "question_id": "10-7",
+    "question_type": "counterfactual",
+    "question": "In UO₂, force-theorem calculations predict a stabilization energy of about 0.01 meV for the 3q AFM phase relative to the 2q phase due to quadrupole–quadrupole intersite exchange interactions. If those quadrupolar IEI strengths were doubled, would the stabilization energy become approximately 0.02 meV?",
+    "gold_answer": "yes",
+    "gold_trace": "The stabilization energy scales linearly with quadrupolar IEI strength, so doubling the IEI doubles the energy difference from 0.01 meV to ~0.02 meV.\nStabilization energy ∝ quadrupolar IEI\nDoubling IEI doubles energy difference"
+  },
+  {
+    "question_id": "10-8",
+    "question_type": "counterfactual",
+    "question": "For the fcc lattice of UO₂, it is stated that any set of antiferro dipolar intersite interactions gives degenerate energies for the 1q, 2q, and 3q AFM structures. If one includes purely quadrupolar intersite exchange interactions, does this degeneracy among those three structures get lifted?",
+    "gold_answer": "yes",
+    "gold_trace": "Adding quadrupolar IEI breaks the pure-dipole symmetry and lifts the 1q/2q/3q energy degeneracy.\nDipolar IEI alone keep 1q/2q/3q degenerate\nQuadrupolar IEI differentiates their energies"
+  },
+  {
+    "question_id": "10-9",
+    "question_type": "counterfactual",
+    "question": "In 5d³ double perovskites like Ba₂YOsO₆, dipole–octupole intersite exchange interactions scale as the square of the spin–orbit coupling constant ξ_SO. If ξ_SO were doubled, would those dipole–octupole IEIs increase by a factor of four?",
+    "gold_answer": "yes",
+    "gold_trace": "Since IEI ∝ ξ_SO², doubling ξ_SO increases IEI by 2²=4.\nIEI ∝ ξ_SO²\nDouble ξ_SO → IEI ×4"
+  },
+  {
+    "question_id": "10-10",
+    "question_type": "counterfactual",
+    "question": "The calculated dipole–octupole intersite interactions in Ba₂YOsO₆ produce an excitation gap of about 5 meV in the spin-wave spectrum, in qualitative agreement with INS measurements. If an experiment instead measured a gap of 10 meV, would it be possible to attribute the entire gap solely to the dipole–octupole IEI predicted by this theory?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The theory predicts ~5 meV; a 10 meV gap may require additional interactions beyond the dipole–octupole IEI.\nTheory predicts gap ≈5 meV\nMeasured gap =10 meV > predicted → other terms may contribute"
+  },
+  {
+    "question_id": "10-11",
+    "question_type": "counterfactual",
+    "question": "In NdN, cluster-based ab initio calculations find that high-rank intersite exchange interactions up to rank 7 and 9 make contributions comparable to dipolar ones for ferromagnetic ordering. If one were to neglect all contributions above rank 6, could the ferromagnetic transition temperature still be reproduced accurately?",
+    "gold_answer": "no",
+    "gold_trace": "High-rank (>6) contributions are comparable to dipolar ones, so omitting them prevents an accurate T_c reproduction.\nHigh-rank IEI up to rank 9 contribute significantly\nNeglecting them undermines T_c accuracy"
+  },
+  {
+    "question_id": "10-12",
+    "question_type": "counterfactual",
+    "question": "For the d¹ double perovskite Ba₂MgReO₆, only the R ln 2 entropy is recovered upon heating to the quadrupolar transition, rather than the R ln 4 expected for a J=3/2 quartet. If an experiment instead found R ln 4 at that transition, would this be consistent with a pure quadrupolar order scenario?",
+    "gold_answer": "no",
+    "gold_trace": "Pure quadrupolar order lifts only half the J=3/2 degeneracy, so the entropy change should be R ln 2, not R ln 4.\nQuadrupolar order partially lifts GSM → R ln 2\nObserved R ln 4 contradicts that"
+  },
+  {
+    "question_id": "10-13",
+    "question_type": "counterfactual",
+    "question": "Mean-field solutions of multipolar exchange Hamiltonians for frustrated fcc lattices typically overestimate ordering temperatures by about a factor of two. If a mean-field MBEH predicts an antiferro quadrupolar transition at 100 K for a d¹ double perovskite, would the actual transition temperature likely be near 50 K?",
+    "gold_answer": "yes",
+    "gold_trace": "Mean-field overestimation of ~2 means a predicted 100 K likely corresponds to ~50 K actual.\nMFT overestimates T_c by factor ~2\nDivide predicted 100 K by 2 → ~50 K"
+  },
+  {
+    "question_id": "10-14",
+    "question_type": "counterfactual",
+    "question": "In d² double perovskites, first-principles IEI show that ferro-octupolar exchange dominates over antiferro quadrupolar exchange for Ba₂MoOSO₆. If one forced the antiferro quadrupolar IEI to exceed the ferro-octupolar IEI in magnitude, would the ferro-octupolar (FO) order still be the ground state?",
+    "gold_answer": "no",
+    "gold_trace": "The ground state is set by the dominant IEI; if quadrupolar IEI > octupolar IEI, an AFQ state would replace FO.\nGround state determined by strongest IEI\nSwitch in dominant IEI → switch in ground state"
+  },
+  {
+    "question_id": "10-15",
+    "question_type": "counterfactual",
+    "question": "In vacancy-ordered halide double perovskites A₂MX₆ (M=Ta, Nb; X=Cl) the bandwidth is much narrower than in oxides, leading to lower ordering temperatures (T_c≪50 K). If Cs₂TaCl₆ were measured to exhibit a hidden-order transition at 150 K, would this be consistent with the expectation for these halide systems?",
+    "gold_answer": "no",
+    "gold_trace": "Halide vacancy-ordered double perovskites have weaker exchange and much lower T_c, typically below 50 K; 150 K is too high.\nHalide DP bandwidth narrower → weaker exchange → low T_c\nMeasured 150 K far exceeds expected <50 K"
+  },
+  {
+    "question_id": "10-16",
+    "question_type": "counterfactual",
+    "question": "Linear magnetoelectric response requires simultaneous breaking of spatial inversion and time-reversal symmetries. If a magnetoelectric material breaks spatial inversion but preserves time-reversal, can it exhibit a linear magnetoelectric effect?",
+    "gold_answer": "no",
+    "gold_trace": "Linear magnetoelectricity needs both symmetries broken; preserving time-reversal forbids linear response.\nLinear ME requires inversion and time-reversal breaking\nPreserving time-reversal → ME=0"
+  },
+  {
+    "question_id": "10-17",
+    "question_type": "counterfactual",
+    "question": "Quadrupolar ordering couples strongly to phonons, producing phonon mode splitting tracking the order parameter. If an insulator exhibits a phonon splitting of 10 meV at the quadrupolar transition, which is an order of magnitude larger than typical Jahn–Teller energy scales (~1 meV), can this splitting be attributed solely to quadrupolar ordering?",
+    "gold_answer": "no",
+    "gold_trace": "Typical quadrupole–phonon (Jahn–Teller) couplings produce ≲1 meV splitting; 10 meV suggests additional mechanisms.\nJT quadrupolar splitting ≲1 meV\nObserved 10 meV >> 1 meV → other factors contribute"
+  },
+  {
+    "question_id": "10-18",
+    "question_type": "counterfactual",
+    "question": "The force-theorem in Hubbard-I (FT-HI) method is applicable only to Mott insulating phases. If one applies FT-HI to metallic CeB₆ (which is not a Mott insulator), would the extracted multipolar intersite exchange interactions be formally valid?",
+    "gold_answer": "no",
+    "gold_trace": "FT-HI derivation assumes a Mott gap and neglects bath hybridization; in a metal it fails.\nFT-HI requires Mott insulating phase\nCeB₆ is metallic → FT-HI invalid"
+  },
+  {
+    "question_id": "10-19",
+    "question_type": "counterfactual",
+    "question": "In constrained DFT+U methods, a penalty field γ must be sufficiently large to align moments so that the unphysical penalty energy is negligible. If γ is chosen to be 0.1 eV but the on-site exchange splitting is ~0.3 eV, would the penalty energy contribution be negligible at convergence?",
+    "gold_answer": "no",
+    "gold_trace": "γ=0.1 eV is smaller than the 0.3 eV exchange, so the penalty term would still compete and not be negligible.\nPenalty energy ∝γ\nγ < exchange splitting → penalty non-negligible"
+  }
+]

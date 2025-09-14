@@ -1,12 +1,21 @@
 import json
 import re
-from typing import List, Dict, Any, TypeVar, Callable, Protocol, Coroutine
+from dataclasses import dataclass
+from typing import List, Dict, Any, TypeVar, Callable, Protocol, Coroutine, Tuple, Optional
 
 from openai import OpenAI
 
 from utils.common import ModelConfig
+from time import perf_counter_ns
 
 T_Coerced = TypeVar("T_Coerced")
+
+
+@dataclass
+class LLMMetrics:
+    latency_ms: int = 0
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
 
 
 def coerce_to_json_list(content: Any) -> List[Dict[str, Any]]:
@@ -46,6 +55,7 @@ class GenericLLMCallable(Protocol):
             config: ModelConfig,
             transformer: Callable[[Any], T_Coerced],
             metadata: Dict[str, Any],
+            metrics: Optional[LLMMetrics] = None,
     ) -> Coroutine[Any, Any, T_Coerced]:
         ...
 
@@ -53,11 +63,13 @@ class GenericLLMCallable(Protocol):
 async def call_llm(messages: List[Any],
                    config: ModelConfig,
                    transformer: Callable[[Any], T_Coerced],
-                   metadata: Dict[str, Any]) -> T_Coerced:
+                   metadata: Dict[str, Any],
+                   metrics: Optional[LLMMetrics] = None) -> T_Coerced:
     last_err = None
     client = get_client(config=config)
     for _ in range(config.retries):
         try:
+            start = perf_counter_ns()
             # Responses API (multi-modal)
             resp = client.chat.completions.create(
                 model=config.model,
@@ -66,11 +78,12 @@ async def call_llm(messages: List[Any],
                 reasoning_effort="high",
                 verbosity="medium"
             )
-            # Extracting and printing the response content
-            length = len(str(messages))
-            #print(f"prompt_tokens: {resp.usage.prompt_tokens}")
-            #print(f"completion_tokens: {resp.usage.completion_tokens}")
-            #print(f"input bytes: {length}")
+
+            if metrics is not None:
+                elapsed_ns = perf_counter_ns() - start
+                metrics.latency_ms = elapsed_ns // 1_000_000
+                metrics.prompt_tokens = resp.usage.prompt_tokens
+                metrics.completion_tokens = resp.usage.completion_tokens
 
             content = resp.choices[0].message.content.strip()
             # print(content)
@@ -82,32 +95,3 @@ async def call_llm(messages: List[Any],
 
 class LLMClient:
     pass
-
-
-async def call_openai_parse(
-        client: OpenAI,
-        messages: List[Any],
-        config: ModelConfig,
-        max_retries: int = 1) -> str:
-    last_err = None
-
-    for _ in range(max_retries):
-        try:
-            # Responses API (multi-modal)
-            resp = client.chat.completions.create(
-                model=config.model,
-                temperature=config.temperature,
-                messages=messages,
-            )
-            # Extracting and printing the response content
-            length = len(str(messages))
-            print(f"prompt_tokens: {resp.usage.prompt_tokens}")
-            print(f"completion_tokens: {resp.usage.completion_tokens}")
-            print(f"input bytes: {length}")
-
-            content = resp.choices[0].message.content.strip()
-            # print(content)
-            return str(content).strip()
-        except Exception as e:
-            last_err = e
-    raise RuntimeError(f"OpenAI parse failed for {last_err}")

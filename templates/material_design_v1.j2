@@ -1,0 +1,102 @@
+SYSTEM
+You are an expert AI assistant specializing in scientific reasoning. Use web search over papers on arXiv to
+collect evidences. Always provide citations for your claims.
+
+GOAL
+You goal is to propose the candidates of the new materials using the following causal contract, describing the
+mechanism of physics/chemistry of some material class.
+
+Strictly follow the instructions:
+
+- Always validate candidates against the constraints in contract
+- Calculate the feasibility score for each proposed material, based on how many constraints were
+  satisfied/similarity in physics or chemistry
+
+Write the output as csv file with candidate materials, include candidate_name, short justification of your reasoning,
+feasibility score and which parts of contract were used as a support.
+
+Contract:
+
+  {
+    "hypothesis": "Applying hierarchical half-ellipsoidal patterns across successive PSC layers enhances broadband light trapping through resonant scattering and increased optical path length, thereby boosting photon absorption, charge generation, and overall PCE while maintaining thermal stability.",
+    "cause_effect": [
+      {
+        "cause": "Half-ellipsoidal pattern on ITO",
+        "action_verb": "leads_to",
+        "effect": "enhanced lateral photon trapping increasing PCE to 24.15%"
+      },
+      {
+        "cause": "Half-ellipsoidal pattern on TiO$_2$",
+        "action_verb": "leads_to",
+        "effect": "improved forward scattering into the perovskite absorber increasing PCE to 24.25%"
+      },
+      {
+        "cause": "Symmetric half-ellipsoidal pattern on MAPbI$_3$",
+        "action_verb": "leads_to",
+        "effect": "enhanced light confinement and carrier generation increasing PCE to 24.79%"
+      },
+      {
+        "cause": "Half-ellipsoidal pattern on Spiro-OMeTAD",
+        "action_verb": "leads_to",
+        "effect": "peak PCE of 26.39% via resonant absorption peaks at 880 nm and 990 nm"
+      },
+      {
+        "cause": "Hierarchical patterning under non-isothermal conditions (~52 °C)",
+        "action_verb": "leads_to",
+        "effect": "retention of ~94.5% of initial PCE"
+      }
+    ],
+    "assumptions": {
+      "Periodic and PML boundary conditions": "hard constraint for FDTD validity",
+      "Accurate ellipsoid geometry ($r_{major},r_{minor},t_d$)": "hard constraint to ensure predicted resonances",
+      "Negligible fabrication-induced roughness": "assumption without explicit verification",
+      "Isothermal optical constants": "assumption that refractive indices are temperature-invariant",
+      "Uniform layer thicknesses": "assumption to isolate morphological effects"
+    },
+    "predictions": [
+      "Initial HEPSC with patterns on all layers achieves PCE of 25.09% with J$_{sc}$ of 28.13 mA/cm$^2$, V$_{oc}$ of 1.066 V, FF of 83.74%",
+      "Patterning ITO ellipsoids with $r_{major}=170$ nm and $r_{minor}=145$ nm yields PCE of 24.15%",
+      "Patterning MAPbI$_3$ symmetric ellipsoids with radii of 125 nm yields PCE of 24.79%",
+      "Patterning Spiro-OMeTAD ellipsoids with radii of 115 nm (major) and 110 nm (minor) yields PCE of 26.39%",
+      "Under non-isothermal conditions reaching ~52 °C, HEPSC retains ~94.5% of its initial PCE"
+    ],
+    "rubric": [
+      {
+        "claim": "Applying half-ellipsoidal patterns on all layers including MgF$_2$ yields initial HEPSC PCE of 25.09%, J$_{sc}$ of 28.13 mA/cm$^2$, V$_{oc}$ of 1.066 V, and FF of 83.74%.",
+        "justification": "Reports the first performance results after implementing hierarchical ellipsoids on every layer.",
+        "source_text": [
+          50
+        ]
+      },
+      {
+        "claim": "Optimizing the ITO ellipsoid to $r_{major}=170$ nm and $r_{minor}=145$ nm yields PCE of 24.15% by enhancing lateral photon trapping and optical path length.",
+        "justification": "Quantifies the performance gain from the first ellipsoid patterning step on ITO.",
+        "source_text": [
+          59
+        ]
+      },
+      {
+        "claim": "Symmetric MAPbI$_3$ ellipsoid radii of 125 nm give PCE of 24.79% by enhancing light confinement and carrier generation in MAPbI$_3$ and CuO layers.",
+        "justification": "Demonstrates the optical and electrical benefit of ellipsoid symmetry at the absorber layer.",
+        "source_text": [
+          61
+        ]
+      },
+      {
+        "claim": "Spiro-OMeTAD ellipsoid radii of 115 nm (major) and 110 nm (minor) deliver peak PCE of 26.39% by creating resonant absorption peaks at 880 nm and 990 nm and enhancing layer-specific light–matter interaction.",
+        "justification": "Quantifies the largest single-step improvement from patterning the outer HTL due to resonance effects.",
+        "source_text": [
+          66
+        ]
+      },
+      {
+        "claim": "Under non-isothermal conditions reaching approximately 52 °C, the HEPSC PCE decreases from 26.38% to 24.93%, maintaining about 94.5% of its initial efficiency.",
+        "justification": "Demonstrates that the hierarchical design preserves most of its performance under thermal stress.",
+        "source_text": [
+          90
+        ]
+      }
+    ],
+    "contract_id": "14-1"
+  },
+

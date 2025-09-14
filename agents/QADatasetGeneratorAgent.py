@@ -5,7 +5,7 @@ from typing import Dict, Any, List, Set, Optional
 
 from core import Agent
 from middleware.ImageStorage import ImageStorage
-from middleware.llm_middleware import call_llm, coerce_to_json_list
+from middleware.llm_middleware import call_llm, coerce_to_json_list, LLMMetrics
 from utils.common import ModelConfig, DocumentBundle, load_file, Question
 from utils.prompt_manager import PromptManager
 from utils.settings import logger
@@ -26,8 +26,8 @@ def is_record_valid(record: Any) -> bool:
         return False
 
     try:
-        if not (isinstance(record['category'], str) and record['category'].lower().strip() in VALID_TYPES):
-            return False
+#        if not (isinstance(record['category'], str) and record['category'].lower().strip() in VALID_TYPES):
+#            return False
         if not (isinstance(record['question'], str) and record['question']):
             return False  # Must be a non-empty string
         if not (isinstance(record['contract_id'], str)):
@@ -45,6 +45,7 @@ def form_question_sketch(q: Dict[str, Any]) -> Optional[Question]:
     gold_answer = q.get('gold_answer')
     answer = gold_answer.get('answer')
     explanation = gold_answer.get('explanation')
+    notes = gold_answer.get('notes')
     if gold_answer and answer and explanation:
         trace = '\n'.join([explanation] + gold_answer.get('paths', []))
         return Question(
@@ -53,6 +54,7 @@ def form_question_sketch(q: Dict[str, Any]) -> Optional[Question]:
             question=q['question'],
             gold_answer=answer,
             gold_trace=trace,
+            notes=notes
         )
     return None
 
@@ -81,23 +83,25 @@ class QADatasetGeneratorAgent(Agent):
                 raw_text = load_file(doc_bundle.get_records_path())  # document is taken from cache by id
                 contracts = load_file(Path(c['path']))  # contract is loaded from path
                 user_prompt = self.config.pm.compose_prompt(
-                    "qa_dataset_generator_raw_v6.j2",
+                    "qa_dataset_generator_raw_v8.j2",
                     contracts=contracts,
                     raw_text=raw_text
                 )
                 messages = [
                     {"role": "user", "content": user_prompt}
                 ]
-
-                page_blocks = await call_llm(messages, self.config.model_config, coerce_to_json_list, metadata={})
+                metrics = LLMMetrics()
+                page_blocks = await call_llm(messages, self.config.model_config, coerce_to_json_list, metadata={}, metrics=metrics)
+                print(metrics)
                 valid_questions = [record for record in page_blocks if is_record_valid(record)]
-                for idx, q in enumerate(valid_questions, start=1):
-                    q['id'] = f"{doc_id}-{idx}"
+                batch = []
+                for i, q in enumerate(valid_questions, start=1):
+                    q['id'] = f"{doc_id}-{i}"
                     question = form_question_sketch(q)
                     if question:
-                        dataset.append(dataclasses.asdict(question))
-                logger.info(f"generated {len(valid_questions)} questions")
-                res_path = self.save_locally(f"questions_{doc_id}.json", valid_questions)
+                        batch.append(dataclasses.asdict(question))
+                logger.info(f"generated {len(batch)} questions")
+                res_path = self.save_locally(f"questions_{doc_id}.json", batch)
                 processed_docs.append({"document_id": doc_id, "path": str(res_path)})
             except Exception as e:
                 logger.error(e)
@@ -106,6 +110,9 @@ class QADatasetGeneratorAgent(Agent):
         logger.info(f"created {len(dataset)} questions, errors: {error_count}")
 
         return {
-            "qa_dataset.json": processed_docs,
-            "full_dataset4.json": dataset
+            "qa_dataset.json": processed_docs
+            #"full_dataset_1.json": dataset
         }
+
+
+

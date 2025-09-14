@@ -1,0 +1,128 @@
+[
+  {
+    "question_id": "8-1",
+    "question_type": "photovoltaics",
+    "question": "If the CuO hole-transport sublayer were thinned from the optimized 300 nm to 60 nm while keeping its acceptor doping at 5 × 10^19 cm⁻³ and maintaining the I₂O₅-doped Spiro-OMeTAD layer at 60 nm and 1 × 10^19 cm⁻³, would the simulated planar double-HTL perovskite solar cell still be expected to reach a power-conversion efficiency of at least 22.78 %?",
+    "gold_answer": "no",
+    "gold_trace": "The 22.78 % PCE requires the CuO layer to be 300 nm; reducing it to 60 nm was earlier shown to give only ~19.93–21.60 % even after doping.\nCuO thickness 300 nm with high NA -> optimal band alignment & carrier collection -> PCE 22.78 %\nCuO thickness reduced to 60 nm -> sub-optimal optical absorption & extraction -> PCE falls to ≤21.60 %"
+  },
+  {
+    "question_id": "8-2",
+    "question_type": "photovoltaics",
+    "question": "Keeping all other parameters unchanged, would shifting the Spiro-OMeTAD HOMO only to –5.10 eV instead of –5.34 eV via a lower I₂O₅ doping level still be sufficient to suppress non-radiative recombination at the perovskite/HTL interface to the extent predicted for the fully doped device?",
+    "gold_answer": "no",
+    "gold_trace": "The larger –5.34 eV shift is needed to minimise the valence-band offset; a smaller –5.10 eV shift leaves a larger mismatch and thus higher recombination.\nI₂O₅ doping -> HOMO shift to –5.34 eV -> minimal valence-band offset -> suppressed non-radiative recombination\nReduced doping -> HOMO only –5.10 eV -> residual offset -> higher recombination"
+  },
+  {
+    "question_id": "8-3",
+    "question_type": "photovoltaics",
+    "question": "Assuming ideal interfaces and isothermal conditions, if the CuO HTL had a direct bandgap of 1.0 eV instead of the reported indirect 1.5 eV, would the double hole-layer architecture still be predicted to increase open-circuit voltage (Voc) to around 1.066 V?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The paper provides no data for a 1.0 eV CuO bandgap; its impact on Voc is not quantified.\nCuO bandgap 1.5 eV -> favourable alignment -> Voc ≈1.066 V\nCuO bandgap 1.0 eV -> alignment unknown -> Voc effect not specified"
+  },
+  {
+    "question_id": "8-4",
+    "question_type": "nanophotonics",
+    "question": "If half-ellipsoidal patterning were applied only to the TiO₂ layer with radii of 135 nm/135 nm, skipping patterning on ITO, MAPbI₃, CuO and Spiro-OMeTAD, would the resulting device be expected to show a PCE above 24.70 %?",
+    "gold_answer": "no",
+    "gold_trace": "Patterning solely on TiO₂ (Str. II) yields 24.25 %, which is below 24.70 %.\nTiO₂ ellipsoids 135/135 nm only -> Str. II -> PCE 24.25 %\nThreshold 24.70 % -> not reached"
+  },
+  {
+    "question_id": "8-5",
+    "question_type": "nanophotonics",
+    "question": "Would introducing half-ellipsoidal nanostructures on Spiro-OMeTAD with radii of 90 nm/90 nm instead of the optimal 115 nm/110 nm be expected to preserve the near-infrared absorption peak at 990 nm attributed to resonant field enhancement?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The text only reports the 990 nm peak for 115 nm/110 nm ellipsoids; behaviour at 90 nm/90 nm is not given.\nOptimal 115/110 nm ellipsoids -> resonance -> 990 nm absorption peak\nDifferent size 90/90 nm -> resonance condition unknown"
+  },
+  {
+    "question_id": "8-6",
+    "question_type": "nanophotonics",
+    "question": "If sequential patterning stopped after Str. III (i.e., after MAPbI₃ ellipsoids at 125 nm/125 nm), would the short-circuit current density (Jsc) exceed 28 mA cm⁻²?",
+    "gold_answer": "no",
+    "gold_trace": "Jsc = 28.08 mA cm⁻² is reported only for Str. IV; Str. III gives a lower PCE and hence lower Jsc.\nStr. III -> PCE 24.79 % (no Jsc value given but lower than Str. IV 28.08 mA cm⁻²)\nNeed Jsc >28 -> not satisfied"
+  },
+  {
+    "question_id": "8-7",
+    "question_type": "thermal",
+    "question": "Under steady-state non-isothermal operation at an ambient of 52 °C, would the hierarchical ellipsoidal PSC retain at least 95 % of its isothermal 26.38 % efficiency?",
+    "gold_answer": "no",
+    "gold_trace": "Predicted retention is 94.5 %, which is below 95 %.\n52 °C ambient -> HEPSC PCE drops from 26.38 % to 24.93 % -> retention 94.5 %"
+  },
+  {
+    "question_id": "8-8",
+    "question_type": "thermal",
+    "question": "If the low thermal conductivity Spiro-OMeTAD layer were replaced by a hypothetical material with twice its thermal conductivity while keeping all optical and electrical properties identical, would the maximum internal device temperature still be expected to remain near 325 K under the same illumination?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The model’s temperature prediction is tied to the actual Spiro-OMeTAD conductivity; doubling it would change heat spreading, but the paper gives no quantitative result.\nCurrent λ_Spiro -> localises heat -> Tmax ≈325 K\nHigher λ -> heat distribution unknown -> Tmax not specified"
+  },
+  {
+    "question_id": "8-9",
+    "question_type": "modelling",
+    "question": "With CuO and Spiro-OMeTAD acceptor doping both set to 1 × 10^17 cm⁻³, rather than the respective 1 × 10^20 cm⁻³ and 1 × 10^19 cm⁻³ optima, would the simulated planar DHLSC still surpass 22 % PCE after thickness optimisation alone?",
+    "gold_answer": "no",
+    "gold_trace": "Such low doping levels correspond to the pre-optimised case (<21.60 %); exceeding 22 % requires higher doping.\nLow NA -> reduced conductivity & extraction -> PCE ≤21.60 %\nThreshold 22 % -> not achieved"
+  },
+  {
+    "question_id": "8-10",
+    "question_type": "modelling",
+    "question": "If the optical generation profile in the simulation were truncated at 700 nm instead of 830 nm, would the model still be able to reproduce Qin et al.’s reference PCE of 22.77 %?",
+    "gold_answer": "no",
+    "gold_trace": "Cutting off absorption from 700–830 nm removes part of the photocurrent; the reproduced PCE would fall below 22.77 %.\nFull 300–830 nm generation -> validates 22.77 % PCE\nTruncate at 700 nm -> less Jsc -> lower PCE"
+  },
+  {
+    "question_id": "8-11",
+    "question_type": "photovoltaics",
+    "question": "Assuming all other layers are ideal, would replacing the indirect-bandgap 1.5 eV CuO with a hypothetical p-type material of identical thickness and valence-band position but a 3.0 eV bandgap be expected to improve the fill factor beyond the reported 83.74 %?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The effect of the wider bandgap on series resistance and recombination is not detailed; no prediction of FF is provided.\nCuO 1.5 eV -> FF 83.74 %\nHypothetical 3 eV material -> performance impact unknown"
+  },
+  {
+    "question_id": "8-12",
+    "question_type": "nanophotonics",
+    "question": "Keeping all other patterned layers at their optimal sizes, would increasing the major radius of the ITO ellipsoids from 170 nm to 250 nm still be expected to yield a device PCE above 24 %?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Only the 170 nm optimum is documented; performance at 250 nm is not reported.\nITO 170 nm -> PCE 24.15 %\nITO 250 nm -> optical response not given"
+  },
+  {
+    "question_id": "8-13",
+    "question_type": "thermal",
+    "question": "Given that the planar DHLSC retains 94.65 % of its isothermal efficiency at 52 °C, would it still outperform the hierarchical device in relative efficiency retention if the ambient temperature were increased further to 60 °C under identical assumptions?",
+    "gold_answer": "uncertain",
+    "gold_trace": "No data for 60 °C is supplied; relative trends beyond 52 °C are not specified.\nAt 52 °C: Planar 94.65 %, Hierarchical 94.5 %\nAt 60 °C: behaviours unknown"
+  },
+  {
+    "question_id": "8-14",
+    "question_type": "modelling",
+    "question": "If periodic boundary conditions in the FDTD optical simulation were replaced with perfectly-matched layers (PML) on all boundaries while keeping the unit cell size the same, would the calculated baseline planar device PCE of 19.93 % remain unchanged?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Changing boundary conditions alters interference and thus absorption; the paper gives no result for this scenario.\nPeriodic BC -> simulated PCE 19.93 %\nPML all sides -> optical field different -> outcome not provided"
+  },
+  {
+    "question_id": "8-15",
+    "question_type": "photovoltaics",
+    "question": "If the Spiro-OMeTAD layer thickness were doubled from 60 nm to 120 nm while maintaining its doping at 1 × 10^19 cm⁻³, would the stepwise energy-level cascade still minimise non-radiative recombination as effectively as in the optimised case?",
+    "gold_answer": "uncertain",
+    "gold_trace": "The effect of doubling thickness on recombination is not quantified in the paper.\n60 nm Spiro -> optimal cascade -> low recombination\n120 nm Spiro -> interface unchanged but transport length longer -> recombination impact unknown"
+  },
+  {
+    "question_id": "8-16",
+    "question_type": "nanophotonics",
+    "question": "Would substituting the sequential half-ellipsoidal patterning strategy with isolated Au nanospheres of equal lateral pitch (Str. VI) be expected to yield any PCE improvement over the planar DHLSC baseline?",
+    "gold_answer": "no",
+    "gold_trace": "The paper states Au nanosphere patterning does not improve PCE due to passive scattering.\nAu nanospheres (Str. VI) -> passive scattering -> no PCE gain"
+  },
+  {
+    "question_id": "8-17",
+    "question_type": "photovoltaics",
+    "question": "Maintaining the CuO thickness at 300 nm, would lowering its acceptor doping from 5 × 10^19 cm⁻³ to 1 × 10^16 cm⁻³ still allow the device to achieve Voc above 1.05 V?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Voc dependence on such a large doping reduction is not provided.\nHigh NA 5×10^19 -> Voc 1.066 V\nLow NA 1×10^16 -> series resistance & recombination change -> Voc unknown"
+  },
+  {
+    "question_id": "8-18",
+    "question_type": "modelling",
+    "question": "Suppose the MgF₂ anti-reflection coating thickness were reduced from 100 nm to 50 nm while leaving all other parameters at their optimised values; would the planar DHLSC still be predicted to exceed 24 % PCE?",
+    "gold_answer": "uncertain",
+    "gold_trace": "Only the 100 nm ARC thickness is analysed; 50 nm performance is not reported.\n100 nm MgF₂ ARC -> PCE 24.32 %\n50 nm -> optical reflection different -> PCE unknown"
+  }
+]
