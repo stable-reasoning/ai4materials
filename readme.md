@@ -10,7 +10,6 @@
 
 ## About
 
-
 This repository is a part of Master's thesis in AI: "Enhancing the Reasoning of LLMs in Materials Discovery via Causal Contracts"
 
 ## 📋 Overview
@@ -66,15 +65,15 @@ The pipelines are built from interoperable **agents** orchestrated by a lightwei
 1. **Clone the repository**
 
 ```bash
-git clone <your-repo-url>
-cd <your-repo>
+git clone https://github.com/stable-reasoning/ai4materials
+cd ai4materials
 ```
 
 2. **Create and activate a Conda environment**
 
 ```bash
-conda create -n llm-reasoning python=3.10 -y
-conda activate llm-reasoning
+conda create -n ai4materials python=3.10 -y
+conda activate ai4materials
 ```
 
 3. **Install dependencies**
@@ -88,7 +87,7 @@ pip install -r requirements.txt
 * Or, if you maintain an `environment.yml`:
 
 ```bash
-conda env update -n llm-reasoning -f environment.yml
+conda env update -n ai4materials -f environment.yml
 ```
 
 > Tip: If you're on Apple Silicon or using CUDA, prefer installing any platform‑specific packages via conda first, then fall back to pip.
@@ -263,11 +262,11 @@ If you use this repository in academic work, please cite it as:
 ```bibtex
 @misc{kaliutau2025,
   author = {Kaliutau, A.},
-  title = {{AI in Material Science}},
+  title = {{AI in Materials Science}},
   year = {2025},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/stable-reasoning/ai-material-science}},
+  howpublished = {\url{https://github.com/stable-reasoning/ai4materials}},
 }
 ```
 
