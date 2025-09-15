@@ -1,6 +1,6 @@
 <p align="center">
  <!-- <img src="docs/logo.png" style="height: 80px;"> -->
- <h1 align="center">Improving LLM Reasoning in Material Science</h1>
+ <h1 align="center">Improving LLM Reasoning in Materials Science</h1>
 </p>
 <p align="center">
  <a><img alt="Status" src="https://img.shields.io/badge/status-research_prototype-6a5acd"></a>
@@ -10,7 +10,8 @@
 
 ## About
 
-This repository is a part of MSc AI thesis "Enhancing the Reasoning of LLMs in Materials Discovery via Causal Contracts"
+
+This repository is a part of Master's thesis in AI: "Enhancing the Reasoning of LLMs in Materials Discovery via Causal Contracts"
 
 ## 📋 Overview
 
@@ -110,11 +111,10 @@ python app.py document  --working-dir runs \
 **Answer & Evaluation Pipeline** — given a QA dataset and contracts:
 
 ```bash
-python app.py answer \
+python app.py answer --working-dir runs \
   --contracts ./data/contracts2.json \
   --dataset   ./data/full_dataset2.json \
   --flags RAW_TEXT \
-  --working-dir runs \
   --model openai/o4-mini --temperature 1.0 --retries 3
 ```
 
@@ -130,6 +130,11 @@ python app.py design  --working-dir runs \
 > Both commands create a timestamped experiment folder inside `runs/` that contains all intermediate and final artifacts.
 
 ## 🔧 Framework Components
+
+### General notes on code architecture
+
+The LLM client part is implemented using LiteLLM library, and this makes our tool model-agnostic. When using two providers,
+appropriate API keys must be provided. 
 
 ### 🧬 Document Pipeline
 
@@ -250,13 +255,6 @@ from app import get_document_pipeline_dag, get_answer_pipeline_dag
 
 # Build a custom DAG and run it with your own runner/configuration
 ```
-
-# General notes on code architecture
-
-The LLM client part is implemented using LiteLLM library, and this makes our tool model-agnostic. When using two providers,
-appropriate API keys must be provided. 
-
-
 
 ## 📚 Citation
 
