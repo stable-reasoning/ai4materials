@@ -1,4 +1,4 @@
-{
+[{
   "hypothesis": "The double-helix chiral structure of La(Rh,Ir)Si combined with broken inversion symmetry and strong spin–orbit coupling leads to multifold Weyl fermions and spin-polarized helicoid Fermi arcs",
   "cause_effect": [
     {
@@ -72,4 +72,4 @@
     }
   ],
   "contract_id": "6-0"
-}
+}]

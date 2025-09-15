@@ -58,7 +58,7 @@ class QAAnswerAgent(Agent):
                     context.append(f"\n[RAW_TEXT]\n {raw_text}")
                 context = context or ['-']
                 user_prompt = self.config.pm.compose_prompt(
-                    "qa_answering_llm.j2",
+                    "qa_answering_llm_v1.j2",
                     questions=masked_qs,
                     context=context
                 )

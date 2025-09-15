@@ -352,7 +352,7 @@ def make_parser() -> argparse.ArgumentParser:
     p_ans.add_argument(
         "--flags",
         default="RAW_TEXT",
-        help="Optional context flags, e.g. 'CC' or 'RAW_TEXT' or 'CC+RAW_TEXT'",
+        help="Optional context flags, e.g. 'CC' or 'RAW_TEXT' or 'CC+RAW_TEXT';  for the baseline use BASE",
     )
     p_ans.add_argument(
         "--run-id",
