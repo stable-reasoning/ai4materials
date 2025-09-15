@@ -12,7 +12,6 @@ from utils.settings import logger
 
 # TODO add generic mechanism of checkpoints/continuation
 class ContractWriterAgent(Agent):
-    """An agent to fetch posts from a public API."""
 
     config: "ContractWriterAgent.Config"
 

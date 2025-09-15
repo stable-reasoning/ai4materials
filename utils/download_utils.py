@@ -170,14 +170,3 @@ class FileDownloader:
         logging.info("Processing complete.")
         return added_files
 
-
-def main():
-    input_file = ROOT_DIR / "tests/papers.lst"
-
-    # --- Initialize and run the downloader ---
-    downloader = FileDownloader()
-    downloader.process_url_list_file(input_file)
-
-
-if __name__ == "__main__":
-    main()

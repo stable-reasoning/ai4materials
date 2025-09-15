@@ -1,11 +1,9 @@
 import json
 import re
+from time import perf_counter_ns
 from typing import List, Dict, Any
 
 from openai import OpenAI
-
-from utils.common import ModelConfig
-from time import perf_counter_ns
 
 
 def coerce_blocks(raw: Any) -> List[Dict[str, Any]]:

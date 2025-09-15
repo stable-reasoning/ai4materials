@@ -1,12 +1,30 @@
+"""
+Model-agnostic LLM middleware powered by LiteLLM.
+
+- Supports OpenAI and Google Gemini out of the box.
+- Automatically determines provider from the model string (or explicit metadata),
+then calls LiteLLM's acompletion under the hood.
+- Requires API keys via env vars: `OPENAI_API_KEY` and/or `GEMINI_API_KEY`.
+
+
+Notes
+-----
+* `config.model` can be either a bare model name (e.g. "gpt-4o-mini", "gemini-1.5-flash")
+or a provider-qualified name (e.g. "openai/gpt-4o-mini", "gemini/gemini-1.5-flash").
+* You may override provider detection with `metadata={"provider": "openai" | "gemini"}`.
+* Extra LiteLLM params (e.g. `top_p`, `stop`, `api_base`, `timeout`) can be passed via
+`metadata={"litellm_params": {...}}`.
+"""
+
 import json
 import re
 from dataclasses import dataclass
-from typing import List, Dict, Any, TypeVar, Callable, Protocol, Coroutine, Tuple, Optional
+from time import perf_counter_ns
+from typing import List, Dict, Any, TypeVar, Callable, Protocol, Coroutine, Optional
 
-from openai import OpenAI
+from litellm import acompletion
 
 from utils.common import ModelConfig
-from time import perf_counter_ns
 
 T_Coerced = TypeVar("T_Coerced")
 
@@ -17,6 +35,10 @@ class LLMMetrics:
     prompt_tokens: int = 0
     completion_tokens: int = 0
 
+
+# -----------------------
+# Coercion helpers
+# -----------------------
 
 def coerce_to_json_list(content: Any) -> List[Dict[str, Any]]:
     # Extract first [...] to avoid stray characters
@@ -42,10 +64,34 @@ def coerce_to_simple_string(content: Any) -> str:
     return str(content).strip()
 
 
-def get_client(config: ModelConfig) -> OpenAI:
-    return OpenAI()
+def identity(content: Any) -> Any:
+    return content
 
 
+def _build_litellm_params(config: ModelConfig, metadata: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+    params: Dict[str, Any] = {
+        "temperature": getattr(config, "temperature", 0.0),
+    }
+    # Only pass max_tokens if explicitly set (avoid huge defaults on some backends)
+    max_tokens = getattr(config, "max_tokens", None)
+    if isinstance(max_tokens, int) and max_tokens > 0:
+        params["max_tokens"] = max_tokens
+
+    md = metadata or {}
+    for k in ("api_key", "api_base", "timeout"):
+        if k in md:
+            params[k] = md[k]
+
+    # Full passthrough for advanced LiteLLM options
+    if isinstance(md.get("litellm_params"), dict):
+        params.update(md["litellm_params"])  # e.g., top_p, stop, seed, extra_headers, etc.
+
+    return params
+
+
+# -----------------------
+# Public callable protocol
+# -----------------------
 class GenericLLMCallable(Protocol):
     """A protocol for a generic, async LLM calling function."""
 
@@ -63,35 +109,49 @@ class GenericLLMCallable(Protocol):
 async def call_llm(messages: List[Any],
                    config: ModelConfig,
                    transformer: Callable[[Any], T_Coerced],
-                   metadata: Dict[str, Any],
+                   metadata: Optional[Dict[str, Any]],
                    metrics: Optional[LLMMetrics] = None) -> T_Coerced:
-    last_err = None
-    client = get_client(config=config)
+    md = metadata or {}
+    provider = config.get_provider()
+    model_id = config.model
+    params = _build_litellm_params(config, md)
+
+    last_err: Optional[Exception] = None
+    tries = max(1, int(getattr(config, "retries", 1)))
     for _ in range(config.retries):
         try:
             start = perf_counter_ns()
             # Responses API (multi-modal)
-            resp = client.chat.completions.create(
-                model=config.model,
-                temperature=config.temperature,
+            resp = await acompletion(
+                model=model_id,
                 messages=messages,
-                reasoning_effort="high",
-                verbosity="medium"
+                reasoning_effort='medium',
+                **params,
             )
 
             if metrics is not None:
                 elapsed_ns = perf_counter_ns() - start
                 metrics.latency_ms = elapsed_ns // 1_000_000
-                metrics.prompt_tokens = resp.usage.prompt_tokens
-                metrics.completion_tokens = resp.usage.completion_tokens
+                usage = getattr(resp, "usage", None) or (resp.get("usage") if isinstance(resp, dict) else None)
+                if usage:
+                    metrics.prompt_tokens = getattr(usage, "prompt_tokens", 0) \
+                                            or usage.get("prompt_tokens", 0)
+                    metrics.completion_tokens = getattr(usage, "completion_tokens", 0) \
+                                                or usage.get("completion_tokens", 0)
 
-            content = resp.choices[0].message.content.strip()
-            # print(content)
+            # Extract content robustly (LiteLLM response mirrors OpenAI schema)
+            try:
+                content = resp.choices[0].message["content"]  # type: ignore[attr-defined]
+            except Exception as e:
+                content = resp["choices"][0]["message"]["content"]  # type: ignore[index]
+
             return transformer(content)
         except Exception as e:
             last_err = e
     raise RuntimeError(f"OpenAI parse failed for {last_err}")
 
 
+# Backward-compat placeholder (if other modules import this symbol)
 class LLMClient:
+    """No-op placeholder retained for compatibility. Use `call_llm` directly."""
     pass

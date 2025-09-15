@@ -15,6 +15,11 @@ class ModelConfig:
     retries: int = 1
     max_tokens: int = 65535
 
+    def get_provider(self) -> str:
+        if '/' not in self.model:
+            raise ValueError('Models name should be normalized, f.e. openai/o3')
+        return self.model.lower().split('/')[0]
+
 
 @dataclass(frozen=True)
 class SourceTxtBlock:

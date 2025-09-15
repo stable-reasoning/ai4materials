@@ -98,21 +98,30 @@ Minimal configuration is required for local runs. By default, artifacts are writ
 **Document Pipeline** — given a list of paper URLs:
 
 ```bash
-python app4.py document \
-  --papers ./test_data/papers_3.lst \
-  --working-dir runs \
-  --model o4-mini --temperature 1.0 --retries 3
+python app.py document  --working-dir runs \
+  --papers ./test_data/papers_1.lst \
+  --run-id doc_pipeline_test  \
+  --model openai/o4-mini --temperature 1.0 --retries 3
 ```
 
 **Answer & Evaluation Pipeline** — given a QA dataset and contracts:
 
 ```bash
-python app4.py answer \
+python app.py answer \
   --contracts ./data/contracts2.json \
   --dataset   ./data/full_dataset2.json \
   --flags RAW_TEXT \
   --working-dir runs \
-  --model o4-mini --temperature 1.0 --retries 3
+  --model openai/o4-mini --temperature 1.0 --retries 3
+```
+
+```bash
+python app.py design  --working-dir runs \
+   --contracts ./data/contracts2.json \
+   --contract_id 21-0 \
+   --run-id design_pipeline-20250915-065507 \
+   --model openai/o4-mini --temperature 1.0 --retries 3
+
 ```
 
 > Both commands create a timestamped experiment folder inside `runs/` that contains all intermediate and final artifacts.
@@ -159,20 +168,21 @@ python app4.py answer \
 
 ## 📦 Project Structure
 
-> The repository includes a screenshot of the file tree. Commit it under `docs/project_structure.png` (or update the path in the header image).
 
 ```
 <repo-root>/
 ├─ agents/                  # Agent implementations (download, extract, analyze, QA, eval, ...)
 ├─ core/                    # DAG & runtime abstractions
-├─ data/                    # Input data (contracts, datasets)
+├─ data/                    # Generated artifacts (contracts, datasets, etc)
+├─ docs/                    # Technical documentation
 ├─ docucache/              
 ├─ middleware/              # Shared services (e.g., image storage)
+├─ notebooks/               # Analytics for thesis            
 ├─ runs/                    # Experiment outputs (created at runtime)
 ├─ test_data/               # Test lists / small fixtures (e.g., paper URLs)
 ├─ utils/                   # Prompt manager, settings, model config, logging helpers
 ├─ requirements.txt         # Python dependencies
-└─ app4.py                  # CLI entrypoint: build & run DAG pipelines
+└─ app.py                  # CLI entrypoint: build & run DAG pipelines
 ```
 
 ## The file structure of DocuCache
@@ -212,35 +222,36 @@ You can pass a custom `--run-id` to name the experiment folder deterministically
 ### Common CLI Flags
 
 * `--working-dir` (default: `runs`) — base directory for artifacts.
-* `--model` (default: `o4-mini`) — model name/ID.
+* `--model` (default: `openai/o4-mini`) — model name/ID in a standard format provider/model_name.
 * `--temperature` (default: `1.0`) — sampling temperature.
 * `--retries` (default: `3`) — retry attempts for model calls.
 
 ### Document Pipeline
 
-* `--papers` — path to a text file containing one URL per line (default: `./test_data/papers_3.lst`).
+* `--papers` — path to a text file containing one URL per line (default: `./test_data/papers_1.lst`).
 * `--run-id` — optional experiment/run identifier.
 
 ### Answer & Evaluation Pipeline
 
-* `--dataset` — path to a QA dataset JSON (default: `./data/full_dataset2.json`).
-* `--contracts` — path to a contracts JSON (default: `./data/contracts2.json`).
-* `--flags` — context flags (e.g., `RAW_TEXT`, `CC`, or `CC|RAW_TEXT`).
+* `--dataset` — path to a QA dataset JSON (default: `./data/test_dataset.json`).
+* `--contracts` — path to a contracts JSON (default: `./data/test_contracts.json`).
+* `--flags` — context flags (e.g., `RAW_TEXT`, `CC`, or `CC+RAW_TEXT`).
 * `--run-id` — optional experiment/run identifier.
 
 ### Programmatic Use
 
-Import and extend the DAG builders from `app4.py`:
+Import and extend the DAG builders from `app.py`:
 
 ```python
-from app4 import get_document_pipeline_dag, get_answer_pipeline_dag
+from app import get_document_pipeline_dag, get_answer_pipeline_dag
 
 # Build a custom DAG and run it with your own runner/configuration
 ```
 
 # General notes on code architecture
 
-TBA
+The LLM client part is implemented using LiteLLM library, and this makes our too model-agnostic. When using two providers,
+appropriate API keys must be provided. 
 
 
 ## 🙌 Acknowledgements

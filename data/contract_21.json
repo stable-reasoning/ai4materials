@@ -1,0 +1,237 @@
+[
+  {
+    "hypothesis": "1:1 ordering at both A- and B-sublattices combined with a+ a+ c– octahedral rotations in AA′BB′O6 structures leads_to insulating ferro- and ferrimagnetic behavior with semiconducting band gaps suitable for optoelectronic and spintronic applications",
+    "cause_effect": [
+      {
+        "cause": "1:1 A- and B-sublattice ordering",
+        "action_verb": "leads_to",
+        "effect": "complex electronic structures and large magnetic interactions"
+      },
+      {
+        "cause": "a+ a+ c– octahedral rotations",
+        "action_verb": "enables",
+        "effect": "insulating ferro- and ferrimagnetic order"
+      },
+      {
+        "cause": "chemical substitution at the A′ site",
+        "action_verb": "causes",
+        "effect": "tunable band gap magnitudes"
+      },
+      {
+        "cause": "columnar versus rock-salt cation ordering",
+        "action_verb": "results_in",
+        "effect": "variation of magnetic exchange strengths"
+      }
+    ],
+    "assumptions": {
+      "Ideal 1:1 ordering at both sublattices": "hard constraint",
+      "DFT+U accurately captures electronic correlations and magnetic exchange": "random assumption without explanation"
+    },
+    "predictions": [
+      "LaA′MnNiO6 DDPOs will exhibit semiconducting band gaps between 1.3 eV and 1.9 eV",
+      "They will crystallize in tetragonal centrosymmetric P4_2/n symmetry",
+      "They will be ferromagnetic or ferrimagnetic insulators",
+      "Magnetic transition temperatures will range from 70 K to 242 K",
+      "Phonon dispersions will show only negligible imaginary modes (<2 cm⁻¹)"
+    ],
+    "rubric": [
+      {
+        "claim": "AA′BB′O6 compounds exhibit 1:1 ordering at both A- and B-sublattices",
+        "justification": "Ensures the double-double perovskite structural motif required for the proposed mechanism",
+        "source_text": [
+          5
+        ]
+      },
+      {
+        "claim": "The a+ a+ c– tilt pattern is present in the lattice",
+        "justification": "Is essential for generating the insulating ferro- and ferrimagnetic behavior",
+        "source_text": [
+          8
+        ]
+      },
+      {
+        "claim": "Calculated band gaps fall within 1.3–1.9 eV",
+        "justification": "Confirms the optical suitability of the materials for optoelectronic applications",
+        "source_text": [
+          8,
+          10
+        ]
+      },
+      {
+        "claim": "Density-functional calculations classify the compounds as ferromagnetic or ferrimagnetic insulators",
+        "justification": "Validates the combined magnetic and electronic behavior central to the hypothesis",
+        "source_text": [
+          28
+        ]
+      },
+      {
+        "claim": "Classical Monte Carlo simulations predict transition temperatures between 70 K and 242 K following the Co>Ni>Mn>Cr>V trend",
+        "justification": "Demonstrates tunability of magnetic interactions via A′-site substitution",
+        "source_text": [
+          39
+        ]
+      }
+    ],
+    "contract_id": "21-0"
+  },
+  {
+    "hypothesis": "Orbital-selective hopping interactions between e_g–e_g in parallel spin alignment and e_g–t_2g in antiparallel alignment cause distinct ferromagnetic and antiferromagnetic exchange couplings that determine the magnetic transition temperatures of LaA′MnNiO6 DDPOs",
+    "cause_effect": [
+      {
+        "cause": "e_g–e_g hopping in parallel spins",
+        "action_verb": "leads_to",
+        "effect": "strong ferromagnetic coupling (~2 mRy)"
+      },
+      {
+        "cause": "e_g–t_2g hopping in antiparallel spins",
+        "action_verb": "leads_to",
+        "effect": "weaker antiferromagnetic coupling (~0.7 mRy)"
+      },
+      {
+        "cause": "strong AFM A′(Ni)–Mn and A′(Ni)–Ni interactions",
+        "action_verb": "compensate",
+        "effect": "weaker Ni–Mn coupling to yield Tc of ~185 K in LaNiMnNiO6"
+      },
+      {
+        "cause": "tetrahedral A2 site exchange couplings",
+        "action_verb": "are",
+        "effect": "significantly stronger than coplanar A1 interactions and dominate Tc"
+      },
+      {
+        "cause": "rapid decay of inter-site J_ij with distance",
+        "action_verb": "restricts",
+        "effect": "magnetic interaction range to first neighbors"
+      }
+    ],
+    "assumptions": {
+      "Magnetic exchange parameters from DFT reflect real material interactions": "random assumption without explanation",
+      "Negligible quantum fluctuations (classical MC approximation)": "hard constraint"
+    },
+    "predictions": [
+      "Magnetic transition temperatures will follow the sequence Co > Ni > Mn > Cr > V",
+      "Dominant exchange interactions will be first-neighbor couplings: Mn–Ni, A′–Mn, A′–Ni, and A′–A′",
+      "Ferromagnetic coupling strength will be ~2 mRy for e_g–e_g routes",
+      "Antiferromagnetic coupling strength will be ~0.7 mRy for e_g–t_2g routes",
+      "Tetrahedral A2 interactions will contribute most strongly to overall Tc"
+    ],
+    "rubric": [
+      {
+        "claim": "Ferromagnetic alignment via e_g–e_g hopping yields strong coupling (~2 mRy)",
+        "justification": "Demonstrates the mechanism for the strongest exchange path",
+        "source_text": [
+          47,
+          48
+        ]
+      },
+      {
+        "claim": "Antiferromagnetic alignment via e_g–t_2g hopping yields weaker coupling (~0.7 mRy)",
+        "justification": "Confirms the distinct orbital-hopping mechanism for AFM interactions",
+        "source_text": [
+          47,
+          48
+        ]
+      },
+      {
+        "claim": "In LaNiMnNiO6, strong AFM A′(Ni)–Mn (−0.56 mRy) and A′(Ni)–Ni (−0.37 mRy) interactions compensate the Ni–Mn coupling",
+        "justification": "Quantifies how competing exchanges set the specific Tc of ~185 K",
+        "source_text": [
+          51
+        ]
+      },
+      {
+        "claim": "Tetrahedral A2 site exchange couplings are significantly stronger than coplanar A1",
+        "justification": "Identifies which local environment dominates the A′-site exchange contribution",
+        "source_text": [
+          50
+        ]
+      },
+      {
+        "claim": "Inter-site exchange parameters J_ij decay rapidly with distance, highlighting first-neighbor dominance",
+        "justification": "Shows that long-range interactions are negligible and first neighbors control Tc",
+        "source_text": [
+          40
+        ]
+      }
+    ],
+    "contract_id": "21-1"
+  },
+  {
+    "hypothesis": "Positive formation energies comparable to known quadruple perovskites combined with negligible imaginary phonon modes ensure that LaA′MnNiO6 DDPOs maintain thermodynamic and dynamic stability under high-temperature, high-pressure synthesis conditions",
+    "cause_effect": [
+      {
+        "cause": "positive formation energies comparable to known quadruple perovskites",
+        "action_verb": "indicate",
+        "effect": "thermodynamic feasibility under synthesis conditions"
+      },
+      {
+        "cause": "negligible imaginary phonon modes (0–2 cm⁻¹)",
+        "action_verb": "demonstrate",
+        "effect": "dynamic stability of the lattice"
+      },
+      {
+        "cause": "high-temperature, high-pressure conditions",
+        "action_verb": "enable",
+        "effect": "realization of compounds despite positive formation energies"
+      },
+      {
+        "cause": "tetragonal P4_2/n symmetry consistent with prototypes",
+        "action_verb": "supports",
+        "effect": "structural stability"
+      },
+      {
+        "cause": "limited-range exchange interactions",
+        "action_verb": "prevent",
+        "effect": "frustration-induced distortions"
+      }
+    ],
+    "assumptions": {
+      "Phonon calculations converged within numerical error": "hard constraint",
+      "High-pressure, high-temperature conditions are experimentally accessible": "random assumption without explanation"
+    },
+    "predictions": [
+      "LaA′MnNiO6 DDPOs will be synthesizable under high-temperature, high-pressure conditions",
+      "Phonon dispersions at 0 K will exhibit only negligible imaginary modes",
+      "Formation energies will remain positive but comparable to known perovskites",
+      "Crystallized samples will adopt P4_2/n symmetry without phase separation",
+      "No long-wavelength lattice instabilities will appear in vibrational spectra"
+    ],
+    "rubric": [
+      {
+        "claim": "Phonon dispersions show only tiny acoustic imaginary modes (0–2 cm⁻¹) near Γ",
+        "justification": "Demonstrates dynamic stability required for material synthesis",
+        "source_text": [
+          55
+        ]
+      },
+      {
+        "claim": "Calculated formation energies are positive and comparable to known quadruple perovskites",
+        "justification": "Indicates thermodynamic feasibility under realistic conditions",
+        "source_text": [
+          57
+        ]
+      },
+      {
+        "claim": "Thermodynamic feasibility requires high-temperature, high-pressure conditions",
+        "justification": "Specifies the synthesis constraints for realizing the compounds",
+        "source_text": [
+          57
+        ]
+      },
+      {
+        "claim": "All LaA′MnNiO6 DDPOs crystallize in tetragonal centrosymmetric P4_2/n symmetry",
+        "justification": "Establishes structural consistency with stable DDPO prototypes",
+        "source_text": [
+          24
+        ]
+      },
+      {
+        "claim": "Inter-site exchange parameters J_ij decay rapidly with distance, indicating first-neighbor dominance",
+        "justification": "Ensures that magnetic interactions do not induce long-range structural instabilities",
+        "source_text": [
+          40
+        ]
+      }
+    ],
+    "contract_id": "21-2"
+  }
+]

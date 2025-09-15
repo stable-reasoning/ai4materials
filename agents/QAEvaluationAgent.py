@@ -12,11 +12,8 @@ from utils.common import ModelConfig, Answer
 from utils.prompt_manager import PromptManager
 from utils.settings import logger
 
-from more_itertools import chunked
-
 
 class QAEvaluationAgent(Agent):
-    """An agent to fetch posts from a public API."""
 
     config: "QAEvaluationAgent.Config"
 

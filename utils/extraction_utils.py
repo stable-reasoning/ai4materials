@@ -1,12 +1,10 @@
 import json
 import logging
 import subprocess
-import sys
 from pathlib import Path
 from typing import List, Any
 
-from utils.common import DocumentBundle
-from utils.settings import SCRIPTS_DIR, global_config, logger
+from utils.settings import SCRIPTS_DIR, logger
 
 
 def get_keys_from_json_file(file_path: Path) -> List[str]:
@@ -74,17 +72,3 @@ def extract_pdf_pages(pdf_path: Path, out_dir: Path, dpi: int = 150):
         msg = f"Extraction failed (exit {e.returncode}):\n{e.stderr}"
         raise RuntimeError(msg) from e
 
-
-if __name__ == "__main__":
-    try:
-        # Example usage
-        doc_id = "1"
-        bundle = DocumentBundle("1")
-        file = bundle.bundle_path / "tmp/1706.03762.pdf"
-        out = bundle.pages_dir
-        extract_pdf_pages(pdf_path=file, out_dir=out)
-    except Exception as e:
-        print("Error:", e, file=sys.stderr)
-        sys.exit(1)
-    else:
-        print("All pages extracted successfully.")
