@@ -2,7 +2,7 @@
   {
     "question_id": "1-1",
     "question": "To what extent do you agree with the following claim about La₂CoMnO₆:  “When the sample is cooled from 150 K down to 15 K in zero magnetic field, the unit-cell length expands by roughly +4.9 × 10⁻⁴, stretching the Co–O bonds.  This thermally driven lattice expansion weakens the Co 3d–O 2p hybridization, lowers the crystal-field splitting, and ultimately raises the dielectric constant even without an external field.”",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Structural–electronic coupling",
     "gold_answer": "0.05",
@@ -18,7 +18,7 @@
   {
     "question_id": "1-2",
     "question": "Evaluate the statement:  “At 150 K under a 3 T field the relative contraction along the a-axis (Δa ≈ −1.09 × 10⁻⁴) is the largest among all crystallographic directions, whereas b shrinks less and c is nearly unchanged; therefore straightening of the Co–O–Mn bond angle is governed mainly by compression along a.”",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Anisotropic magnetostriction",
     "gold_answer": "0.15",
@@ -34,7 +34,7 @@
   {
     "question_id": "1-3",
     "question": "“According to charge-transfer multiplet simulations, cooling La₂CoMnO₆ from 300 K to 2 K increases the crystal-field splitting 10 Dq and simultaneously lowers the charge-transfer energy ΔCT by ≈1.1 eV while enhancing both V(e_g) and V(t₂g); because U_dd still exceeds ΔCT, the compound remains a positive charge-transfer insulator.”  How strongly do you agree with this synthesis?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Temperature-driven electronic parameters",
     "gold_answer": "0.9",
@@ -50,7 +50,7 @@
   {
     "question_id": "1-4",
     "question": "Consider the claim:  “Applying a 6 T magnetic field at 2 K raises the charge-transfer energy ΔCT of Co by about 0.4 eV and slightly lowers 10 Dq; this weaker Co–O covalency reduces feature C and enhances features A, B and D in the Co L₃ edge spectrum.”  Indicate your level of agreement.",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Field-induced electronic shifts",
     "gold_answer": "0.1",
@@ -66,7 +66,7 @@
   {
     "question_id": "1-5",
     "question": "“Field-dependent O K-edge spectra show a ≈5 % drop in pre-edge intensity when 6 T is applied at 2 K, proving that oxygen 2p states contribute negligibly to ligand-to-metal charge transfer during magnetostriction.”  Rate your agreement.",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Ligand participation",
     "gold_answer": "0.1",
@@ -82,7 +82,7 @@
   {
     "question_id": "1-6",
     "question": "Judge the following:  “DFT modelling that incorporates the −4.9 × 10⁻⁴ lattice contraction at 15 K predicts that a 6 T field increases the density of unoccupied Co d_{xz} states while decreasing d_{yz} states, producing the observed drop in XAS feature C.”",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Orbital redistribution",
     "gold_answer": "0.15",
@@ -98,7 +98,7 @@
   {
     "question_id": "1-7",
     "question": "“The near-room-temperature magnetodielectric effect in La₂CoMnO₆ is governed chiefly by spin-orbit interactions on Mn⁴⁺ t₂g orbitals, whereas Co²⁺ plays only a minor role because its orbital moment is largely quenched in the distorted octahedral field.”  How much do you agree?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Origin of MD effect",
     "gold_answer": "0.1",
@@ -114,7 +114,7 @@
   {
     "question_id": "1-8",
     "question": "Assess the statement:  “Because U_dd (≈6 eV) remains larger than ΔCT (≈5 eV) even after cooling to 2 K and applying 6 T, La₂CoMnO₆ belongs to the negative charge-transfer class in the Zaanen–Sawatzky–Allen scheme.”",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Charge-transfer classification",
     "gold_answer": "0.1",
@@ -130,7 +130,7 @@
   {
     "question_id": "1-9",
     "question": "“If hydrostatic pressure were applied such that the average lattice contraction at 150 K matched the −1.96 × 10⁻⁴ value produced by a 3 T field, the dielectric constant would change by exactly the same amount because the mechanism depends solely on the magnitude of volume change, not on the anisotropy introduced by spin–orbit-coupled magnetostriction.”  Indicate your agreement level.",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Pressure vs. field analogy",
     "gold_answer": "0.3",
@@ -146,7 +146,7 @@
   {
     "question_id": "1-10",
     "question": "“Low-spin Co³⁺ (S = 0) possesses a larger orbital angular momentum than high-spin Co²⁺; therefore increasing the Co³⁺ fraction should enhance magnetostriction, and a Co³⁺-rich sample would be expected to show ΔL(H = 5 T, 10 K) more negative than −6.3 × 10⁻⁴.”  How strongly do you agree?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Role of Co³⁺ fraction",
     "gold_answer": "0.15",
@@ -162,7 +162,7 @@
   {
     "question_id": "2-1",
     "question": "Assume you re–run the WSe₂ simulation at an excitation density of 2.0×10¹⁹ cm⁻³ but, contrary to the published workflow, you omit the RT-TDDFT step and describe carriers only with cDFT (thermal Fermi–Dirac occupations at 298 K).  Because the non-equilibrium BSE is still solved, a colleague claims that the resulting spectrum will reproduce the experimentally observed blue shift to within 50 meV.  How plausible is this claim?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "methodology/accuracy",
     "gold_answer": "0.0",
@@ -178,7 +178,7 @@
   {
     "question_id": "2-2",
     "question": "In CsPbBr₃ the measured exciton binding energy drops from ≈360 meV (equilibrium) to ≈90 meV at an excitation density of 3.2×10²¹ cm⁻³, giving a ≈270 meV electronic blue shift.  Imagine that Pauli blocking—normally negligible—were artificially enhanced so that it produced an additional 0.20 eV blue shift at the same density.  Under this hypothetical condition, the total shift would exceed 0.40 eV.  Do you agree?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "electronic effects",
     "gold_answer": "1.0",
@@ -194,7 +194,7 @@
   {
     "question_id": "2-3",
     "question": "The lattice of WSe₂ expands uniformly up to 700 K in the study, giving the largest red shift among the three materials.  Suppose only half of this expansion actually occurs (all else unchanged).  A student asserts that even this reduced expansion will still generate a larger red shift than the full expansion of TiO₂ at 798 K.  Is this assertion likely?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "thermal red shift comparison",
     "gold_answer": "0.0",
@@ -210,7 +210,7 @@
   {
     "question_id": "2-4",
     "question": "In anatase TiO₂ a z-polarized pump generates a higher excitation density than an x-polarized pump, leading to a stronger transient absorption (TA) signal.  If the pump fluence for the x-polarized case were doubled so that the final excitation densities and k-space delocalizations became equal for both polarizations, the TA amplitudes would become nearly identical within experimental error (~5 %).  Would you endorse this prediction?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "pump polarization",
     "gold_answer": "1.0",
@@ -226,7 +226,7 @@
   {
     "question_id": "2-5",
     "question": "For WSe₂ the paper notes that doubling the excitation density from 2.0×10¹⁹ cm⁻³ does not double the TA intensity.  Yet a report claims that the intensity scales exactly linearly with density in this range.  How credible is that report?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "non-linear density response",
     "gold_answer": "0.0",
@@ -242,7 +242,7 @@
   {
     "question_id": "2-6",
     "question": "At an excitation density of 8.0×10¹⁶ cm⁻³ in CsPbBr₃ the TA amplitude saturates when the carrier temperature reaches 500 K.  Imagine Pauli blocking suddenly becomes three-times larger than in the published calculation, introducing a 60 meV red shift.  A reviewer argues that the dominant spectral change will still be the blue shift from Coulomb screening.  Are they justified?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "screening vs Pauli blocking",
     "gold_answer": "0.5",
@@ -258,7 +258,7 @@
   {
     "question_id": "2-7",
     "question": "Keeping the pump fluence fixed, TiO₂ excited with 266 nm light yields a broader k-space carrier distribution and a stronger TA signal than with 355 nm.  Suppose the 266 nm experiment is repeated with the excitation density deliberately reduced by 25 % (e.g., via lower fluence).  A lab note claims the TA amplitude will still exceed that of the original 355 nm case.  Does the framework support this claim?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "pump wavelength trade-off",
     "gold_answer": "1.0",
@@ -274,7 +274,7 @@
   {
     "question_id": "2-8",
     "question": "Because the screening is treated within a linear-response RPA, someone argues that the present first-principles framework cannot be extended to simulate transient reflectivity in the terahertz range (<0.1 eV photons).  Is this limitation implied by the paper?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "method applicability",
     "gold_answer": "0.0",
@@ -290,7 +290,7 @@
   {
     "question_id": "2-9",
     "question": "The binding energy of the CsPbBr₃ exciton falls to ≈90 meV at 3.2×10²¹ cm⁻³.  If the density were doubled to 6.4×10²¹ cm⁻³ but the screening effect had already saturated at 90 meV, a proposal predicts the binding energy will drop further to ~45 meV.  Evaluate this proposal.",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "exciton binding saturation",
     "gold_answer": "0.0",
@@ -306,7 +306,7 @@
   {
     "question_id": "2-10",
     "question": "For TiO₂ the positive TA peak at 4.982 keV arises from lattice expansion to 798 K, while carrier-induced screening at 1.8×10¹⁹ cm⁻³ produces a negative feature at 4.984 keV.  If both effects act simultaneously, an analyst claims the positive 4.982 keV peak will remain completely unchanged.  Is this claim sensible?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "combined electronic & thermal effects",
     "gold_answer": "0.0",
@@ -322,7 +322,7 @@
   {
     "question_id": "3-1",
     "question": "NaCoF3 is kept in the orthorhombic Pnma lattice, but high pressure relocates the Co2+ ions from the 4b to the 4c Wyckoff site, stabilises a C-type (rather than G-type) antiferromagnetic pattern, removes most of the Jahn–Teller tilt so that the real-space charge distribution becomes almost isotropic (φ ≈ 0°), and breaks the nonsymmorphic T̂{R2z|00½} operation while leaving only T̂{R2x|½½0}.  Under these simultaneous changes, would you still expect (i) exact spin-up / spin-down degeneracy throughout the entire kz = 0 and kx = 0 planes and (ii) a momentum-dependent spin splitting of about 20 meV along the AZ line outside those planes?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials_science",
     "gold_answer": "0.0",
@@ -338,7 +338,7 @@
   {
     "question_id": "3-2",
     "question": "If 0.15 electrons per formula unit are injected so that the Fermi level moves upward to +0.50 eV above its undoped value, should the resulting Fermi surface of NaCoF3 still display the same d-wave topology observed under hole doping at E_F = –1.25 eV, with the spin splitting in the ky = 0 plane remaining restricted to roughly 20 meV?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials_science",
     "gold_answer": "0.0",
@@ -354,7 +354,7 @@
   {
     "question_id": "3-3",
     "question": "Suppose the Jahn–Teller tilt and rotation angles (φ, θ) of the CoF6 octahedra are quenched to nearly 0°, while the G-type antiferromagnetic order and U_eff = 3 eV remain unchanged.  Would you still expect four flat t_{2g} bands sitting ≈0.35 eV above E_F and an optical-conductivity peak α₁ at 3.1 eV in the a–b plane?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials_science",
     "gold_answer": "0.0",
@@ -370,7 +370,7 @@
   {
     "question_id": "3-4",
     "question": "One could argue that the 3.1 eV α₁ peak comes from a spin-conserving transition between the occupied e_g^↑ orbital of Co1 and the unoccupied d_{zx}^↑ orbital of Co2, so flipping the spin of the final state (to d_{zx}^↓) would push α₁ far above 6 eV.  Is that consistent with the calculated mechanism in G-AFM NaCoF3?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials_science",
     "gold_answer": "0.0",
@@ -386,7 +386,7 @@
   {
     "question_id": "3-5",
     "question": "Keeping both nonsymmorphic operations T̂{R2x|½½0} and T̂{R2z|00½} intact and placing E_F at –1.25 eV (hole-doped), is it inevitable that spin-up and spin-down bands remain exactly degenerate not only in the kx = 0 and kz = 0 planes but also along the AZḠA line?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials_science",
     "gold_answer": "0.0",
@@ -402,7 +402,7 @@
   {
     "question_id": "3-6",
     "question": "Under the original G-AFM symmetry (both nonsymmorphic operations present), would you expect the band splitting along the AZ line to reach about 200 meV instead of the ≈20 meV reported?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials_science",
     "gold_answer": "0.0",
@@ -418,7 +418,7 @@
   {
     "question_id": "3-7",
     "question": "Because only the Berry-curvature component Ω^y survives in G-AFM NaCoF3, if the probing light propagates parallel to the y-axis one should observe a Kerr rotation peak of roughly 9 × 10⁻² ° and a Faraday rotation of about 1 × 10³ ° cm⁻¹, whereas for light propagating along x or z the rotations should drop below 10⁻⁴ °.  Does this expectation follow from the symmetry analysis?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials_science",
     "gold_answer": "1.0",
@@ -434,7 +434,7 @@
   {
     "question_id": "3-8",
     "question": "If measurements instead found a Kerr-rotation peak approaching 0.9 ° (an order of magnitude larger than 9 × 10⁻² °) near 4 eV but detected no concomitant rise in anomalous Hall conductivity, would that be compatible with the symmetry-restricted Berry-curvature pattern calculated for G-AFM NaCoF3?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials_science",
     "gold_answer": "0.0",
@@ -450,7 +450,7 @@
   {
     "question_id": "3-9",
     "question": "Imagine an external distortion re-establishes inversion symmetry so that full P̂T̂ invariance is restored while R_{2y} is still present.  Under this restored P̂T̂ symmetry, should anomalous Hall and Nernst conductivities with pronounced peaks around 4 eV persist in NaCoF3?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials_science",
     "gold_answer": "0.0",
@@ -466,7 +466,7 @@
   {
     "question_id": "3-10",
     "question": "Keeping the symmetry pattern of G-AFM NaCoF3 unchanged, would simply raising the temperature from 10 K to 400 K be expected to shift the common AHC, ANC, and TAHC peak from 4 eV down to roughly 1 eV while leaving their magnitudes essentially the same?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials_science",
     "gold_answer": "0.0",
@@ -482,7 +482,7 @@
   {
     "question_id": "4-1",
     "question": "Imagine a batch of (R/S-FMBA)₂PbBr₄ single crystals whose single-crystal XRD refinements show a ΔD_tilt value of only 1–2 °, essentially the same as the 0 ° found for achiral FBA₂PbBr₄.  According to the causal picture laid out in the hypothesis, would these low-tilt chiral perovskites still be expected to display bright room-temperature circularly polarized luminescence with a dissymmetry factor g_lum > 0.01?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Chirality & Photophysics",
     "gold_answer": "0.1",
@@ -498,7 +498,7 @@
   {
     "question_id": "4-2",
     "question": "Suppose an achiral FBA₂PbBr₄ film is strain-engineered so that its ΔD_tilt is increased to 15 °, exceeding the 14 ° reported for chiral FMBA.  Would the hypothesis predict that this centrosymmetric but highly tilted FBA material will now exhibit sizable Rashba/Dresselhaus spin splittings detectable in photoemission experiments?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Spin-splitting Prediction",
     "gold_answer": "0.2",
@@ -514,7 +514,7 @@
   {
     "question_id": "4-3",
     "question": "A researcher reports that PBE calculations *without* any van-der-Waals correction give all three lattice constants of (R-FMBA)₂PbBr₄ within ±0.5 % of the XRD values, while keeping the same k-mesh and cutoff used in the paper.  Does this observation align with the hypothesis that neglecting vdW interactions leads to significant structural deviations?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Computational Methodology – Lattice Match",
     "gold_answer": "0.05",
@@ -530,7 +530,7 @@
   {
     "question_id": "4-4",
     "question": "Even after including Grimme-D2 vdW corrections, the calculated benzene-ring tilt in FBA₂PbBr₄ differs by 6 ° from the XRD measurement (the hypothesis expects <2 °).  Is such a 6 ° discrepancy consistent with the mechanism proposed for vdW-corrected structural accuracy?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Benzene-Ring Orientation",
     "gold_answer": "0.1",
@@ -546,7 +546,7 @@
   {
     "question_id": "4-5",
     "question": "Assume a hypothetical FMBA sample where D_tilt is measured to be *smaller* than that of FBA (e.g., 2 ° vs 3.5 °), yet its optical bandgap still lies at 2.65 eV while FBA remains at 2.54 eV.  Does this observation corroborate the stated link between larger D_tilt and wider bandgaps?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Structure–Bandgap Correlation",
     "gold_answer": "0.1",
@@ -562,7 +562,7 @@
   {
     "question_id": "4-6",
     "question": "Suppose chemical pressure pushes the out-of-plane distortion D_out of achiral FBA₂PbBr₄ from 3.5 ° up to 40 °, matching R-FMBA, yet photoluminescence remains narrow without any >100 nm broadband component.  Is this outcome in line with the causal claim that large D_out correlates with broadband emission?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Broadband Emission Predictor",
     "gold_answer": "0.15",
@@ -578,7 +578,7 @@
   {
     "question_id": "4-7",
     "question": "If a new RPA calculation (still neglecting excitons and SOC) on (R-FMBA)₂PbBr₄ shows a pronounced z-polarized absorption peak already at 450 nm, well above the ~350 nm threshold stated in the paper, does this agree with the anisotropic-absorption mechanism described?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Polarization-Resolved Absorption",
     "gold_answer": "0.05",
@@ -594,7 +594,7 @@
   {
     "question_id": "4-8",
     "question": "A PDOS calculation reports that C p orbitals dominate the valence-band edge of FBA₂PbBr₄, while Br p contributions are minor.  Does this observation fit the orbital-origin explanation for low-energy x/y-polarized absorption?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Orbital Character Test",
     "gold_answer": "0.1",
@@ -610,7 +610,7 @@
   {
     "question_id": "4-9",
     "question": "After running the provided Python script on the DFT-relaxed (R-FMBA)₂PbBr₄ structure, a user obtains ΔD_tilt = 0 °, identical to achiral FBA.  Does such a result uphold the claim that the code reliably reproduces reported distortion parameters?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Tool Validation – ΔD_tilt",
     "gold_answer": "0.05",
@@ -626,7 +626,7 @@
   {
     "question_id": "4-10",
     "question": "Imagine that λ_oct values obtained with the Python code for XRD versus DFT structures of S-FMBA differ by 50 %, far outside the near-agreement shown in Table 2.  Does this large mismatch conform to the hypothesis that the code yields consistent intra-octahedral metrics across data sets?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Tool Accuracy – λ_oct",
     "gold_answer": "0.1",
@@ -642,7 +642,7 @@
   {
     "question_id": "5-1",
     "question": "Starting from φ₀ = 0.25, r₀/h₀ = 0.10 and a seed spacing of L/h₀ = 3.0, a technologist raises the evaporation-to-growth–rate ratio vₑ/v_g from 0.30 to 0.90 while simultaneously shrinking L/h₀ to 1.2.  She concludes that these combined changes push the system from the ETIG domain into the low-evaporation GTE domain, so pinholes must now appear.  How much do you agree with her conclusion?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials-science",
     "gold_answer": "0.0",
@@ -658,7 +658,7 @@
   {
     "question_id": "5-2",
     "question": "Keeping vₑ/v_g = 0.60, L/h₀ = 2.0 and r₀/h₀ = 0.05 fixed, a reviewer claims that boosting the initial solute fraction φ₀ from 0.20 to 0.30 cannot alter the formation pathway because φ₀ does not appear on either axis; the film will therefore remain in the GTE pinholed domain.  Do you agree?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials-science",
     "gold_answer": "0.25",
@@ -674,7 +674,7 @@
   {
     "question_id": "5-3",
     "question": "With φ₀ = 0.25, r₀/h₀ = 0.10, vₑ/v_g = 10 and L/h₀ = 0.30 (< 2φ₀), an engineer asserts that impingement must be ‘late’ (after surface contact), giving the ETIG sequence and a totally flat film.  Assess this assertion.",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials-science",
     "gold_answer": "0.0",
@@ -690,7 +690,7 @@
   {
     "question_id": "5-4",
     "question": "For φ₀ = 0.25, r₀/h₀ = 0.10, vₑ/v_g = 12 and L/h₀ = 3.0 (> 2φ₀), a researcher predicts that at least 20 % of the substrate will remain uncovered because fast drying promotes voids.  Judge this prediction.",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials-science",
     "gold_answer": "0.0",
@@ -706,7 +706,7 @@
   {
     "question_id": "5-5",
     "question": "At φ₀ = 0.25, r₀/h₀ = 0.10, L/h₀ = 1.0 and vₑ/v_g = 1.0, a student expects the final perovskite layer to be perfectly flat because ‘vₑ/v_g is close to unity’.  Is this expectation justified?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials-science",
     "gold_answer": "0.0",
@@ -722,7 +722,7 @@
   {
     "question_id": "5-6",
     "question": "Given vₑ/v_g = 1.5, φ₀ = 0.25, r₀/h₀ = 0.10 and L/h₀ = 0.9 (< 1.0), one claims the valleys between crystal domes will become trenches because impingement happens early.  Do you concur?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials-science",
     "gold_answer": "0.0",
@@ -738,7 +738,7 @@
   {
     "question_id": "5-7",
     "question": "For φ₀ = 0.25, r₀/h₀ = 0.10, vₑ/v_g = 0.05 and L/h₀ = 0.70 (> 8φ₀/π ≈ 0.64), a supervisor states that pinholes cannot form because L/h₀ is still below 1.0.  Evaluate this statement.",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials-science",
     "gold_answer": "0.0",
@@ -754,7 +754,7 @@
   {
     "question_id": "5-8",
     "question": "Keeping φ₀ = 0.25, r₀/h₀ = 0.10 and vₑ/v_g = 0.02 fixed, an operator reduces L/h₀ from 0.80 to 0.30 and argues that pinholes will persist because evaporation is still extremely slow.  Is this argument valid?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials-science",
     "gold_answer": "0.0",
@@ -770,7 +770,7 @@
   {
     "question_id": "5-9",
     "question": "A process engineer doubles φ₀ from 0.20 to 0.40 and claims that the minimum vₑ/v_g required for a flat film will also roughly double.  How accurate is this claim?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials-science",
     "gold_answer": "0.0",
@@ -786,7 +786,7 @@
   {
     "question_id": "5-10",
     "question": "If r₀/h₀ is raised from 0.05 to 0.15 while other parameters stay constant, a colleague asserts that the horizontal pinhole boundary 8φ₀/π will shift significantly but the vertical vₑ/v_g thresholds will be unchanged.  Do you agree?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "materials-science",
     "gold_answer": "0.0",
@@ -802,7 +802,7 @@
   {
     "question_id": "6-1",
     "question": "For 360 s vacuum treatments of FA0.78Cs0.22Pb(I0.85Br0.15)3 films, it is claimed that (i) AEAPTMS lowers the FA⁺ ToF-SIMS signal at m/z = 45.05 by roughly twenty-fold relative to an untreated reference, yet (ii) the same AEAPTMS-passivated solar cell will exhibit a smaller open-circuit voltage than a film coated for the same time with APTMS, because the cyclised imidazolium species are said to block carrier extraction.  How strongly do you agree with this combined assertion?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "surface-chemistry vs. device metrics",
     "gold_answer": "0.0",
@@ -818,7 +818,7 @@
   {
     "question_id": "6-2",
     "question": "Because AEAPTMS converts to the 4,5-dihydro-imidazolium adduct within 5 min in solution, a researcher argues that the diagnostic fragment at m/z = 71.06 should *not* be detectable in a ToF-SIMS spectrum after only a 30 s vapour deposition, and will appear only when the coating time exceeds 90 s.  Do you agree with this reasoning?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "reaction kinetics & detection limits",
     "gold_answer": "0.0",
@@ -834,7 +834,7 @@
   {
     "question_id": "6-3",
     "question": "Imagine extending APTMS deposition from 90 s to 900 s.  A hypothesis is put forward that carrier lifetime will stagnate, UV–Vis extinction will continue to decline, *yet* power-conversion efficiency will climb because gains in V_OC supposedly outweigh any losses in J_SC and FF.  How much confidence do you place in this hypothesis?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "over-exposure trade-offs",
     "gold_answer": "0.0",
@@ -850,7 +850,7 @@
   {
     "question_id": "6-4",
     "question": "For AEAPTMS passivation, once a 360 s coating has pushed the TRPL lifetime to its peak, any additional 2 % loss in optical extinction is expected to translate into a short-circuit current penalty that outweighs the continuing (smaller) rise in V_OC, thereby reducing PCE relative to a 30 s treatment.  Do you agree?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "lifetime-vs-current compromise",
     "gold_answer": "1.0",
@@ -866,7 +866,7 @@
   {
     "question_id": "6-5",
     "question": "A student argues that at a 90 s exposure the surface Si⁺ signal in ToF-SIMS should be *higher* for AEAPTMS than for APTMS because the bulky imidazolium product \"piles up\" at the film surface.  How justified is this claim?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "depth-profiling interpretation",
     "gold_answer": "0.0",
@@ -882,7 +882,7 @@
   {
     "question_id": "6-6",
     "question": "Because AEAPTMS forms a bulkier cyclised product that remains near the surface, its devices sustain the V_OC enhancement across a broader range of deposition times than those treated with APTMS.  Do you concur?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "processing-window rationale",
     "gold_answer": "1.0",
@@ -898,7 +898,7 @@
   {
     "question_id": "6-7",
     "question": "Some contend that the insulating nature of thick silane layers is compensated by the higher V_OC achieved after a 360 s AEAPTMS deposition, so that PCE at 360 s should exceed that obtained after the 30 s optimum.  How credible is this contention?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "optimum duration vs. efficiency",
     "gold_answer": "0.0",
@@ -914,7 +914,7 @@
   {
     "question_id": "6-8",
     "question": "The contract predicts that coordinate bonding plus imidazolium formation should cut non-radiative recombination by *at least* 50 %.  If an experiment measures only a 40 % reduction while still observing higher V_OC and longer TRPL lifetime than the control, does this outcome *invalidate* the causal mechanism proposed?  Rate your agreement.",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "recombination-reduction threshold",
     "gold_answer": "0.0",
@@ -930,7 +930,7 @@
   {
     "question_id": "6-9",
     "question": "Because TRPL lifetimes grow between 30 s and 90 s APTMS treatments while PCE falls, one might conclude that lifetime alone is an adequate predictor of device efficiency.  Do you agree with this conclusion?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "metric sufficiency",
     "gold_answer": "0.0",
@@ -946,7 +946,7 @@
   {
     "question_id": "6-10",
     "question": "APTMS passivation for 30 s lifts both V_OC and FF.  After a 360 s exposure FF drops back below the 30 s value.  Does this behaviour negate the causal link that amino-silane passivation can *improve* FF?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "cause-effect validity under non-optimal conditions",
     "gold_answer": "0.0",
@@ -962,7 +962,7 @@
   {
     "question_id": "7-1",
     "question": "Suppose the average Cs⁺ displacement in (CHMA)₂CsAgBiBr₇ were engineered down to <0.05 Å (well below the ≈0.144 Å reported). A researcher claims this would leave the spontaneous polarization at about 4.3 µC cm⁻² and therefore preserve the same built-in electrostatic field and fatigue endurance beyond 4 × 10⁵ switching cycles. How plausible is this claim?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Ferroelectric origin",
     "gold_answer": "0.1",
@@ -978,7 +978,7 @@
   {
     "question_id": "7-2",
     "question": "Another hypothesis states that even at 350 K, i.e. above the Curie point (~338 K), the asymmetric Cs⁺ displacement continues to produce the same internal field so the open-circuit photovoltage should still be ~40 V. Assess the likelihood of this scenario.",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Ferroelectric origin",
     "gold_answer": "0.05",
@@ -994,7 +994,7 @@
   {
     "question_id": "7-3",
     "question": "For a lateral device with 1.5 mm electrode spacing along the c-axis, illuminated at 405 nm (149 mW cm⁻²), a V_oc of about 10 V (≈25 % of the 40 V value reported for ~1 mm spacing) has been predicted. Does the causal model support this prediction?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Anomalous photovoltaic magnitude",
     "gold_answer": "0.1",
@@ -1010,7 +1010,7 @@
   {
     "question_id": "7-4",
     "question": "If the illumination intensity were doubled from 149 mW cm⁻² to ~300 mW cm⁻², a linear model would predict that J_sc will also double from ~15 nA cm⁻² to ~30 nA cm⁻². Is such a linear increase compatible with the documented behavior?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Intensity dependence",
     "gold_answer": "0.15",
@@ -1026,7 +1026,7 @@
   {
     "question_id": "7-5",
     "question": "The shift-current tensor calculation predicts a peak of about −5.8 µA V⁻² along the c-axis at 2.45 eV, while responses along a- and b-axes are much smaller; this anisotropy explains the experimentally observed polarization ratio J_max/J_min ≈ 41. Does this reasoning accord with the contract?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Shift-current anisotropy",
     "gold_answer": "0.95",
@@ -1042,7 +1042,7 @@
   {
     "question_id": "7-6",
     "question": "A proposal claims that at 2.0 eV excitation (≈20 % below the 2.45 eV peak), the c-axis shift current will still exceed −5 µA V⁻². Is this spectral extrapolation consistent with the calculated trend?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Shift-current spectral trend",
     "gold_answer": "0.2",
@@ -1058,7 +1058,7 @@
   {
     "question_id": "7-7",
     "question": "Following 20 min pre-illumination, one expects V_oc to fall from ~20 V to roughly 10 V (≈50 % drop) while J_sc remains near 14 nA cm⁻². How well does this expectation match the documented ion-migration effects?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Ion-migration impact",
     "gold_answer": "0.1",
@@ -1074,7 +1074,7 @@
   {
     "question_id": "7-8",
     "question": "Another report argues that pre-illumination lengthens the photovoltage rise time by <100 %, signifying minimal defect trapping. Evaluate this claim.",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Carrier dynamics",
     "gold_answer": "0.05",
@@ -1090,7 +1090,7 @@
   {
     "question_id": "7-9",
     "question": "At 128 mW cm⁻² the device is said to deliver a polarization ratio J_max/J_min of about 4.1, which is an order of magnitude *lower* than black phosphorus (~8.7). Is this statement supported?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Polarization-sensitive detection",
     "gold_answer": "0.05",
@@ -1106,7 +1106,7 @@
   {
     "question_id": "7-10",
     "question": "Because the J_sc variation is 180° periodic, maxima should appear whenever the polarization aligns with the a-axis (0°, 180°), while minima occur along the c-axis (90°, 270°). Does this align with the experimental findings?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Polarization angle dependence",
     "gold_answer": "0.1",
@@ -1122,7 +1122,7 @@
   {
     "question_id": "8-1",
     "question": "If every parameter of the optimized double-HTL device is kept the same except that the CuO acceptor concentration is reduced from 5 × 10¹⁹ cm⁻³ to 1 × 10¹⁶ cm⁻³ and the Spiro-OMeTAD remains undoped (HOMO ≈ –4.93 eV instead of the iodine-pentoxide-shifted –5.34 eV), is it reasonable to expect the power-conversion efficiency (PCE) to stay within ±0.1 percentage-points of the reported 22.78 % value?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Perovskite Solar Cell Design",
     "gold_answer": "0.0",
@@ -1138,7 +1138,7 @@
   {
     "question_id": "8-2",
     "question": "With CuO thickness fixed at 300 nm and optimal dopings retained, a 100 nm MgF₂ anti-reflection layer raised Jsc to 27.25 mA cm⁻² when the Spiro-OMeTAD thickness was 60 nm.  If, instead, the Spiro-OMeTAD layer is pared down to 20 nm (all other parameters unchanged), should one still expect Jsc to exceed 27 mA cm⁻² under AM1.5 G illumination?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Perovskite Solar Cell Design",
     "gold_answer": "0.25",
@@ -1154,7 +1154,7 @@
   {
     "question_id": "8-3",
     "question": "The champion hierarchical device (Str.V) reaches 26.39 % PCE with an ITO ellipsoid of r_major = 170 nm and r_minor = 145 nm.  If every downstream layer keeps its reported optimal radii but the ITO r_minor is reduced to 105 nm (height ≈ 105 nm), can the final PCE still reasonably hit 26.39 %?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Perovskite Solar Cell Design",
     "gold_answer": "0.05",
@@ -1170,7 +1170,7 @@
   {
     "question_id": "8-4",
     "question": "At the absorber stage (Str.III) the best performance comes from a symmetric 125 nm × 125 nm MAPbI₃ ellipsoid.  Suppose the MAPbI₃ ellipsoid is instead stretched to 135 nm (major) and 95 nm (minor) while the CuO and Spiro-OMeTAD ellipsoids stay at their 115 nm × 110 nm optima.  Will the near-infrared absorption peaks at 880 nm and 990 nm (field enhancement > 50×) be expected to persist with similar strength?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Perovskite Solar Cell Design",
     "gold_answer": "0.15",
@@ -1186,7 +1186,7 @@
   {
     "question_id": "8-5",
     "question": "Embedding Au nanospheres of radius 10 nm in the back contact gave essentially no PCE gain over Str.V.  If those spheres are enlarged to 100 nm while the Spiro-OMeTAD ellipsoid radii are simultaneously shrunk from (115 nm, 110 nm) to (90 nm, 85 nm), can one anticipate a net PCE increase over the 26.39 % reference?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Perovskite Solar Cell Design",
     "gold_answer": "0.05",
@@ -1202,7 +1202,7 @@
   {
     "question_id": "8-6",
     "question": "The HEPSC retains 94.5 % of its 26.38 % isothermal efficiency when the peak internal temperature reaches 325 K (52 °C).  If the device operates just 2 K hotter than the planar DHLSC peak (i.e., 325 K instead of 323 K) but all thermal properties are unchanged, would you expect the efficiency retention to rise to above 96 %?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Perovskite Solar Cell Design",
     "gold_answer": "0.2",
@@ -1218,7 +1218,7 @@
   {
     "question_id": "8-7",
     "question": "The planar DHLSC loses ≈4 % of Voc (1.066 V to 1.023 V) and ≈1 % of FF when heated.  Applying exactly the same fractional drops to the HEPSC (initial Voc = 1.074 V, FF = 83.87 %) and assuming Jsc rises by the same absolute 0.02 mA cm⁻², would the resulting non-isothermal HEPSC PCE exceed 25.5 %?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Perovskite Solar Cell Design",
     "gold_answer": "0.0",
@@ -1234,7 +1234,7 @@
   {
     "question_id": "8-8",
     "question": "Before any doping optimisation, the planar device reached its best 21.60 % PCE with a 300 nm CuO / 60 nm Spiro-OMeTAD stack.  If the CuO thickness were further increased to 340 nm while keeping all other parameters fixed, would you expect the PCE to surpass 22 %?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Perovskite Solar Cell Design",
     "gold_answer": "0.1",
@@ -1250,7 +1250,7 @@
   {
     "question_id": "8-9",
     "question": "Because impurity scattering lowered PCE beyond 1 × 10²⁰ cm⁻³, could simultaneously raising both CuO and Spiro-OMeTAD acceptor densities to 1 × 10²² cm⁻³ (while omitting the MgF₂ ARC) realistically boost the planar device PCE above 24 %?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Perovskite Solar Cell Design",
     "gold_answer": "0.05",
@@ -1266,7 +1266,7 @@
   {
     "question_id": "8-10",
     "question": "The simulation workflow reproduces the 22.77 % result of Qin et al. using an FTO front contact.  If FTO is replaced by a 100 nm ITO layer but all other layer thicknesses remain identical to Qin’s structure (i.e., no thickness re-optimisation), does the workflow predict a PCE greater than 22 %?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "Perovskite Solar Cell Design",
     "gold_answer": "0.2",
@@ -1282,7 +1282,7 @@
   {
     "question_id": "9-1",
     "question": "Engineers redesign the EIT unit cell so that the rod now possesses a high-Q (narrow) linewidth comparable to that of the original SRR, while the SRR is intentionally broadened into a low-Q, radiative element.  All other geometrical parameters, the near-field spacing of 3 µm, and the incident y-polarized THz illumination are left unchanged.  They predict that a transparency window with ~80 % peak transmission will still emerge at the original f_EIT ≈ 1.3 THz.  How likely is this prediction to be correct?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "metamaterials",
     "gold_answer": "0.1",
@@ -1298,7 +1298,7 @@
   {
     "question_id": "9-2",
     "question": "Suppose the rod and SRR resonances are tuned so precisely that their bare (uncoupled) frequencies coincide at 1.25 THz, keeping their original linewidth contrast and 3 µm gap.  Researchers argue that this perfect spectral overlap will merely narrow, but not eliminate, the transparency peak that appears near 1.30 THz.  Is their argument credible?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "metamaterials",
     "gold_answer": "0.75",
@@ -1314,7 +1314,7 @@
   {
     "question_id": "9-3",
     "question": "Keeping the phonon (ħΓ_ph ≈ 0.078 THz) and SRR (ħΓ_SRR ≈ 0.063 THz) linewidths unchanged, a fabrication defect reduces the measured Rabi splitting of the SRR-phonon system from 0.26 THz to only 0.15 THz.  Will the coupled system still satisfy the strong-coupling criterion V > V_st derived in the paper?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "metamaterials",
     "gold_answer": "0.05",
@@ -1330,7 +1330,7 @@
   {
     "question_id": "9-4",
     "question": "If the MAPbI3 layer is made twice as thick, the oscillator strength rises and simulations predict a vacuum Rabi splitting of 0.50 THz for the rod resonance.  Assuming the central phonon frequency stays at 0.97 THz, would polariton branches near 0.80 THz and 1.30 THz be consistent with this larger splitting?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "metamaterials",
     "gold_answer": "0.85",
@@ -1346,7 +1346,7 @@
   {
     "question_id": "9-5",
     "question": "An experimenter deactivates the MAPbI3 phonon (e.g., by lowering temperature below its activity range) but leaves the EIT resonance pre-tuned to 0.97 THz.  They still expect two transparency peaks to show up near 0.9 THz and 1.2 THz.  Is this expectation justified?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "metamaterials",
     "gold_answer": "0.05",
@@ -1362,7 +1362,7 @@
   {
     "question_id": "9-6",
     "question": "A second sample is fabricated where the coated rod resonance (before coupling) is slightly higher, at 1.12 THz instead of 1.08 THz.  After activating the 0.97 THz phonon, the measured transmission maxima shift to 0.95 THz, 1.05 THz, and 1.20 THz.  Could this spectral triplet still be interpreted as the dual EIT-like response described in the paper?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "metamaterials",
     "gold_answer": "0.7",
@@ -1378,7 +1378,7 @@
   {
     "question_id": "9-7",
     "question": "Investigators claim that in the hybrid structure the group-delay peaks at 0.9 THz and 1.3 THz each exceed 3 ps—more than double the ≈ 1.5 ps delay reported for the single-EIT structure.  Does the paper support such a large increase?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "metamaterials",
     "gold_answer": "0.15",
@@ -1394,7 +1394,7 @@
   {
     "question_id": "9-8",
     "question": "If a sharper phonon (HWHM ≈ 0.02 THz) were used—as simulated in the Supplementary Information—the magnitude of the negative group delay observed at the 1.0 THz absorption dip is expected to increase in absolute value.  Is this expectation in line with the dispersion-based reasoning given?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "metamaterials",
     "gold_answer": "0.8",
@@ -1410,7 +1410,7 @@
   {
     "question_id": "9-9",
     "question": "During rotational tuning of the hybrid metasurface, the first 45° rotation step is reported to annihilate the EIT-like peaks completely, leaving only the SRR-phonon polariton split spectrum.  Does this abrupt disappearance at θ = 45° conform to the behaviour outlined in the study?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "metamaterials",
     "gold_answer": "0.1",
@@ -1426,7 +1426,7 @@
   {
     "question_id": "9-10",
     "question": "When the SRR pair is translated upward by y_up ≈ 0.5 L₁ (half the rod-SRR overlap), researchers observe that the dual EIT-like windows are essentially unchanged in frequency and amplitude compared to y_up = 0.  Is such insensitivity to translation consistent with the mechanisms described?",
-    "experiment_id": "test-pervos",
+    "experiment_id": "test-perovskites",
     "config_name": "o3-mini",
     "question_type": "metamaterials",
     "gold_answer": "0.1",

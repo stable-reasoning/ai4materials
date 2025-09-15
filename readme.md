@@ -8,6 +8,9 @@
  <a><img alt="License" src="https://img.shields.io/badge/license-MIT-lightgrey"></a>
 </p>
 
+## About
+
+This repository is a part of MSc AI thesis "Enhancing the Reasoning of LLMs in Materials Discovery via Causal Contracts"
 
 ## 📋 Overview
 
