@@ -8,6 +8,9 @@
  <a><img alt="License" src="https://img.shields.io/badge/license-MIT-lightgrey"></a>
 </p>
 
+## About
+
+This repository is a part of MSc AI thesis "Enhancing the Reasoning of LLMs in Materials Discovery via Causal Contracts"
 
 ## 📋 Overview
 
@@ -250,13 +253,10 @@ from app import get_document_pipeline_dag, get_answer_pipeline_dag
 
 # General notes on code architecture
 
-The LLM client part is implemented using LiteLLM library, and this makes our too model-agnostic. When using two providers,
+The LLM client part is implemented using LiteLLM library, and this makes our tool model-agnostic. When using two providers,
 appropriate API keys must be provided. 
 
 
-## 🙌 Acknowledgements
-
-TBA
 
 ## 📚 Citation
 
