@@ -115,6 +115,15 @@ python app.py answer \
   --model openai/o4-mini --temperature 1.0 --retries 3
 ```
 
+```bash
+python app.py design  --working-dir runs \
+   --contracts ./data/contracts2.json \
+   --contract_id 21-0 \
+   --run-id design_pipeline-20250915-065507 \
+   --model openai/o4-mini --temperature 1.0 --retries 3
+
+```
+
 > Both commands create a timestamped experiment folder inside `runs/` that contains all intermediate and final artifacts.
 
 ## 🔧 Framework Components

@@ -64,6 +64,10 @@ def coerce_to_simple_string(content: Any) -> str:
     return str(content).strip()
 
 
+def identity(content: Any) -> Any:
+    return content
+
+
 def _build_litellm_params(config: ModelConfig, metadata: Optional[Dict[str, Any]]) -> Dict[str, Any]:
     params: Dict[str, Any] = {
         "temperature": getattr(config, "temperature", 0.0),

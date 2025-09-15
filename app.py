@@ -19,6 +19,7 @@ from agents.DownloadAgent import DownloadAgent
 from agents.ExtractionAgent import ExtractionAgent
 from agents.QAAnswerAgent import QAAnswerAgent
 from agents.QADatasetGeneratorAgent import QADatasetGeneratorAgent
+from agents.QADesignerAgent import QADesignerAgent
 from agents.QAEvaluationAgent import QAEvaluationAgent
 from agents.SemanticAnalyzerAgent import SemanticAnalyzerAgent
 from core import DAG, DAGRunner
@@ -109,7 +110,7 @@ def get_document_pipeline_dag(
 
     download_papers >> extract_pages >> analyze_document >> semantic_analysis >> contract_generation >> question_generation
 
-    document_pipeline_dag = DAG(
+    return DAG(
         name="document_pipeline",
         tasks=[
             download_papers,
@@ -121,12 +122,11 @@ def get_document_pipeline_dag(
         ],
     )
 
-    return document_pipeline_dag
-
 
 def get_answer_pipeline_dag(
         dataset: Path,
         contracts: Path,
+        out: str = "eval_answer.json",
         options: Optional[Dict[str, Any]] = None,
         model_config: Optional[ModelConfig] = None,
 ) -> DAG:
@@ -166,7 +166,7 @@ def get_answer_pipeline_dag(
 
     question_answering >> evaluation
 
-    test_pipeline_dag = DAG(
+    return DAG(
         name="test_pipeline",
         tasks=[
             question_answering,
@@ -174,7 +174,40 @@ def get_answer_pipeline_dag(
         ],
     )
 
-    return test_pipeline_dag
+
+def get_designer_pipeline_dag(
+        contract_id: str,
+        contracts: Path,
+        model_config: Optional[ModelConfig] = None,
+) -> DAG:
+    """Build the QA+evaluation pipeline DAG."""
+    prompt_manager = PromptManager()
+    image_store = ImageStorage()
+
+    model_config = model_config or ModelConfig(
+        name=DEFAULT_MODEL,
+        model=DEFAULT_MODEL,
+        temperature=DEFAULT_TEMPERATURE,
+        retries=DEFAULT_RETRIES,
+    )
+
+    question_answering = QADesignerAgent(
+        name="material_design",
+        input_spec={
+            "contracts": f"file:{str(contracts)}",
+        },
+        pm=prompt_manager,
+        image_store=image_store,
+        model_config=model_config,
+        metadata={"contract_id": contract_id},
+    )
+
+    return DAG(
+        name="design_pipeline",
+        tasks=[
+            question_answering
+        ],
+    )
 
 
 # ------------------------------ runners ------------------------------ #
@@ -210,6 +243,23 @@ async def run_answer(
         dataset=dataset,
         contracts=contracts,
         options=options,
+        model_config=model_config,
+    )
+    runner = DAGRunner(dag=dag, working_dir=working_dir)
+    run_id = run_id or f"{dag.name}-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+    await runner.run(experiment_id=run_id)
+
+
+async def run_design(
+        contracts: Path,
+        contract_id: str,
+        working_dir: str,
+        run_id: Optional[str] = None,
+        model_config: Optional[ModelConfig] = None,
+) -> None:
+    dag = get_designer_pipeline_dag(
+        contract_id=contract_id,
+        contracts=contracts,
         model_config=model_config,
     )
     runner = DAGRunner(dag=dag, working_dir=working_dir)
@@ -302,13 +352,38 @@ def make_parser() -> argparse.ArgumentParser:
     p_ans.add_argument(
         "--flags",
         default="RAW_TEXT",
-        help="Optional context flags, e.g. 'CC' or 'RAW_TEXT' or 'CC|RAW_TEXT'",
+        help="Optional context flags, e.g. 'CC' or 'RAW_TEXT' or 'CC+RAW_TEXT'",
     )
     p_ans.add_argument(
         "--run-id",
         help="Optional experiment/run id (default: auto timestamp)",
     )
     _add_model_args(p_ans)
+
+    # design subcommand
+    p_des = subparsers.add_parser("design", help="Design pipeline")
+    p_des.add_argument(
+        "--working-dir",
+        default="runs",
+        help="Directory to store run artifacts (default: runs)",
+    )
+    p_des.add_argument(
+        "--contracts",
+        type=Path,
+        default=(DATA_DIR / "test_contracts.json"),
+        help="Path to QA dataset JSON (default: data/test_dataset.json)",
+    )
+    p_des.add_argument(
+        "--contract_id",
+        type=str,
+        required=True,
+        help="A unique id of contract, f.e. 8-1",
+    )
+    p_des.add_argument(
+        "--run-id",
+        help="Optional experiment/run id (default: auto timestamp)",
+    )
+    _add_model_args(p_des)
 
     return parser
 
@@ -342,6 +417,17 @@ async def _dispatch(ns: argparse.Namespace) -> None:
             context_flags=ns.flags,
             run_id=ns.run_id,
             model_config=model_cfg,
+        )
+        return
+
+    if ns.command == "design":
+        _validate_path(ns.contracts, "contracts file")
+        await run_design(
+            contracts=ns.contracts,
+            contract_id=ns.contract_id,
+            working_dir=ns.working_dir,
+            run_id=ns.run_id,
+            model_config=model_cfg
         )
         return
 

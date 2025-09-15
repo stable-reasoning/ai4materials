@@ -68,6 +68,12 @@ class Agent(ABC):
             f_out.write(json.dumps(data, ensure_ascii=False))
         return local_p.resolve().absolute()
 
+    def save_raw_ouput_locally(self, rel_path: str, data: Any) -> Path:
+        local_p = self.workspace / rel_path
+        with open(local_p, "w", encoding="utf-8") as f_out:
+            f_out.write(data)
+        return local_p.resolve().absolute()
+
     def __rshift__(self, other: 'Agent'):
         self.downstream_tasks.add(other)
         other.upstream_tasks.add(self)
