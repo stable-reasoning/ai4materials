@@ -10,7 +10,7 @@
 
 ## About
 
-This repository is a part of MSc AI thesis "Enhancing the Reasoning of LLMs in Materials Discovery via Causal Contracts"
+This repository is a part of Master's thesis in AI: "Enhancing the Reasoning of LLMs in Materials Discovery via Causal Contracts"
 
 ## 📋 Overview
 
