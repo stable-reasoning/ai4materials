@@ -338,6 +338,11 @@ def make_parser() -> argparse.ArgumentParser:
     # answer subcommand
     p_ans = subparsers.add_parser("answer", help="Run QA + evaluation pipeline")
     p_ans.add_argument(
+        "--working-dir",
+        default="runs",
+        help="Directory to store run artifacts (default: runs)",
+    )
+    p_ans.add_argument(
         "--dataset",
         type=Path,
         default=(DATA_DIR / "test_dataset.json"),

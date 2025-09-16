@@ -53,7 +53,7 @@ def load_env_vars_to_dataclass(cls: type):
                 env_var_name = f"{cls.__env_var_prefix__}_{env_var_name}"
             env_value = os.environ.get(env_var_name)
 
-            if env_value is not None:  # first try to set the env var
+            if env_value:  # first try to set the env var
                 if f.type is not type(None) and f.type is not str:
                     try:
                         if f.type is int:
@@ -86,7 +86,7 @@ def load_env_vars_to_dataclass(cls: type):
 @load_env_vars_to_dataclass
 @dataclass
 class Configuration:
-    vector_db_path: str
+#    vector_db_path: str
     openai_api_key: str = dataclasses.field(metadata={'secret': True})
     docucache_path: str = str(DOCUCACHE_DIR)
     runs_path: str = str(RUNS_DIR)
