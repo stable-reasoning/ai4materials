@@ -93,7 +93,11 @@ conda env update -n ai4materials -f environment.yml
 
 #### Environment Setup
 
-Minimal configuration is required for local runs. By default, artifacts are written to `./runs`. Ensure the directories under `data/` and `test_data/` exist and contain the input files referenced below.
+Minimal configuration is required for local runs. By default, artifacts are written to `./runs`. 
+Ensure the directories under `data/` and `test_data/` exist and contain the input files referenced below.
+
+Since the code is using external LLM services, API key is needed. Our software supports LLM services via LiteLLM, and the API key for 
+`OPENAI_API_KEY` is needed. Copy and rename the file `.env.copy` -> `.env`, and set the environment variables.
 
 #### Quick Start
 
@@ -149,6 +153,7 @@ appropriate API keys must be provided.
 4. **SemanticAnalyzerAgent** — performs deeper semantic analysis to derive structured representations.
 5. **ContractWriterAgent** — synthesizes *contracts* (concise, schema‑constrained summaries) to support controlled QA.
 6. **QADatasetGeneratorAgent** — produces a QA dataset aligned with the contracts and selected context flags.
+7. **QADesignerAgent** — a demo agent to produce a list of candidates materials from the contract
 
 **Outputs:** processed IDs, semantic documents, contracts, and a generated QA dataset — all stored under the current run directory.
 
