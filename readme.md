@@ -93,7 +93,11 @@ conda env update -n ai4materials -f environment.yml
 
 #### Environment Setup
 
-Minimal configuration is required for local runs. By default, artifacts are written to `./runs`. Ensure the directories under `data/` and `test_data/` exist and contain the input files referenced below.
+Minimal configuration is required for local runs. By default, artifacts are written to `./runs`. 
+Ensure the directories under `data/` and `test_data/` exist and contain the input files referenced below.
+
+Since the code is using external LLM services, API key is needed. Our software supports LLM services via LiteLLM, and the API key for 
+`OPENAI_API_KEY` is needed. Copy and rename the file `.env.copy` -> `.env`, and set the environment variables.
 
 #### Quick Start
 
