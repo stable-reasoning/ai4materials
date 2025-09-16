@@ -153,6 +153,7 @@ appropriate API keys must be provided.
 4. **SemanticAnalyzerAgent** — performs deeper semantic analysis to derive structured representations.
 5. **ContractWriterAgent** — synthesizes *contracts* (concise, schema‑constrained summaries) to support controlled QA.
 6. **QADatasetGeneratorAgent** — produces a QA dataset aligned with the contracts and selected context flags.
+7. **QADesignerAgent** — a demo agent to produce a list of candidates materials from the contract
 
 **Outputs:** processed IDs, semantic documents, contracts, and a generated QA dataset — all stored under the current run directory.
 
