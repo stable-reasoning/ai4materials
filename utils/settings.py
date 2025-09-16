@@ -18,6 +18,7 @@ TEMPLATES_DIR = ROOT_DIR / "templates"
 SCRIPTS_DIR = ROOT_DIR / "scripts"
 RUNS_DIR = ROOT_DIR / "runs"
 DATA_DIR = ROOT_DIR / "data"
+DOCUCACHE_DIR = ROOT_DIR / "docucache"
 
 LOG_LEVEL = "INFO"
 APP_VERSION = "0.1.0"
@@ -85,10 +86,10 @@ def load_env_vars_to_dataclass(cls: type):
 @load_env_vars_to_dataclass
 @dataclass
 class Configuration:
-    docucache_path: str
-    runs_path: str
     vector_db_path: str
     openai_api_key: str = dataclasses.field(metadata={'secret': True})
+    docucache_path: str = str(DOCUCACHE_DIR)
+    runs_path: str = str(RUNS_DIR)
 
     def __str__(self):
         """Generates a formatted, secret-redacted string representation."""

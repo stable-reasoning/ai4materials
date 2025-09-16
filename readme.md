@@ -26,7 +26,7 @@ The pipelines are built from interoperable **agents** orchestrated by a lightwei
 
 ## 🏁 Highlights
 
-* **DAG‑orchestrated research pipelines** with explicit data contracts between tasks.
+* **DAG‑orchestrated research pipelines** with explicit data flow configuration between tasks.
 * **Agentic design**: discrete agents for download, extraction, analysis, contract writing, QA generation, answering, and evaluation.
 * **Reproducible runs**: each experiment writes all inputs/outputs to a timestamped folder under `runs/`.
 * **Configurable model runtime** via CLI flags (`--model`, `--temperature`, `--retries`).
@@ -49,7 +49,6 @@ The pipelines are built from interoperable **agents** orchestrated by a lightwei
 * [📦 Project Structure](#-project-structure)
 * [📈 Reproducibility & Experiment Artifacts](#-reproducibility--experiment-artifacts)
 * [📝 Configuration Reference](#-configuration-reference)
-* [🙌 Acknowledgements](#-acknowledgements)
 * [📚 Citation](#-citation)
 
 ## 🚀 Get Started
@@ -111,18 +110,21 @@ python app.py document  --working-dir runs \
 
 ```bash
 python app.py answer --working-dir runs \
-  --contracts ./data/contracts2.json \
-  --dataset   ./data/full_dataset2.json \
+  --contracts ./runs/doc_pipeline_test/contract_generation/contracts.json \
+  --dataset   ./runs/doc_pipeline_test/question_generation/qa_dataset.json \
+  --run-id qa_test  \
   --flags RAW_TEXT \
   --model openai/o4-mini --temperature 1.0 --retries 3
 ```
 
+**Design Pipeline** — generates a list of materials candidates on the basis of contracts:
+
 ```bash
 python app.py design  --working-dir runs \
-   --contracts ./data/contracts2.json \
-   --contract_id 21-0 \
-   --run-id design_pipeline-20250915-065507 \
-   --model openai/o4-mini --temperature 1.0 --retries 3
+   --contracts ./runs/doc_pipeline_test/contract_generation/contract_1.json \
+   --contract_id 1-0 \
+   --run-id design_pipeline \
+   --model openai/o3 --temperature 1.0 --retries 3
 
 ```
 
@@ -178,18 +180,18 @@ appropriate API keys must be provided.
 
 ```
 <repo-root>/
-├─ agents/                  # Agent implementations (download, extract, analyze, QA, eval, ...)
-├─ core/                    # DAG & runtime abstractions
-├─ data/                    # Generated artifacts (contracts, datasets, etc)
-├─ docs/                    # Technical documentation
-├─ docucache/              
-├─ middleware/              # Shared services (e.g., image storage)
-├─ notebooks/               # Analytics for thesis            
-├─ runs/                    # Experiment outputs (created at runtime)
-├─ test_data/               # Test lists / small fixtures (e.g., paper URLs)
-├─ utils/                   # Prompt manager, settings, model config, logging helpers
-├─ requirements.txt         # Python dependencies
-└─ app.py                  # CLI entrypoint: build & run DAG pipelines
+  ├─ agents/                  # Agent implementations (download, extract, analyze, QA, eval, ...)
+  ├─ core/                    # DAG & runtime abstractions
+  ├─ data/                    # Generated artifacts (contracts, datasets, etc)
+  ├─ docs/                    # Technical documentation
+  ├─ docucache/              
+  ├─ middleware/              # Shared services (e.g., image storage)
+  ├─ notebooks/               # Analytics for thesis            
+  ├─ runs/                    # Experiment outputs (created at runtime)
+  ├─ test_data/               # Test lists / small fixtures (e.g., paper URLs)
+  ├─ utils/                   # Prompt manager, settings, model config, logging helpers
+  ├─ requirements.txt         # Python dependencies
+  └─ app.py                  # CLI entrypoint: build & run DAG pipelines
 ```
 
 ## The file structure of DocuCache
@@ -199,14 +201,17 @@ appropriate API keys must be provided.
     ├── metadata.db            <-- The SQLite database file
     ├── 1/                     <-- First paper's folder (ID from DB)
     │   ├── assets/
+    │   ├── pages/
     │   └── tmp/
     │       └── 1706.03762.pdf
     ├── 2/
     │   ├── assets/
+    │   ├── pages/
     │   └── tmp/
     │       └── 2203.02155.pdf
     └── 3/
         ├── assets/
+        ├── pages/
         └── tmp/
             └── 2307.09288.pdf
 ```
